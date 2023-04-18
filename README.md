@@ -1,3 +1,3 @@
 # smart-inventory-management
 
-checking
+checking @ rishit
