@@ -1,3 +1,1 @@
 # smart-inventory-management
-
-checking..
