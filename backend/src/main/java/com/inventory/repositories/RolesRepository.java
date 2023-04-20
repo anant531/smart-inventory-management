@@ -9,6 +9,5 @@ import com.inventory.entities.Roles;
 public interface RolesRepository extends JpaRepository<Roles, Long>{
 
 	Optional<Roles> findByName(String name);
-	
 
 }
