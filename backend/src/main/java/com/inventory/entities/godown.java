@@ -1,6 +1,8 @@
 package com.inventory.entities;
 
-import java.time.LocalDate;
+import java.sql.Date;
+
+//import java.text.SimpleDateFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,14 +14,14 @@ public class godown {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long godownId;
-	
+
 	String godownLocation;
-	
+
 	int godownCapacity;
-	
+
 	String supervisor;
-	
-	LocalDate startDate;
+
+	Date startDate;
 
 	public Long getGodownId() {
 		return godownId;
@@ -53,11 +55,17 @@ public class godown {
 		this.supervisor = supervisor;
 	}
 
-	public LocalDate getStartDate() {
+//	public String getStartDate() {
+//		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//		String formattedDate = formatter.format(startDate);
+//		return formattedDate;
+//	}
+
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
@@ -66,6 +74,6 @@ public class godown {
 		return "godown [godownId=" + godownId + ", godownLocation=" + godownLocation + ", godownCapacity="
 				+ godownCapacity + ", supervisor=" + supervisor + ", startDate=" + startDate + "]";
 	}
-	
+
 
 }

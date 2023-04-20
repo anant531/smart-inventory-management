@@ -16,12 +16,12 @@ public class RolesController {
 
 	@Autowired
 	RolesRepository rolesRepository;
-	
+
 	@GetMapping(path = "/roles")
 	public List<Roles> getAllUser(){
 		return rolesRepository.findAll();
 	}
-	
+
 	@PostMapping(path = "/roles")
 	public void addUser(@RequestBody Roles r) {
 		rolesRepository.save(r);
