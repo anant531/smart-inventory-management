@@ -7,20 +7,31 @@ import javax.persistence.Id;
 
 @Entity
 public class Roles {
-
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long id;
+	
 	String name;
-	
-	
+
 	public Roles() {
-		
+
 	}
 
 	public Roles(long id, String name) {
 		super();
 		this.id = id;
+		this.name = name;
+	}
+
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -30,14 +41,6 @@ public class Roles {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	@Override
