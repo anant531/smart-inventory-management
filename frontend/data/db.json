@@ -1,0 +1,137 @@
+{
+  "expenses": [
+    {
+      "id": "e001",
+      "title": "shopping",
+      "amount": 12.99,
+      "createdAt": "Dec 21, 2022"
+    },
+    {
+      "id": "e002",
+      "title": "planting",
+      "amount": 10.9,
+      "createdAt": "Jan 1, 2023"
+    },
+    {
+      "id": "e003",
+      "title": "grocery",
+      "amount": 29.9,
+      "createdAt": "Mar 20, 2023"
+    },
+    {
+      "id": "c73c0972-8e69-472f-9832-dcb63edc0dbf",
+      "title": "insurance",
+      "amount": 13.3,
+      "createdAt": "2022-12-20T00:00:00.000Z"
+    }
+  ],
+  "todos": [
+    {
+      "id": "c73c0972-8e69-472f-9832-dcb63edc0dbf",
+      "label": "shopping",
+      "status": false
+    }
+  ],
+  "users": [
+    {
+      "name": "abc",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 1
+    },
+    {
+      "name": "abc",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 2
+    },
+    {
+      "name": "abc",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 3
+    },
+    {
+      "name": "abc",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 4
+    },
+    {
+      "name": "abc",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 5
+    },
+    {
+      "name": "abc",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 6
+    },
+    {
+      "name": "xss",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 7
+    },
+    {
+      "name": "xss",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 8
+    },
+    {
+      "name": "xss",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 9
+    },
+    {
+      "name": "xss",
+      "email": "abc@abc",
+      "password": "abc",
+      "id": 10
+    },
+    {
+      "name": "Rishi",
+      "email": "rishi.vardhan9899@gmail.com",
+      "password": "Rish",
+      "id": 11
+    },
+    {
+      "name": "Rishi",
+      "email": "rishi.vardhan9899@gmail.com",
+      "password": "anc",
+      "id": 12
+    }
+  ],
+  "posts": [
+    {
+      "id": "p001",
+      "title": "React",
+      "body": "Awesome React Course"
+    },
+    {
+      "title": "Angular",
+      "body": "great framework",
+      "id": "AGMsf7w"
+    },
+    {
+      "title": "NodeJS",
+      "body": "server side javascript",
+      "id": "Sg8e-P3"
+    },
+    {
+      "title": "vuejs",
+      "body": "emerging framework",
+      "id": "aGZPLnm"
+    },
+    {
+      "title": "jQuery",
+      "body": "small library",
+      "id": "_nWv1MO"
+    }
+  ],
+  "godown": []
+}
