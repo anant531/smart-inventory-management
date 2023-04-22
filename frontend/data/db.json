@@ -133,5 +133,151 @@
       "id": "_nWv1MO"
     }
   ],
-  "godown": []
+  "godown": [
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    },
+    {
+      "location": "Chennai",
+      "Capacity": "1000",
+      "GodownSupervisor": "Rishi",
+      "createdAt": "2023-04-20",
+      "products": [],
+      "id": 1
+    }
+  ],
+  "product": [
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "1",
+      "ItemName": "Bisleri",
+      "Supplier": "Parle",
+      "Categeory": "Mineral Water",
+      "Amount": "20"
+    }
+  ]
 }
