@@ -1,11 +1,11 @@
 package com.inventory.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Employee{
@@ -19,24 +19,31 @@ public class Employee{
 	String email;
 	String phone;
 	String password;
+	String name;
 
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne()
+	@JoinColumn(name = "role_id")
 	Roles role;
 
 	public Employee() {
 
 	}
 
-	public Employee(long userId, String userName, String email, String phone, String password, Roles role) {
+
+	public Employee(long userId, String userName, String email, String phone, String password, String name,
+			Roles role) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
 		this.email = email;
 		this.phone = phone;
 		this.password = password;
+		this.name = name;
 		this.role = role;
 	}
+
+
 
 	public long getUserId() {
 		return userId;
@@ -86,11 +93,20 @@ public class Employee{
 		this.password = password;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Employee [userId=" + userId + ", userName=" + userName + ", email=" + email + ", phone=" + phone
-				+ ", password=" + password + ", role=" + role + "]";
+				+ ", password=" + password + ", name=" + name + ", role=" + role + "]";
 	}
-
 
 }

@@ -32,27 +32,16 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/user")
-	public String addUser(@RequestBody Employee u) {
-
-		System.out.println(u);
-		if(u.getRole().getName().length() > 0) {
-			Optional<Roles> roleFound = rolesRepository.findByName(u.getRole().getName());
-			System.out.println(roleFound);
-			if(roleFound.isPresent()) {
-				u.setRole(roleFound.get());
-				userRepository.save(u);
-			}
-
-			else {
-				return "Wrong role. No roles found";
-			}
+	public void addUser(@RequestBody Employee u) {
+		Optional<Roles> roleFound = rolesRepository.findByName(u.getRole().getName());
+		if(roleFound.isPresent()) {
+			u.setRole(roleFound.get());
+			userRepository.save(u);
 		}
-
-		return "";
 	}
 
 	@GetMapping(path = "/user/{id}")
-	public Optional<Employee> getUserById(@PathVariable long id, @RequestBody Employee u) {
+	public Optional<Employee> getUserById(@PathVariable long id) {
 		return userRepository.findById(id);
 	}
 
