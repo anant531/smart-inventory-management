@@ -1,6 +1,7 @@
 package com.inventory.entities;
 
 import java.sql.Date;
+import java.util.List;
 
 //import java.text.SimpleDateFormat;
 
@@ -8,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class godown {
@@ -17,11 +21,33 @@ public class godown {
 
 	String godownLocation;
 
-	int godownCapacity;
+	long godownCapacity;
 
 	String supervisor;
 
 	Date startDate;
+	
+	@ManyToMany
+	@JoinTable(name = "godown_item",
+    			joinColumns = @JoinColumn(name = "godown_id"),
+    			inverseJoinColumns = @JoinColumn(name = "item_id"))
+	List<Items> items;
+	
+	public godown() {
+		
+	}
+
+	public godown(Long godownId, String godownLocation, long godownCapacity, String supervisor, Date startDate,
+			List<Items> items) {
+		super();
+		this.godownId = godownId;
+		this.godownLocation = godownLocation;
+		this.godownCapacity = godownCapacity;
+		this.supervisor = supervisor;
+		this.startDate = startDate;
+		this.items = items;
+	}
+
 
 	public Long getGodownId() {
 		return godownId;
@@ -39,12 +65,8 @@ public class godown {
 		this.godownLocation = godownLocation;
 	}
 
-	public int getGodownCapacity() {
+	public long getGodownCapacity() {
 		return godownCapacity;
-	}
-
-	public void setGodownCapacity(int godownCapacity) {
-		this.godownCapacity = godownCapacity;
 	}
 
 	public String getSupervisor() {
@@ -55,12 +77,6 @@ public class godown {
 		this.supervisor = supervisor;
 	}
 
-//	public String getStartDate() {
-//		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//		String formattedDate = formatter.format(startDate);
-//		return formattedDate;
-//	}
-
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -69,11 +85,22 @@ public class godown {
 		this.startDate = startDate;
 	}
 
+	public List<Items> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Items> items) {
+		this.items = items;
+	}
+
+	public void setGodownCapacity(long godownCapacity) {
+		this.godownCapacity = godownCapacity;
+	}
+
 	@Override
 	public String toString() {
 		return "godown [godownId=" + godownId + ", godownLocation=" + godownLocation + ", godownCapacity="
-				+ godownCapacity + ", supervisor=" + supervisor + ", startDate=" + startDate + "]";
+				+ godownCapacity + ", supervisor=" + supervisor + ", startDate=" + startDate + ", items=" + items + "]";
 	}
-
 
 }

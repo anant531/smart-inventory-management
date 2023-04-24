@@ -22,6 +22,7 @@ public class InwardController {
 	
 	@PostMapping(path = "/inward")
 	public void addInward(@RequestBody Inward i) {
+		System.out.println(i);
 		inwardRepository.save(i);
 	}
 }
