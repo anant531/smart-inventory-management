@@ -279,5 +279,115 @@
       "Categeory": "Mineral Water",
       "Amount": "20"
     }
+  ],
+
+  "employee": [
+    {
+      "id": "1",
+      "userName": "John Doe",
+      "role": "Godown Manager",
+      "email": "john.doe@example.com",
+      "phone": "555-123-4567",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "2",
+      "userName": "Jane Doe",
+      "role": "Admin",
+      "email": "jane.doe@example.com",
+      "phone": "555-123-4568",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "3",
+      "userName": "Alice Smith",
+      "role": "Godown Manager",
+      "email": "alice.smith@example.com",
+      "phone": "555-123-4569",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "4",
+      "userName": "Bob Johnson",
+      "role": "Admin",
+      "email": "bob.johnson@example.com",
+      "phone": "555-123-4570",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "5",
+      "userName": "Emma Davis",
+      "role": "Godown Manager",
+      "email": "emma.davis@example.com",
+      "phone": "555-123-4571",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "6",
+      "userName": "Michael Wilson",
+      "role": "Godown Manager",
+      "email": "michael.wilson@example.com",
+      "phone": "555-123-4572",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "7",
+      "userName": "David Brown",
+      "role": "Godown Manager",
+      "email": "david.brown@example.com",
+      "phone": "555-123-4573",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "8",
+      "userName": "Jessica Green",
+      "role": "Admin",
+      "email": "jessica.green@example.com",
+      "phone": "555-123-4574",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "9",
+      "userName": "Samir Shah",
+      "role": "Godown Manager",
+      "email": "samir.shah@example.com",
+      "phone": "9876543210",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+
+    {
+      "id": "10",
+      "userName": "Amit Patel",
+      "role": "Godown Manager",
+      "email": "amit.patel@example.com",
+      "phone": "9898989898",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+
+    {
+      "id": "11",
+      "userName": "Neha Gupta",
+      "role": "Godown Manager",
+      "email": "neha.gupta@example.com",
+      "phone": "9876543210",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+
+    {
+      "id": "12",
+      "userName": "Kunal Desai",
+      "role": "Godown Manager",
+      "email": "kunal.desai@example.com",
+      "phone": "9898989898",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "13",
+      "userName": "Riya Shah",
+      "role": "Godown Manager",
+      "email": "riya.shah@example.com",
+      "phone": "9876543210",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    }
   ]
 }

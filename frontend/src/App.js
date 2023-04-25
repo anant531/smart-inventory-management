@@ -6,8 +6,9 @@ import Godown from "./Components/Godown/Godown";
 import Product from "./Components/MasterProduct/Product";
 import AddGodown from "./Components/Godown/AddGodown/AddGodown";
 import Home from "./Components/Home/Home";
+import UserPage from "./Components/UserPage/UserPage";
 
-function App(props) {
+function App() {
   return (
     <div>
       <Routes>
@@ -18,6 +19,7 @@ function App(props) {
           <Route path="add-godown" element={<AddGodown />} />
         </Route>
         <Route path={"/products"} element={<Product />} />
+        <Route path={"/userpage"} element={<UserPage />} />
       </Routes>
     </div>
   );
