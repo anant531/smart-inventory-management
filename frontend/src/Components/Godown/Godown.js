@@ -1,23 +1,21 @@
-import { Table } from "evergreen-ui";
-import React, { useState, useEffect } from "react";
+import { Table, Pane, Button } from "evergreen-ui";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import "./Godown.css";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import "./Godown.css";
 
 const Godown = () => {
-  const [godown, setGodown] = useState([]);
-
+  const [godowns, setGodowns] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-
   const query = new URLSearchParams(location.search);
   const isAdded = query.get("added");
   const isDeleted = query.get("delete");
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(" http://localhost:3030/godown");
-      setGodown(result.data);
+      const result = await axios.get("http://localhost:3030/godown");
+      setGodowns(result.data);
     };
     fetchData();
     navigate("/godown");
@@ -37,51 +35,52 @@ const Godown = () => {
   };
 
   return (
-    <div>
-      <h1>Godown</h1>
-
-      <Table>
-        <Table.Head>
-          <Table.TextHeaderCell>Godown ID</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Location</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Capacity</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Supervisor</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Date Established</Table.TextHeaderCell>
-          <Table.TextHeaderCell></Table.TextHeaderCell>
-        </Table.Head>
-        <Table.Body height={240}>
-          {godown.map((profile) => (
-            <Table.Row key={profile.id}>
-              <Table.TextCell>{profile.id}</Table.TextCell>
-              <Table.TextCell>{profile.location}</Table.TextCell>
-              <Table.TextCell>{profile.Capacity}</Table.TextCell>
-              <Table.TextCell>{profile.GodownSupervisor}</Table.TextCell>
-              <Table.TextCell>{profile.createdAt}</Table.TextCell>
-              <Table.TextCell>
-                <div key={profile.id}>
-                  <button
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(profile.id)}
+    <div className="table-wrapper">
+      <Pane>
+        <Table>
+          <Table.Head>
+            <Table.TextHeaderCell>Godown ID</Table.TextHeaderCell>
+            <Table.TextHeaderCell>Location</Table.TextHeaderCell>
+            <Table.TextHeaderCell>Capacity</Table.TextHeaderCell>
+            <Table.TextHeaderCell>Supervisor</Table.TextHeaderCell>
+            <Table.TextHeaderCell>Date Established</Table.TextHeaderCell>
+            <Table.TextHeaderCell />
+          </Table.Head>
+          <Table.Body height={240}>
+            {godowns.map((godown) => (
+              <Table.Row key={godown.id}>
+                <Table.TextCell>{godown.id}</Table.TextCell>
+                <Table.TextCell>{godown.location}</Table.TextCell>
+                <Table.TextCell>{godown.Capacity}</Table.TextCell>
+                <Table.TextCell>{godown.GodownSupervisor}</Table.TextCell>
+                <Table.TextCell>{godown.createdAt}</Table.TextCell>
+                <Table.TextCell>
+                  <Button
+                    appearance="primary"
+                    intent="danger"
+                    onClick={() => handleDelete(godown.id)}
                   >
                     Delete
-                  </button>
-                </div>
-              </Table.TextCell>
-            </Table.Row>
-          ))}
-        </Table.Body>
-      </Table>
-      <div className="button">
-        <div className="col-2 offset-5">
-          <button
-            className="btn btn-success my-10"
-            onClick={() => navigate("/godown/add-godown")}
-          >
-            Add Godown
-          </button>
+                  </Button>
+                </Table.TextCell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
+        <div className="button">
+          <div className="">
+            <Button
+              appearance="primary"
+              intent="success"
+              className="add-godown-btn"
+              onClick={() => navigate("/godown/add-godown")}
+            >
+              Add Godown
+            </Button>
+          </div>
         </div>
-      </div>
-      <Outlet />
+        <Outlet />
+      </Pane>
     </div>
   );
 };
