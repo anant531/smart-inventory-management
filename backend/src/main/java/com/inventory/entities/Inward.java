@@ -18,7 +18,7 @@ public class Inward {
 	long inwardId;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	godown godown;
+	Godown godown;
 	
 	String nameofSupplier;
 	Date dateOfSupply;
@@ -34,7 +34,7 @@ public class Inward {
 		
 	}
 
-	public Inward(long inwardId, com.inventory.entities.godown godown, List<Items> item, String nameofSupplier,
+	public Inward(long inwardId, com.inventory.entities.Godown godown, List<Items> item, String nameofSupplier,
 			Date dateOfSupply, long invoice, long quantity, String received, long receiptNo, String billCheckedBy) {
 		super();
 		this.inwardId = inwardId;
@@ -56,11 +56,11 @@ public class Inward {
 		this.inwardId = inwardId;
 	}
 
-	public godown getGodown() {
+	public Godown getGodown() {
 		return godown;
 	}
 
-	public void setGodown(godown godown) {
+	public void setGodown(Godown godown) {
 		this.godown = godown;
 	}
 

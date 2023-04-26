@@ -3,6 +3,7 @@ package com.inventory.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Items {
 	String category;
 	double amount;
 	
-	@OneToMany(mappedBy = "item")
+	@OneToMany(mappedBy = "item", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<GodownItem> godownItems = new HashSet<>();
 	
 	public Items() {
