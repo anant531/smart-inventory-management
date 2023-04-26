@@ -1,15 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
+
 import SignUp from "./Components/SignUp/SignUp";
 import SignIn from "./Components/SignIn/SignIn";
 import Godown from "./Components/Godown/Godown";
 import Product from "./Components/MasterProduct/Product";
 import AddGodown from "./Components/Godown/AddGodown/AddGodown";
 import Home from "./Components/Home/Home";
-
-import Inward from "./Components/Stocks/Inward/Inward";
-import AddProduct from "./Components/MasterProduct/AddProduct/AddProduct";
-
+import "./App.css";
+import Inward from "./Components/Inward/Inward";
+import Analytics from "./Components/Analytics/Analytics";
+import Account from "./Components/Account/Account";
+import Outward from "./Components/Outward/Outward";
+import Employee from './Components/Employee/Employee'
 function App(props) {
   return (
     <div>
@@ -20,13 +22,16 @@ function App(props) {
         <Route path={"/godown/*"} element={<Godown />}>
           <Route path="add-godown" element={<AddGodown />} />
         </Route>
-        <Route path={"/inward"} element={<Inward />} />
-        <Route path={"/product/*"} element={<Product />}>
-          <Route path="add-product" element={<AddProduct />} />
-        </Route>
+        <Route path={"/products"} element={<Product />} />
+        <Route path={"/inwards"} element={<Inward />} />
+        <Route path={"/outward"} element={<Outward />} />
+        <Route path={"/analytics"} element={<Analytics />} />
+        <Route path={"/account"} element={<Account />} />
+        <Route path={"/employees"} element={<Employee />} />
       </Routes>
     </div>
   );
 }
 
 export default App;
+
