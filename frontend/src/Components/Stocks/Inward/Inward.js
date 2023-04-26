@@ -116,12 +116,23 @@ import axios from "axios";
 import { Table } from "react-bootstrap";
 import "./Inward.css";
 import SelectGodown from "./selectGodown";
+import SearchProduct from "../../MasterProduct/SearchProduct";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [Godown, selectedGodown] = useState("");
   const [godownData, setGodownData] = useState(null);
+
+  const [category, selectedcat] = useState("Snacks");
+
+  const selectedCategory = (selCat) => {
+    selectedcat(selCat);
+  };
+  console.log(category);
+
+  const filteredProducts = products.filter((cat) => cat.Category === category);
+
   const selectGodown = (selGod) => {
     selectedGodown(selGod);
   };
@@ -162,8 +173,8 @@ function ProductList() {
       const productIndex = prevState.findIndex(
         (product) => product.id === productId
       );
-      const newSelectedProducts = [...prevState, { id: productId, quantity }];
-
+      const newSelectedProducts = [...prevState];
+      newSelectedProducts[productIndex] = { id: productId, quantity };
       return newSelectedProducts;
     });
   };
@@ -176,13 +187,42 @@ function ProductList() {
       );
       const godown = response.data;
 
-      godown.products.push(selectedProducts);
-      // godown.Capacity -= newProduct.quantity;
+      const updatedProducts = [];
+
+      //reducing the capacity and adding
+      const totalQuantity = selectedProducts.reduce(
+        (acc, product) => acc + product.quantity,
+        0
+      );
+      godown.Capacity -= totalQuantity;
+
+      for (const selectedProduct of selectedProducts) {
+        const existingProductIndex = godown.products.findIndex(
+          (product) => product.id === selectedProduct.id
+        );
+
+        if (existingProductIndex !== -1) {
+          // Update the quantity of the existing product
+          const existingProduct = godown.products[existingProductIndex];
+          const updatedProduct = {
+            id: existingProduct.id,
+            quantity: existingProduct.quantity + selectedProduct.quantity,
+          };
+          godown.products[existingProductIndex] = updatedProduct;
+          updatedProducts.push(updatedProduct);
+        } else {
+          // Add the new product to the array
+          godown.products.push(selectedProduct);
+          updatedProducts.push(selectedProduct);
+        }
+      }
+
       const updateResponse = await axios.put(
         `http://localhost:3030/godown/${Godown}`,
         godown
       );
 
+      console.log("Updated products:", updatedProducts);
       return updateResponse.data;
     } catch (error) {
       console.error(error);
@@ -191,20 +231,25 @@ function ProductList() {
 
   return (
     <div style={{ marginTop: "2rem" }} className="container">
-      <div>
-        <SelectGodown selectGodown={selectGodown} />
+      <div className="container">
+        <div className="col-3">
+          <SearchProduct selectedCategory={selectedCategory} />
+        </div>
+        <div>
+          <SelectGodown selectGodown={selectGodown} />
+        </div>
       </div>
       <form onSubmit={handleSubmit}>
         <Table striped bordered hover>
           <thead>
             <tr>
               <th></th>
-              <th>Product Name</th>
+              <th>Product Name </th>
               <th>Quantity</th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <tr key={product.id}>
                 <td>
                   <input

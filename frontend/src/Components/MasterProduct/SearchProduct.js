@@ -1,4 +1,4 @@
-import React from "react";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const SearchProduct = (props) => {
   const handleOptionChange = (event) => {
@@ -6,15 +6,24 @@ const SearchProduct = (props) => {
   };
 
   return (
-    <div>
-      <select onChange={handleOptionChange}>
-        <option value="">Select an option</option>
-        <option value="Mineral Water">Mineral Water</option>
-        <option value="Snacks">Snacks</option>
-        <option value="Chocolates">Chocolates</option>
-        <option value="Toothpaste">Toothpaste</option>
-      </select>
-    </div>
+    <FormControl>
+      <InputLabel id="category-select-label">Select a category</InputLabel>
+      <Select
+        labelId="category-select-label"
+        id="category-select"
+        value={props.category}
+        label="Select a category"
+        onChange={handleOptionChange}
+      >
+        <MenuItem value="">
+          <em>Select an option</em>
+        </MenuItem>
+        <MenuItem value="Mineral Water">Mineral Water</MenuItem>
+        <MenuItem value="Snacks">Snacks</MenuItem>
+        <MenuItem value="Chocolates">Chocolates</MenuItem>
+        <MenuItem value="Toothpaste">Toothpaste</MenuItem>
+      </Select>
+    </FormControl>
   );
 };
 
