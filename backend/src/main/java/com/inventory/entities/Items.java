@@ -80,17 +80,6 @@ public class Items {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
-	public List<godown> getGodowns() {
-		return godowns;
-	}
-
-
-	public void setGodowns(List<godown> godowns) {
-		this.godowns = godowns;
-	}
-
-
 
 	public Set<GodownItem> getGodownItems() {
 		return godownItems;
