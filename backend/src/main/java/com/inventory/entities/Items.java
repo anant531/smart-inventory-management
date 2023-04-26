@@ -1,14 +1,14 @@
 package com.inventory.entities;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Items {
@@ -22,23 +22,23 @@ public class Items {
 	String category;
 	double amount;
 	
-	@ManyToMany(mappedBy = "items")	
-	@JsonIgnore
-	List<godown> godowns;
+	@OneToMany(mappedBy = "item", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<GodownItem> godownItems = new HashSet<>();
 	
 	public Items() {
 
 	}
 
 
-	public Items(long itemId, String itemName, String supplier, String category, double amount, List<godown> godowns) {
+	public Items(long itemId, String itemName, String supplier, String category, double amount,
+			Set<GodownItem> godownItems) {
 		super();
 		this.itemId = itemId;
 		this.itemName = itemName;
 		this.supplier = supplier;
 		this.category = category;
 		this.amount = amount;
-		this.godowns = godowns;
+		this.godownItems = godownItems;
 	}
 
 
@@ -81,21 +81,22 @@ public class Items {
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
-	public List<godown> getGodowns() {
-		return godowns;
+
+
+	public Set<GodownItem> getGodownItems() {
+		return godownItems;
 	}
 
 
-	public void setGodowns(List<godown> godowns) {
-		this.godowns = godowns;
+	public void setGodownItems(Set<GodownItem> godownItems) {
+		this.godownItems = godownItems;
 	}
 
 
 	@Override
 	public String toString() {
 		return "Items [itemId=" + itemId + ", itemName=" + itemName + ", supplier=" + supplier + ", category="
-				+ category + ", amount=" + amount + ", godowns=" + godowns + "]";
+				+ category + ", amount=" + amount + ", godownItems=" + godownItems + "]";
 	}
 
 
