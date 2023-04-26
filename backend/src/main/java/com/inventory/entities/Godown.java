@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+
 //import java.text.SimpleDateFormat;
 
 import javax.persistence.Entity;
@@ -12,8 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.inventory.embeddable.GodownItemDeserializer;
+import com.inventory.embeddable.GodownItemSerializer;
+
 @Entity
-public class godown {
+public class Godown {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long godownId;
@@ -26,14 +33,16 @@ public class godown {
 
 	Date startDate;
 	
-	@OneToMany(mappedBy = "godown")
+	@OneToMany(mappedBy = "godown", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JsonSerialize(using = GodownItemSerializer.class)
+	@JsonDeserialize(contentUsing = GodownItemDeserializer.class)
     private Set<GodownItem> godownItems = new HashSet<>();
 	
-	public godown() {
+	public Godown() {
 		
 	}
 
-	public godown(Long godownId, String godownLocation, long godownCapacity, String supervisor, Date startDate,
+	public Godown(Long godownId, String godownLocation, long godownCapacity, String supervisor, Date startDate,
 			Set<GodownItem> godownItems) {
 		super();
 		this.godownId = godownId;

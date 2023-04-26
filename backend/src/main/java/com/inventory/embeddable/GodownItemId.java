@@ -9,12 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Embeddable
 public class GodownItemId implements Serializable{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2828102166998797765L;
 	
-	@JsonIgnore
 	Long godownId;
 	
 	Long itemId;

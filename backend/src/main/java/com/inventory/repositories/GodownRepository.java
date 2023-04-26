@@ -2,8 +2,8 @@ package com.inventory.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.inventory.entities.godown;
+import com.inventory.entities.Godown;
 
-public interface GodownRepository extends JpaRepository<godown, Long>{
+public interface GodownRepository extends JpaRepository<Godown, Long>{
 	
 }
