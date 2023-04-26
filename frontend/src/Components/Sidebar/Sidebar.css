@@ -7,10 +7,12 @@
   #header .pro-sidebar-header{
     padding:  10px;
   }
-  #header .pro-sidebar {
+  #header .pro-sidebar-content{
     height: auto;
 
   }
+
+
   #header .closemenu {
     color: #000;
     position: absolute;
@@ -24,7 +26,7 @@
     cursor: pointer;
   }
   #header .pro-sidebar {
-    height: 100vh;
+    height: auto;
     width: 100%;
     min-width: 100%;
   }
