@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { NextUIProvider } from "@nextui-org/react";
 import { FirebaseAppProvider } from "reactfire";
 import "bootstrap/dist/css/bootstrap.min.css";
+import GodownProvider from "./contexts/GodownProvider";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdyXuoTZyqaTovj5kZlbz9cYh-OYg1v9Q",
@@ -21,7 +22,9 @@ root.render(
   <FirebaseAppProvider firebaseConfig={firebaseConfig}>
     <BrowserRouter>
       <NextUIProvider>
-        <App />
+        <GodownProvider>
+          <App />
+        </GodownProvider>
       </NextUIProvider>
     </BrowserRouter>
   </FirebaseAppProvider>

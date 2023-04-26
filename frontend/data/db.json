@@ -26,10 +26,19 @@
     }
   ],
   "todos": [
-    ["3", "4"],
-    ["3", "4"],
+    [
+      "3",
+      "4"
+    ],
+    [
+      "3",
+      "4"
+    ],
     {
-      "products": ["3", "4"],
+      "products": [
+        "3",
+        "4"
+      ],
       "id": 3
     },
     {
@@ -59,71 +68,19 @@
       "id": 5
     },
     {
-      "products": [
-        {
-          "id": "3",
-          "quantity": "9"
-        },
-        {
-          "id": "4",
-          "quantity": "9"
-        }
-      ],
+      "products": [],
       "id": 6
     },
     {
-      "products": [
-        {
-          "id": "2",
-          "quantity": 9
-        },
-        {
-          "id": "3",
-          "quantity": 6
-        }
-      ],
+      "products": [],
       "id": 7
     },
     {
-      "products": [
-        {
-          "id": "2",
-          "quantity": 9
-        },
-        {
-          "id": "3",
-          "quantity": 6
-        },
-        {
-          "id": "8",
-          "quantity": 9
-        },
-        {
-          "id": "9",
-          "quantity": 9
-        }
-      ],
+      "products": [],
       "id": 8
     },
     {
-      "products": [
-        {
-          "id": "2",
-          "quantity": 9
-        },
-        {
-          "id": "3",
-          "quantity": 6
-        },
-        {
-          "id": "8",
-          "quantity": 9
-        },
-        {
-          "id": "9",
-          "quantity": 9
-        }
-      ],
+      "products": [],
       "id": 9
     },
     {
@@ -169,14 +126,21 @@
       "id": 11
     },
     {
-      "products": [""],
+      "products": [
+        ""
+      ],
       "id": 12
     },
     {
-      "products": ["", "7"],
+      "products": [
+        "",
+        "7"
+      ],
       "id": 13
     },
-    ["1"],
+    [
+      "1"
+    ],
     [
       {
         "id": "2",
@@ -201,7 +165,9 @@
         "quantity": "7"
       }
     ],
-    ["4"],
+    [
+      "4"
+    ],
     [
       {
         "id": "2",
@@ -441,6 +407,12 @@
         "id": "5",
         "quantity": 1
       }
+    ],
+    [
+      {
+        "id": "1",
+        "quantity": 1
+      }
     ]
   ],
   "users": [
@@ -540,13 +512,48 @@
       "GodownSupervisor": "htft",
       "createdAt": "2023-04-13",
       "products": [
-        {
-          "id": "2",
-          "ItemName": "Bisleri",
-          "Supplier": "Parle",
-          "Category": "Mineral Water",
-          "Amount": "20"
-        }
+        [
+          {
+            "id": "4",
+            "quantity": 1
+          },
+          {
+            "id": "5",
+            "quantity": 1
+          },
+          {
+            "id": "6",
+            "quantity": 1
+          }
+        ],
+        [
+          {
+            "id": "4",
+            "quantity": 1
+          },
+          {
+            "id": "5",
+            "quantity": 1
+          },
+          {
+            "id": "6",
+            "quantity": 1
+          }
+        ],
+        [
+          {
+            "id": "4",
+            "quantity": 1
+          },
+          {
+            "id": "5",
+            "quantity": 1
+          },
+          {
+            "id": "6",
+            "quantity": 1
+          }
+        ]
       ],
       "id": 2
     },
@@ -555,7 +562,24 @@
       "Capacity": "1000",
       "GodownSupervisor": "Subi",
       "createdAt": "2023-04-18",
-      "products": [],
+      "products": [
+        [
+          {
+            "id": "4",
+            "quantity": 100
+          }
+        ],
+        [
+          {
+            "id": "4",
+            "quantity": 100
+          },
+          {
+            "id": "5",
+            "quantity": 18
+          }
+        ]
+      ],
       "id": 9
     },
     {

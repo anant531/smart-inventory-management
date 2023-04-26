@@ -2,14 +2,27 @@
 // import axios from "axios";
 // import { Table } from "react-bootstrap";
 // import "./Inward.css";
+// import SelectGodown from "./selectGodown";
 
 // function ProductList() {
 //   const [products, setProducts] = useState([]);
 //   const [selectedProducts, setSelectedProducts] = useState([]);
+//   const [Godown, selectedGodown] = useState("");
+//   const [godownData, setGodownData] = useState(null);
+//   const selectGodown = (selGod) => {
+//     selectedGodown(selGod);
+//   };
+
+//   useEffect(() => {
+//     fetch(`http://localhost:3030/godown/${Godown}`)
+//       .then((response) => response.json())
+//       .then((data) => setGodownData(data));
+//   }, [Godown]);
+//   console.log(godownData);
 
 //   useEffect(() => {
 //     axios
-//       .get("http://localhost:3030/product")
+//       .get(`http://localhost:3030/product`)
 //       .then((response) => setProducts(response.data))
 //       .catch((error) => console.log(error));
 //   }, []);
@@ -20,7 +33,7 @@
 //     if (isChecked) {
 //       setSelectedProducts((prevState) => [
 //         ...prevState,
-//         { id: productId, quantity: 0 },
+//         { id: productId, quantity: 1 },
 //       ]);
 //     } else {
 //       setSelectedProducts((prevState) =>
@@ -52,6 +65,9 @@
 
 //   return (
 //     <div style={{ marginTop: "2rem" }} className="container">
+//       <div>
+//         <SelectGodown selectGodown={selectGodown} />
+//       </div>
 //       <form onSubmit={handleSubmit}>
 //         <Table striped bordered hover>
 //           <thead>
@@ -77,6 +93,7 @@
 //                     type="number"
 //                     min="1"
 //                     name={`${product.id}-quantity`}
+//                     defaultValue={1}
 //                     onChange={handleQuantityChange}
 //                   />
 //                 </td>
@@ -93,18 +110,32 @@
 // }
 
 // export default ProductList;
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Table } from "react-bootstrap";
 import "./Inward.css";
+import SelectGodown from "./selectGodown";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [Godown, selectedGodown] = useState("");
+  const [godownData, setGodownData] = useState(null);
+  const selectGodown = (selGod) => {
+    selectedGodown(selGod);
+  };
+
+  useEffect(() => {
+    fetch(`http://localhost:3030/godown/${Godown}`)
+      .then((response) => response.json())
+      .then((data) => setGodownData(data));
+  }, [Godown]);
+  console.log(godownData);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3030/product")
+      .get(`http://localhost:3030/product`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -131,22 +162,38 @@ function ProductList() {
       const productIndex = prevState.findIndex(
         (product) => product.id === productId
       );
-      const newSelectedProducts = [...prevState];
-      newSelectedProducts[productIndex] = { id: productId, quantity };
+      const newSelectedProducts = [...prevState, { id: productId, quantity }];
+
       return newSelectedProducts;
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    axios
-      .post("http://localhost:3030/todos", selectedProducts)
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error));
+  const handleSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      const response = await axios.get(
+        `http://localhost:3030/godown/${Godown}`
+      );
+      const godown = response.data;
+
+      godown.products.push(selectedProducts);
+      // godown.Capacity -= newProduct.quantity;
+      const updateResponse = await axios.put(
+        `http://localhost:3030/godown/${Godown}`,
+        godown
+      );
+
+      return updateResponse.data;
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div style={{ marginTop: "2rem" }} className="container">
+      <div>
+        <SelectGodown selectGodown={selectGodown} />
+      </div>
       <form onSubmit={handleSubmit}>
         <Table striped bordered hover>
           <thead>
