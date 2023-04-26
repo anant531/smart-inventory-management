@@ -25,6 +25,7 @@ function App(props) {
         <Route path={"/products"} element={<Product />} />
         <Route path={"/inwards"} element={<Inward />} />
         <Route path={"/outward"} element={<Outward />} />
+        <Route path={"/userpage"} element={<UserPage />} />
         <Route path={"/analytics"} element={<Analytics />} />
         <Route path={"/account"} element={<Account />} />
         <Route path={"/employees"} element={<Employee />} />
