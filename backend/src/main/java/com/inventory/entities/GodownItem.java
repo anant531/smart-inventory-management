@@ -18,7 +18,7 @@ public class GodownItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("godownId")
     @JsonIgnore
-    private godown godown;
+    private Godown godown;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("itemId")
@@ -27,11 +27,12 @@ public class GodownItem {
 
     private int quantity;
     
+    
     public GodownItem() {
     	
     }
 
-	public GodownItem(GodownItemId id, com.inventory.entities.godown godown, Items item, int quantity) {
+	public GodownItem(GodownItemId id, com.inventory.entities.Godown godown, Items item, int quantity) {
 		super();
 		this.id = id;
 		this.godown = godown;
@@ -48,21 +49,21 @@ public class GodownItem {
 		this.id = id;
 	}
 
-	public godown getGodown() {
+	public Godown getGodown() {
 		return godown;
 	}
 
-	public void setGodown(godown godown) {
+	public void setGodown(Godown godown) {
 		this.godown = godown;
 	}
 
 	public Items getItem() {
 		return item;
 	}
-
-	public void setItem(Items item) {
-		this.item = item;
-	}
+	
+    public void setItem(Items item) {
+        this.item = item;
+    }
 
 	public int getQuantity() {
 		return quantity;
@@ -74,7 +75,7 @@ public class GodownItem {
 
 	@Override
 	public String toString() {
-		return "GodownItem [id=" + id + ", godown=" + godown + ", item=" + item + ", quantity=" + quantity + "]";
+		return "GodownItem [id=" + id + ", godown=" + godown.getGodownId() + ", item=" + item.getItemId() + ", quantity=" + quantity + "]";
 	}
     
 }
