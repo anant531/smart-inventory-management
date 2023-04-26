@@ -1,4 +1,7 @@
 import { Table } from "evergreen-ui";
+
+import Box from '@mui/material/Box';
+import Sidebar from "../Sidebar/Sidebar";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Godown.css";
@@ -38,6 +41,10 @@ const Godown = () => {
 
   return (
     <div>
+       <Box sx={{ display: 'flex'}}>
+        <Sidebar/>
+        <Box component="main" sx={{flexGrow:1,p:3}}>
+     
       <h1>Godown</h1>
 
       <Table>
@@ -82,6 +89,9 @@ const Godown = () => {
         </div>
       </div>
       <Outlet />
+      </Box>
+       
+       </Box>
     </div>
   );
 };
