@@ -4,7 +4,11 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
+import { NextUIProvider } from "@nextui-org/react";
 import { FirebaseAppProvider } from "reactfire";
+import "bootstrap/dist/css/bootstrap.min.css";
+import GodownProvider from "./contexts/GodownProvider";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdyXuoTZyqaTovj5kZlbz9cYh-OYg1v9Q",
@@ -19,7 +23,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <FirebaseAppProvider firebaseConfig={firebaseConfig}>
     <BrowserRouter>
-      <App />
+      <NextUIProvider>
+        <GodownProvider>
+          <App />
+        </GodownProvider>
+      </NextUIProvider>
     </BrowserRouter>
   </FirebaseAppProvider>
 );
