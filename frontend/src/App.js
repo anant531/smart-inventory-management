@@ -10,7 +10,7 @@ import Home from "./Components/Home/Home";
 import Inward from "./Components/Stocks/Inward/Inward";
 import AddProduct from "./Components/MasterProduct/AddProduct/AddProduct";
 
-function App(props) {
+function App() {
   return (
     <div>
       <Routes>
@@ -21,6 +21,7 @@ function App(props) {
           <Route path="add-godown" element={<AddGodown />} />
         </Route>
         <Route path={"/inward"} element={<Inward />} />
+
         <Route path={"/product/*"} element={<Product />}>
           <Route path="add-product" element={<AddProduct />} />
         </Route>
