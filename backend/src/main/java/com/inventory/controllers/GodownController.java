@@ -164,6 +164,10 @@ public class GodownController {
 //		}
 //}
 
+
+
+		
+
 		@PostMapping("/godown/addProducts")
 		public ResponseEntity<String> addProducts(@RequestBody Godown g) {
 	    Optional<Godown> godownFound = godownRepository.findById(g.getGodownId());
@@ -171,15 +175,20 @@ public class GodownController {
 	        Godown godown = godownFound.get();
 
 	        // Calculate the total quantity of items in the godown
+	        double totalWeight = godown.getGodownItems().stream()
+	                .mapToDouble(gi -> gi.getQuantity() * gi.getItem().getWeight())
+	                .sum();
+	        int totalQuantity = (int) Math.round(totalWeight);
 
 	        // Check if adding the new items will exceed the godown capacity
-	       
+	        int newTotalQuantity = g.getGodownItems().stream()
+	                .mapToInt(gi -> (int) (gi.getQuantity() * gi.getItem().getWeight()))
+	                .sum();
 
-//	        if (totalQuantity + newTotalQuantity > godown.getGodownCapacity()) {
-//	            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-//	                    .body("Adding the new items will exceed the godown capacity.");
-//	        }
-	        
+	        if (totalQuantity + newTotalQuantity > godown.getGodownCapacity()) {
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	                    .body("Adding the new items will exceed the godown capacity.");
+	        }
 
 	        for (GodownItem godownItem : g.getGodownItems()) {
 	            Optional<Items> optionalItem = itemsRepository.findById(godownItem.getItem().getItemId());
@@ -198,7 +207,7 @@ public class GodownController {
 	                    newGodownItem.setItem(item);
 	                    newGodownItem.setQuantity(godownItem.getQuantity());
 	                    godown.getGodownItems().add(newGodownItem);
-	                    godownItemRepository.save(newGodownItem);
+//	                    godownItemRepository.save(newGodownItem);
 	                }
 	            }
 	        }
@@ -209,4 +218,4 @@ public class GodownController {
 	    }
 	}
 		
-		}
+}
