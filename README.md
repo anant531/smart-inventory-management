@@ -1,4 +1,1 @@
-# smart-inventory-management
-
-
-final
+## Smart Inventory Management System

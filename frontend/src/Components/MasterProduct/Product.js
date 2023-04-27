@@ -97,6 +97,8 @@ const Product = () => {
           </Card>
         ))}
       </div>
+
+ 
     </>
   );
 };
