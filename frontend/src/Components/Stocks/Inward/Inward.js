@@ -195,7 +195,7 @@ function ProductList() {
         0
       );
       godown.Capacity -= totalQuantity;
-
+      // abc
       for (const selectedProduct of selectedProducts) {
         const existingProductIndex = godown.products.findIndex(
           (product) => product.id === selectedProduct.id

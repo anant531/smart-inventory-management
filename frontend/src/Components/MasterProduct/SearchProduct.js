@@ -1,9 +1,19 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import GodownContext from "../../contexts/GodownContext";
+import { useContext } from "react";
 
 const SearchProduct = (props) => {
+  const { product } = useContext(GodownContext);
   const handleOptionChange = (event) => {
     props.selectedCategory(event.target.value);
   };
+
+  const uniqueCategories = product.reduce((categories, product) => {
+    if (!categories.includes(product.Category)) {
+      return [...categories, product.Category];
+    }
+    return categories;
+  }, []);
 
   return (
     <FormControl>
@@ -15,13 +25,11 @@ const SearchProduct = (props) => {
         label="Select a category"
         onChange={handleOptionChange}
       >
-        <MenuItem value="">
-          <em>Select an option</em>
-        </MenuItem>
-        <MenuItem value="Mineral Water">Mineral Water</MenuItem>
-        <MenuItem value="Snacks">Snacks</MenuItem>
-        <MenuItem value="Chocolates">Chocolates</MenuItem>
-        <MenuItem value="Toothpaste">Toothpaste</MenuItem>
+        {uniqueCategories.map((category) => (
+          <MenuItem key={category} value={category}>
+            {category}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
