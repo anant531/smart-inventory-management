@@ -1,7 +1,10 @@
 package com.inventory.entities;
 
 import java.sql.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 
 //import java.text.SimpleDateFormat;
 
@@ -9,12 +12,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.inventory.embeddable.GodownItemDeserializer;
+import com.inventory.embeddable.GodownItemSerializer;
 
 @Entity
-public class godown {
+public class Godown {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long godownId;
@@ -27,27 +33,25 @@ public class godown {
 
 	Date startDate;
 	
-	@ManyToMany
-	@JoinTable(name = "godown_item",
-    			joinColumns = @JoinColumn(name = "godown_id"),
-    			inverseJoinColumns = @JoinColumn(name = "item_id"))
-	List<Items> items;
+	@OneToMany(mappedBy = "godown", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JsonSerialize(using = GodownItemSerializer.class)
+	@JsonDeserialize(contentUsing = GodownItemDeserializer.class)
+    private Set<GodownItem> godownItems = new HashSet<>();
 	
-	public godown() {
+	public Godown() {
 		
 	}
 
-	public godown(Long godownId, String godownLocation, long godownCapacity, String supervisor, Date startDate,
-			List<Items> items) {
+	public Godown(Long godownId, String godownLocation, long godownCapacity, String supervisor, Date startDate,
+			Set<GodownItem> godownItems) {
 		super();
 		this.godownId = godownId;
 		this.godownLocation = godownLocation;
 		this.godownCapacity = godownCapacity;
 		this.supervisor = supervisor;
 		this.startDate = startDate;
-		this.items = items;
+		this.godownItems = godownItems;
 	}
-
 
 	public Long getGodownId() {
 		return godownId;
@@ -85,12 +89,13 @@ public class godown {
 		this.startDate = startDate;
 	}
 
-	public List<Items> getItems() {
-		return items;
+
+	public Set<GodownItem> getGodownItems() {
+		return godownItems;
 	}
 
-	public void setItems(List<Items> items) {
-		this.items = items;
+	public void setGodownItems(Set<GodownItem> godownItems) {
+		this.godownItems = godownItems;
 	}
 
 	public void setGodownCapacity(long godownCapacity) {
@@ -100,7 +105,8 @@ public class godown {
 	@Override
 	public String toString() {
 		return "godown [godownId=" + godownId + ", godownLocation=" + godownLocation + ", godownCapacity="
-				+ godownCapacity + ", supervisor=" + supervisor + ", startDate=" + startDate + ", items=" + items + "]";
+				+ godownCapacity + ", supervisor=" + supervisor + ", startDate=" + startDate + ", godownItems="
+				+ godownItems + "]";
 	}
 
 }
