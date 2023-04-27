@@ -26,11 +26,394 @@
     }
   ],
   "todos": [
+    [
+      "3",
+      "4"
+    ],
+    [
+      "3",
+      "4"
+    ],
     {
-      "id": "c73c0972-8e69-472f-9832-dcb63edc0dbf",
-      "label": "shopping",
-      "status": false
-    }
+      "products": [
+        "3",
+        "4"
+      ],
+      "id": 3
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "quantity": "2"
+        },
+        {
+          "id": "4",
+          "quantity": "2"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "products": [
+        {
+          "id": "3",
+          "quantity": "9"
+        },
+        {
+          "id": "4",
+          "quantity": "9"
+        }
+      ],
+      "id": 5
+    },
+    {
+      "products": [],
+      "id": 6
+    },
+    {
+      "products": [],
+      "id": 7
+    },
+    {
+      "products": [],
+      "id": 8
+    },
+    {
+      "products": [],
+      "id": 9
+    },
+    {
+      "products": [
+        {
+          "id": "2",
+          "quantity": 9
+        },
+        {
+          "id": "3",
+          "quantity": 6
+        },
+        {
+          "id": "8",
+          "quantity": 9
+        },
+        {
+          "id": "9",
+          "quantity": 9
+        }
+      ],
+      "id": 10
+    },
+    {
+      "products": [
+        {
+          "id": "2",
+          "quantity": 9
+        },
+        {
+          "id": "3",
+          "quantity": 6
+        },
+        {
+          "id": "8",
+          "quantity": 9
+        },
+        {
+          "id": "9",
+          "quantity": 9
+        }
+      ],
+      "id": 11
+    },
+    {
+      "products": [
+        ""
+      ],
+      "id": 12
+    },
+    {
+      "products": [
+        "",
+        "7"
+      ],
+      "id": 13
+    },
+    [
+      "1"
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": "3"
+      }
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": "3"
+      }
+    ],
+    [
+      {
+        "id": "6",
+        "quantity": "7"
+      }
+    ],
+    [
+      {
+        "id": "6",
+        "quantity": "7"
+      }
+    ],
+    [
+      "4"
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": 1
+      }
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": 9
+      }
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": 90
+      }
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": 900
+      }
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": 900
+      },
+      {
+        "id": "7",
+        "quantity": 143928
+      },
+      {
+        "id": "8",
+        "quantity": 13213
+      },
+      {
+        "id": "9",
+        "quantity": 12131
+      }
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": 99
+      }
+    ],
+    [
+      {
+        "id": "2",
+        "quantity": 99
+      },
+      {
+        "id": "8",
+        "quantity": 0
+      }
+    ],
+    [
+      {
+        "id": "6",
+        "quantity": 199
+      },
+      {
+        "id": "7",
+        "quantity": 298
+      }
+    ],
+    [
+      {
+        "id": "6",
+        "quantity": 199
+      },
+      {
+        "id": "7",
+        "quantity": 298
+      },
+      {
+        "id": "1",
+        "quantity": 99
+      }
+    ],
+    [
+      {
+        "id": "6",
+        "quantity": 199
+      },
+      {
+        "id": "7",
+        "quantity": 298
+      },
+      {
+        "id": "1",
+        "quantity": 99
+      },
+      {
+        "id": "3",
+        "quantity": 98
+      }
+    ],
+    [
+      {
+        "id": "1",
+        "quantity": 100
+      },
+      {
+        "id": "3",
+        "quantity": 100
+      }
+    ],
+    [
+      {
+        "id": "1",
+        "quantity": 100
+      },
+      {
+        "id": "3",
+        "quantity": 100
+      }
+    ],
+    [
+      {
+        "id": "3",
+        "quantity": 100
+      },
+      {
+        "id": "4",
+        "quantity": 88
+      }
+    ],
+    [],
+    [
+      {
+        "id": "1",
+        "quantity": 0
+      }
+    ],
+    [
+      {
+        "id": "1",
+        "quantity": 0
+      },
+      {
+        "id": "3",
+        "quantity": 0
+      }
+    ],
+    {
+      "products": [
+        {
+          "id": "1",
+          "quantity": 0
+        },
+        {
+          "id": "3",
+          "quantity": 0
+        }
+      ],
+      "id": 36
+    },
+    [
+      {
+        "id": "11",
+        "quantity": 1000
+      },
+      {
+        "id": "13",
+        "quantity": 1
+      }
+    ],
+    [
+      {
+        "id": "11",
+        "quantity": 1000
+      },
+      {
+        "id": "13",
+        "quantity": 1
+      }
+    ],
+    [
+      {
+        "id": "4",
+        "quantity": 900
+      },
+      {
+        "id": "5",
+        "quantity": 699
+      }
+    ],
+    [
+      {
+        "id": "5",
+        "quantity": 100
+      },
+      {
+        "id": "6",
+        "quantity": 41
+      },
+      {
+        "id": "7",
+        "quantity": 14
+      }
+    ],
+    [
+      {
+        "id": "5",
+        "quantity": 100
+      },
+      {
+        "id": "6",
+        "quantity": 41
+      },
+      {
+        "id": "7",
+        "quantity": 14
+      }
+    ],
+    [
+      {
+        "id": "4",
+        "quantity": 1
+      }
+    ],
+    [
+      {
+        "id": "4",
+        "quantity": 98
+      }
+    ],
+    [
+      {
+        "id": "4",
+        "quantity": 98
+      },
+      {
+        "id": "5",
+        "quantity": 1
+      }
+    ],
+    [
+      {
+        "id": "1",
+        "quantity": 1
+      }
+    ]
   ],
   "users": [
     {
@@ -106,33 +489,6 @@
       "id": 12
     }
   ],
-  "posts": [
-    {
-      "id": "p001",
-      "title": "React",
-      "body": "Awesome React Course"
-    },
-    {
-      "title": "Angular",
-      "body": "great framework",
-      "id": "AGMsf7w"
-    },
-    {
-      "title": "NodeJS",
-      "body": "server side javascript",
-      "id": "Sg8e-P3"
-    },
-    {
-      "title": "vuejs",
-      "body": "emerging framework",
-      "id": "aGZPLnm"
-    },
-    {
-      "title": "jQuery",
-      "body": "small library",
-      "id": "_nWv1MO"
-    }
-  ],
   "godown": [
     {
       "location": "Chennai",
@@ -148,136 +504,301 @@
       "GodownSupervisor": "Rishi",
       "createdAt": "2023-04-20",
       "products": [],
-      "id": 1
+      "id": 8
     },
     {
       "location": "Chennai",
       "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 1
+      "GodownSupervisor": "htft",
+      "createdAt": "2023-04-13",
+      "products": [
+        [
+          {
+            "id": "4",
+            "quantity": 1
+          },
+          {
+            "id": "5",
+            "quantity": 1
+          },
+          {
+            "id": "6",
+            "quantity": 1
+          }
+        ],
+        [
+          {
+            "id": "4",
+            "quantity": 1
+          },
+          {
+            "id": "5",
+            "quantity": 1
+          },
+          {
+            "id": "6",
+            "quantity": 1
+          }
+        ],
+        [
+          {
+            "id": "4",
+            "quantity": 1
+          },
+          {
+            "id": "5",
+            "quantity": 1
+          },
+          {
+            "id": "6",
+            "quantity": 1
+          }
+        ]
+      ],
+      "id": 2
     },
     {
       "location": "Chennai",
       "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 1
+      "GodownSupervisor": "Subi",
+      "createdAt": "2023-04-18",
+      "products": [
+        [
+          {
+            "id": "4",
+            "quantity": 100
+          }
+        ],
+        [
+          {
+            "id": "4",
+            "quantity": 100
+          },
+          {
+            "id": "5",
+            "quantity": 18
+          }
+        ]
+      ],
+      "id": 9
     },
     {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
+      "location": "hdsvh",
+      "Capacity": "321",
+      "GodownSupervisor": "dbash",
+      "createdAt": "2023-03-29",
       "products": [],
-      "id": 1
-    },
-    {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 1
-    },
-    {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 1
-    },
-    {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 1
-    },
-    {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 1
-    },
-    {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 1
+      "id": 10
     }
   ],
   "product": [
     {
-      "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
+      "id": "4",
+      "ItemName": "Kinley",
+      "Supplier": "Coca-Cola",
+      "Category": "Mineral Water",
+      "Amount": "30"
+    },
+    {
+      "id": "5",
+      "ItemName": "Oasis",
+      "Supplier": "Kraft Heinz",
+      "Category": "Mineral Water",
+      "Amount": "15"
+    },
+    {
+      "id": "6",
+      "ItemName": "Fiji",
+      "Supplier": "Coca-Cola",
+      "Category": "Mineral Water",
+      "Amount": "10"
+    },
+    {
+      "id": "7",
+      "ItemName": "Evian",
+      "Supplier": "Danone",
+      "Category": "Mineral Water",
       "Amount": "20"
     },
     {
-      "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
-      "Amount": "20"
+      "id": "8",
+      "ItemName": "Dasani",
+      "Supplier": "Coca-Cola",
+      "Category": "Mineral Water",
+      "Amount": "18"
     },
     {
-      "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
-      "Amount": "20"
+      "id": "9",
+      "ItemName": "Nestle Pure Life",
+      "Supplier": "Nestle",
+      "Category": "Mineral Water",
+      "Amount": "22"
     },
     {
-      "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
-      "Amount": "20"
+      "id": "10",
+      "ItemName": "Volvic",
+      "Supplier": "Danone",
+      "Category": "Mineral Water",
+      "Amount": "27"
     },
     {
-      "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
-      "Amount": "20"
+      "id": "11",
+      "ItemName": "Perrier",
+      "Supplier": "Nestle",
+      "Category": "Mineral Water",
+      "Amount": "13"
     },
     {
-      "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
-      "Amount": "20"
+      "id": "13",
+      "ItemName": "Dairy Milk",
+      "Supplier": "Cadbury",
+      "Category": "Chocolates",
+      "Amount": "40"
     },
     {
-      "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
-      "Amount": "20"
+      "id": "14",
+      "ItemName": "Maggi",
+      "Supplier": "Nestle",
+      "Category": "Instant Food",
+      "Amount": "30"
     },
     {
-      "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
-      "Amount": "20"
+      "id": "16",
+      "ItemName": "Tata Tea",
+      "Supplier": "Tata Consumer Products",
+      "Category": "Tea",
+      "Amount": "35"
     },
     {
+      "id": 1,
+      "ItemName": "coco",
+      "Supplier": "coco",
+      "Category": "Mineral Water",
+      "Amount": "10"
+    },
+    {
+      "id": 2,
+      "ItemName": "coco",
+      "Supplier": "coco",
+      "Category": "Snacks",
+      "Amount": "10"
+    },
+    {
+      "id": 3,
+      "ItemName": "coco",
+      "Supplier": "coco",
+      "Category": "Toothpaste",
+      "Amount": "10"
+    }
+  ],
+
+  "employee": [
+    {
       "id": "1",
-      "ItemName": "Bisleri",
-      "Supplier": "Parle",
-      "Categeory": "Mineral Water",
-      "Amount": "20"
+      "userName": "John Doe",
+      "role": "Godown Manager",
+      "email": "john.doe@example.com",
+      "phone": "555-123-4567",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "2",
+      "userName": "Jane Doe",
+      "role": "Admin",
+      "email": "jane.doe@example.com",
+      "phone": "555-123-4568",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "3",
+      "userName": "Alice Smith",
+      "role": "Godown Manager",
+      "email": "alice.smith@example.com",
+      "phone": "555-123-4569",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "4",
+      "userName": "Bob Johnson",
+      "role": "Admin",
+      "email": "bob.johnson@example.com",
+      "phone": "555-123-4570",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "5",
+      "userName": "Emma Davis",
+      "role": "Godown Manager",
+      "email": "emma.davis@example.com",
+      "phone": "555-123-4571",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "6",
+      "userName": "Michael Wilson",
+      "role": "Godown Manager",
+      "email": "michael.wilson@example.com",
+      "phone": "555-123-4572",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "7",
+      "userName": "David Brown",
+      "role": "Godown Manager",
+      "email": "david.brown@example.com",
+      "phone": "555-123-4573",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "8",
+      "userName": "Jessica Green",
+      "role": "Admin",
+      "email": "jessica.green@example.com",
+      "phone": "555-123-4574",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "9",
+      "userName": "Samir Shah",
+      "role": "Godown Manager",
+      "email": "samir.shah@example.com",
+      "phone": "9876543210",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+
+    {
+      "id": "10",
+      "userName": "Amit Patel",
+      "role": "Godown Manager",
+      "email": "amit.patel@example.com",
+      "phone": "9898989898",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+
+    {
+      "id": "11",
+      "userName": "Neha Gupta",
+      "role": "Godown Manager",
+      "email": "neha.gupta@example.com",
+      "phone": "9876543210",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+
+    {
+      "id": "12",
+      "userName": "Kunal Desai",
+      "role": "Godown Manager",
+      "email": "kunal.desai@example.com",
+      "phone": "9898989898",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    },
+    {
+      "id": "13",
+      "userName": "Riya Shah",
+      "role": "Godown Manager",
+      "email": "riya.shah@example.com",
+      "phone": "9876543210",
+      "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
     }
   ]
 }
