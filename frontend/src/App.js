@@ -6,12 +6,10 @@ import Godown from "./Components/Godown/Godown";
 import Product from "./Components/MasterProduct/Product";
 import AddGodown from "./Components/Godown/AddGodown/AddGodown";
 import Home from "./Components/Home/Home";
-import "./App.css";
-import Inward from "./Components/Inward/Inward";
-import Analytics from "./Components/Analytics/Analytics";
-import Account from "./Components/Account/Account";
-import Outward from "./Components/Outward/Outward";
-import Employee from './Components/Employee/Employee'
+
+import Inward from "./Components/Stocks/Inward/Inward";
+import AddProduct from "./Components/MasterProduct/AddProduct/AddProduct";
+
 function App(props) {
   return (
     <div>
@@ -22,8 +20,10 @@ function App(props) {
         <Route path={"/godown/*"} element={<Godown />}>
           <Route path="add-godown" element={<AddGodown />} />
         </Route>
-        <Route path={"/products"} element={<Product />} />
-        <Route path={"/inwards"} element={<Inward />} />
+        <Route path={"/product/*"} element={<Product />}>
+          <Route path="add-product" element={<AddProduct />} />
+        </Route>
+        <Route path={"/inward"} element={<Inward />} />
         <Route path={"/outward"} element={<Outward />} />
         <Route path={"/userpage"} element={<UserPage />} />
         <Route path={"/analytics"} element={<Analytics />} />

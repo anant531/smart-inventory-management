@@ -3,6 +3,7 @@ import GodownContext from "./GodownContext";
 
 const GodownProvider = ({ children }) => {
   const [godown, setGodown] = useState([]);
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3030/godown")
@@ -10,10 +11,16 @@ const GodownProvider = ({ children }) => {
       .then((data) => setGodown(data))
       .catch((error) => console.log(error));
   }, []);
-  console.log(godown);
+
+  useEffect(() => {
+    fetch("http://localhost:3030/product")
+      .then((response) => response.json())
+      .then((data) => setProduct(data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
-    <GodownContext.Provider value={{ godown }}>
+    <GodownContext.Provider value={{ godown, product }}>
       {children}
     </GodownContext.Provider>
   );

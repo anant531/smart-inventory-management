@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { clearToken } from "../../Redux/action";
 
 const Logout = () => {
   const [authUser, setAuthUser] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -25,6 +28,7 @@ const Logout = () => {
     signOut(auth)
       .then(() => {
         console.log("sign out successful");
+        dispatch(clearToken());
       })
       .catch((error) => console.log(error));
   };
