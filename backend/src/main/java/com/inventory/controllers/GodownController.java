@@ -1,6 +1,5 @@
 package com.inventory.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,8 +10,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.inventory.embeddable.GodownItemId;
+import com.inventory.entities.Godown;
+import com.inventory.entities.GodownItem;
 import com.inventory.entities.Items;
-import com.inventory.entities.godown;
+import com.inventory.repositories.GodownItemRepository;
 import com.inventory.repositories.GodownRepository;
 import com.inventory.repositories.ItemsRepository;
 
@@ -24,37 +26,49 @@ public class GodownController {
 		
 		@Autowired
 		ItemsRepository itemsRepository;
+		
+		@Autowired
+		GodownItemRepository godownItemRepository;
 
 		@GetMapping("/godown")
-		public List<godown> getAllGodown() {
+		public List<Godown> getAllGodown() {
 			return godownRepository.findAll();
 		}
 
 		@GetMapping("/godown/{id}")
-		public Optional<godown> getGodownById(@PathVariable long id) {
+		public Optional<Godown> getGodownById(@PathVariable long id) {
 	        return godownRepository.findById(id);
 		}
 
 		@PostMapping("/godown")
-		public void addGodown(@RequestBody godown g) {
-			godownRepository.save(g);
+		public void addGodown(@RequestBody Godown g) {
+			System.out.println(g);
 		}
-		
+
 
 		@PostMapping("/godown/addProducts")
-		public void addProducts(@RequestBody godown g) {
-			System.out.println(g);
-			List<Items> items = new ArrayList<>();
-			Optional<godown> godownFound = godownRepository.findById(g.getGodownId());
+		public void addProducts(@RequestBody Godown g) {
+			Optional<Godown> godownFound = godownRepository.findById(g.getGodownId());
 			if(godownFound.isPresent()) {
-				for(Items i : g.getItems()) {
-						Optional<Items> itemFound = itemsRepository.findById(i.getItemId());
-						items.add(itemFound.get());
-				}
-				g = godownFound.get();
-				g.setItems(items);
-				godownRepository.save(g);
+				Godown godown = godownFound.get();
+				for (GodownItem godownItem : g.getGodownItems()) {
+			        Optional<Items> optionalItem = itemsRepository.findById(godownItem.getItem().getItemId());
+			        if (optionalItem.isPresent()) {
+			        	Items item = optionalItem.get();
+				        GodownItemId godownItemId = new GodownItemId(g.getGodownId(), item.getItemId());
+				        godownItem.setId(godownItemId);
+				        godownItem.setGodown(godown);
+				        godownItem.setItem(item);
+				        System.out.println(godownItem);
+				        godown.getGodownItems().add(godownItem);
+			        }
+			        
+			    }
+				
+			    godownRepository.save(godown);
+
 			}
+				
 		}
 
 }

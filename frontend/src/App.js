@@ -20,10 +20,15 @@ function App(props) {
         <Route path={"/godown/*"} element={<Godown />}>
           <Route path="add-godown" element={<AddGodown />} />
         </Route>
-        <Route path={"/inward"} element={<Inward />} />
         <Route path={"/product/*"} element={<Product />}>
           <Route path="add-product" element={<AddProduct />} />
         </Route>
+        <Route path={"/inward"} element={<Inward />} />
+        <Route path={"/outward"} element={<Outward />} />
+        <Route path={"/userpage"} element={<UserPage />} />
+        <Route path={"/analytics"} element={<Analytics />} />
+        <Route path={"/account"} element={<Account />} />
+        <Route path={"/employees"} element={<Employee />} />
       </Routes>
     </div>
   );
