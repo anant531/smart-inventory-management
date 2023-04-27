@@ -21,6 +21,7 @@ public class Items {
 	String supplier;
 	String category;
 	double amount;
+	double weight;
 	
 	@OneToMany(mappedBy = "item", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<GodownItem> godownItems = new HashSet<>();
@@ -30,7 +31,7 @@ public class Items {
 	}
 
 
-	public Items(long itemId, String itemName, String supplier, String category, double amount,
+	public Items(long itemId, String itemName, String supplier, String category, double amount, double weight,
 			Set<GodownItem> godownItems) {
 		super();
 		this.itemId = itemId;
@@ -38,7 +39,18 @@ public class Items {
 		this.supplier = supplier;
 		this.category = category;
 		this.amount = amount;
+		this.weight = weight;
 		this.godownItems = godownItems;
+	}
+
+
+	public double getWeight() {
+		return weight;
+	}
+
+
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
 
 
@@ -95,7 +107,7 @@ public class Items {
 	@Override
 	public String toString() {
 		return "Items [itemId=" + itemId + ", itemName=" + itemName + ", supplier=" + supplier + ", category="
-				+ category + ", amount=" + amount + ", godownItems=" + godownItems + "]";
+				+ category + ", amount=" + amount + ", weight=" + weight +", godownItems=" + godownItems + "]";
 	}
 
 
