@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setToken } from "../../Redux/action";
 import {
   MDBBtn,
   MDBContainer,
@@ -22,6 +24,7 @@ import App from "../../App";
 const SignIn = () => {
   const [authUser, setAuthUser] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -38,6 +41,11 @@ const SignIn = () => {
   }, []);
   if (authUser) {
     navigate("/home");
+    console.log(authUser, "authuser");
+    console.log(authUser?.accessToken);
+    const token = authUser?.accessToken;
+
+    dispatch(setToken(token));
   }
 
   const userSignOut = () => {
