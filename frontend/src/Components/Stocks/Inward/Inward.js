@@ -138,9 +138,10 @@ function ProductList() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3030/godown/${Godown}`)
-      .then((response) => response.json())
-      .then((data) => setGodownData(data));
+    axios
+      .get(`http://localhost:3030/godown/${Godown}`)
+      .then((response) => setGodownData(response.data))
+      .catch((error) => console.log(error));
   }, [Godown]);
   console.log(godownData);
 

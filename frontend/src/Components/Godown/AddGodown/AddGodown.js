@@ -69,7 +69,7 @@ const AddGodown = () => {
 
             <div className="card-body">
               <form>
-                {/* title */}
+                {/* location */}
                 <div className="form-group mb-3">
                   <label>Location:</label>
                   <input
@@ -80,7 +80,7 @@ const AddGodown = () => {
                     required
                   />
                 </div>
-                {/* body */}
+                {/* capacity */}
                 <div className="form-group mb-3">
                   <label>Capacity:</label>
                   <input
@@ -91,6 +91,7 @@ const AddGodown = () => {
                     required
                   />
                 </div>
+                {/* supervisor */}
                 <div className="form-group mb-3">
                   <label>Godown Supervisor:</label>
                   <input
@@ -101,8 +102,9 @@ const AddGodown = () => {
                     required
                   />
                 </div>
+                {/* date */}
                 <div className="form-group mb-3">
-                  <label> Select a date:</label>
+                  <label>Select a date:</label>
                   <DatePicker
                     className="form-control"
                     selected={selectedDate}
