@@ -9,6 +9,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,4 +35,7 @@ public class Godown {
 	@JsonSerialize(using = GodownItemSerializer.class)
 	@JsonDeserialize(contentUsing = GodownItemDeserializer.class)
     private Set<GodownItem> godownItems = new HashSet<>();
+
+	@OneToMany()
+	List<Inward> inwards;
 }

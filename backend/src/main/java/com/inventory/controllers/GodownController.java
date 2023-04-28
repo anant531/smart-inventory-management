@@ -37,7 +37,7 @@ public class GodownController {
 
 		@PostMapping("/godown")
 		public void addGodown(@RequestBody Godown g) {
-			System.out.println(g);
+			godownRepository.save(g);
 		}
 
 		public double calcualteCapacity(Godown godown){
