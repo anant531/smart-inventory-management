@@ -39,9 +39,21 @@ const GodownProvider = ({ children }) => {
     }
   };
 
+  const addProduct = async (newProduct) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3030/product",
+        newProduct
+      );
+      setProduct([...product, response.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <GodownContext.Provider
-      value={{ godown, product, addGodown, deleteGodown }}
+      value={{ godown, product, addGodown, deleteGodown, addProduct }}
     >
       {children}
     </GodownContext.Provider>
