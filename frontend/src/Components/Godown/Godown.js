@@ -118,12 +118,13 @@
 
 // export default Godown;
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import React from "react";
 import axios from "axios";
 
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./Godown.css";
+import GodownContext from "../../contexts/GodownContext";
 
 const Godown = () => {
   const [godowns, setGodowns] = useState([]);
@@ -132,6 +133,7 @@ const Godown = () => {
   const query = new URLSearchParams(location.search);
   const isAdded = query.get("added");
   const isDeleted = query.get("delete");
+  const { godown, deleteGodown } = useContext(GodownContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -144,15 +146,7 @@ const Godown = () => {
   }, [isAdded, isDeleted]);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`http://localhost:3030/godown/${id}`)
-      .then((response) => {
-        console.log("Resource deleted successfully");
-        // remove deleted resource from state
-      })
-      .catch((error) => {
-        console.log("Error deleting resource: " + error);
-      });
+    deleteGodown(id);
 
     navigate("/godown?delete=true");
   };

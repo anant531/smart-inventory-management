@@ -25,396 +25,6 @@
       "createdAt": "2022-12-20T00:00:00.000Z"
     }
   ],
-  "todos": [
-    [
-      "3",
-      "4"
-    ],
-    [
-      "3",
-      "4"
-    ],
-    {
-      "products": [
-        "3",
-        "4"
-      ],
-      "id": 3
-    },
-    {
-      "products": [
-        {
-          "id": "3",
-          "quantity": "2"
-        },
-        {
-          "id": "4",
-          "quantity": "2"
-        }
-      ],
-      "id": 4
-    },
-    {
-      "products": [
-        {
-          "id": "3",
-          "quantity": "9"
-        },
-        {
-          "id": "4",
-          "quantity": "9"
-        }
-      ],
-      "id": 5
-    },
-    {
-      "products": [],
-      "id": 6
-    },
-    {
-      "products": [],
-      "id": 7
-    },
-    {
-      "products": [],
-      "id": 8
-    },
-    {
-      "products": [],
-      "id": 9
-    },
-    {
-      "products": [
-        {
-          "id": "2",
-          "quantity": 9
-        },
-        {
-          "id": "3",
-          "quantity": 6
-        },
-        {
-          "id": "8",
-          "quantity": 9
-        },
-        {
-          "id": "9",
-          "quantity": 9
-        }
-      ],
-      "id": 10
-    },
-    {
-      "products": [
-        {
-          "id": "2",
-          "quantity": 9
-        },
-        {
-          "id": "3",
-          "quantity": 6
-        },
-        {
-          "id": "8",
-          "quantity": 9
-        },
-        {
-          "id": "9",
-          "quantity": 9
-        }
-      ],
-      "id": 11
-    },
-    {
-      "products": [
-        ""
-      ],
-      "id": 12
-    },
-    {
-      "products": [
-        "",
-        "7"
-      ],
-      "id": 13
-    },
-    [
-      "1"
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": "3"
-      }
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": "3"
-      }
-    ],
-    [
-      {
-        "id": "6",
-        "quantity": "7"
-      }
-    ],
-    [
-      {
-        "id": "6",
-        "quantity": "7"
-      }
-    ],
-    [
-      "4"
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": 1
-      }
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": 9
-      }
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": 90
-      }
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": 900
-      }
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": 900
-      },
-      {
-        "id": "7",
-        "quantity": 143928
-      },
-      {
-        "id": "8",
-        "quantity": 13213
-      },
-      {
-        "id": "9",
-        "quantity": 12131
-      }
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": 99
-      }
-    ],
-    [
-      {
-        "id": "2",
-        "quantity": 99
-      },
-      {
-        "id": "8",
-        "quantity": 0
-      }
-    ],
-    [
-      {
-        "id": "6",
-        "quantity": 199
-      },
-      {
-        "id": "7",
-        "quantity": 298
-      }
-    ],
-    [
-      {
-        "id": "6",
-        "quantity": 199
-      },
-      {
-        "id": "7",
-        "quantity": 298
-      },
-      {
-        "id": "1",
-        "quantity": 99
-      }
-    ],
-    [
-      {
-        "id": "6",
-        "quantity": 199
-      },
-      {
-        "id": "7",
-        "quantity": 298
-      },
-      {
-        "id": "1",
-        "quantity": 99
-      },
-      {
-        "id": "3",
-        "quantity": 98
-      }
-    ],
-    [
-      {
-        "id": "1",
-        "quantity": 100
-      },
-      {
-        "id": "3",
-        "quantity": 100
-      }
-    ],
-    [
-      {
-        "id": "1",
-        "quantity": 100
-      },
-      {
-        "id": "3",
-        "quantity": 100
-      }
-    ],
-    [
-      {
-        "id": "3",
-        "quantity": 100
-      },
-      {
-        "id": "4",
-        "quantity": 88
-      }
-    ],
-    [],
-    [
-      {
-        "id": "1",
-        "quantity": 0
-      }
-    ],
-    [
-      {
-        "id": "1",
-        "quantity": 0
-      },
-      {
-        "id": "3",
-        "quantity": 0
-      }
-    ],
-    {
-      "products": [
-        {
-          "id": "1",
-          "quantity": 0
-        },
-        {
-          "id": "3",
-          "quantity": 0
-        }
-      ],
-      "id": 36
-    },
-    [
-      {
-        "id": "11",
-        "quantity": 1000
-      },
-      {
-        "id": "13",
-        "quantity": 1
-      }
-    ],
-    [
-      {
-        "id": "11",
-        "quantity": 1000
-      },
-      {
-        "id": "13",
-        "quantity": 1
-      }
-    ],
-    [
-      {
-        "id": "4",
-        "quantity": 900
-      },
-      {
-        "id": "5",
-        "quantity": 699
-      }
-    ],
-    [
-      {
-        "id": "5",
-        "quantity": 100
-      },
-      {
-        "id": "6",
-        "quantity": 41
-      },
-      {
-        "id": "7",
-        "quantity": 14
-      }
-    ],
-    [
-      {
-        "id": "5",
-        "quantity": 100
-      },
-      {
-        "id": "6",
-        "quantity": 41
-      },
-      {
-        "id": "7",
-        "quantity": 14
-      }
-    ],
-    [
-      {
-        "id": "4",
-        "quantity": 1
-      }
-    ],
-    [
-      {
-        "id": "4",
-        "quantity": 98
-      }
-    ],
-    [
-      {
-        "id": "4",
-        "quantity": 98
-      },
-      {
-        "id": "5",
-        "quantity": 1
-      }
-    ],
-    [
-      {
-        "id": "1",
-        "quantity": 1
-      }
-    ]
-  ],
   "users": [
     {
       "name": "abc",
@@ -491,107 +101,109 @@
   ],
   "godown": [
     {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 1
-    },
-    {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Rishi",
-      "createdAt": "2023-04-20",
-      "products": [],
-      "id": 8
-    },
-    {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "htft",
-      "createdAt": "2023-04-13",
+      "location": "Mumbai",
+      "Capacity": 18376,
+      "GodownSupervisor": "Muruha",
+      "createdAt": "2023-04-24",
       "products": [
-        [
-          {
-            "id": "4",
-            "quantity": 1
-          },
-          {
-            "id": "5",
-            "quantity": 1
-          },
-          {
-            "id": "6",
-            "quantity": 1
-          }
-        ],
-        [
-          {
-            "id": "4",
-            "quantity": 1
-          },
-          {
-            "id": "5",
-            "quantity": 1
-          },
-          {
-            "id": "6",
-            "quantity": 1
-          }
-        ],
-        [
-          {
-            "id": "4",
-            "quantity": 1
-          },
-          {
-            "id": "5",
-            "quantity": 1
-          },
-          {
-            "id": "6",
-            "quantity": 1
-          }
-        ]
+        {
+          "id": "6",
+          "quantity": 14
+        },
+        {
+          "id": "7",
+          "quantity": 6
+        }
       ],
-      "id": 2
+      "id": 11
     },
     {
-      "location": "Chennai",
-      "Capacity": "1000",
-      "GodownSupervisor": "Subi",
-      "createdAt": "2023-04-18",
+      "location": "Mumbai",
+      "Capacity": 18376,
+      "GodownSupervisor": "Muruha",
+      "createdAt": "2023-04-24",
       "products": [
-        [
-          {
-            "id": "4",
-            "quantity": 100
-          }
-        ],
-        [
-          {
-            "id": "4",
-            "quantity": 100
-          },
-          {
-            "id": "5",
-            "quantity": 18
-          }
-        ]
+        {
+          "id": "7",
+          "quantity": 3
+        },
+        {
+          "id": "8",
+          "quantity": 0
+        }
       ],
-      "id": 9
+      "id": 12
     },
     {
-      "location": "hdsvh",
-      "Capacity": "321",
-      "GodownSupervisor": "dbash",
-      "createdAt": "2023-03-29",
-      "products": [],
-      "id": 10
+      "location": "Mumbai",
+      "Capacity": 18227,
+      "GodownSupervisor": "Muruha",
+      "createdAt": "2023-04-24",
+      "products": [
+        {
+          "id": "1",
+          "quantity": 29
+        },
+        {
+          "id": "5",
+          "quantity": 39
+        },
+        {
+          "id": "4",
+          "quantity": 81
+        }
+      ],
+      "id": 13
+    },
+    {
+      "location": "Hyderbad",
+      "Capacity": 8896,
+      "GodownSupervisor": "haran",
+      "createdAt": "2023-03-27",
+      "products": [
+        {
+          "id": "6",
+          "quantity": 0
+        },
+        {
+          "id": "7",
+          "quantity": 0
+        },
+        {
+          "id": "19",
+          "quantity": 101
+        },
+        {
+          "id": "10",
+          "quantity": 133
+        },
+        {
+          "id": "YolcmZa",
+          "quantity": 12
+        },
+        {
+          "id": "168",
+          "quantity": 17
+        }
+      ],
+      "id": 14
     }
   ],
   "product": [
+    {
+      "id": "1",
+      "ItemName": "Mineral Water 1L",
+      "Supplier": "Nestle",
+      "Category": "Mineral Water",
+      "Amount": "20"
+    },
+    {
+      "id": "2",
+      "ItemName": "Mineral Water 500ml",
+      "Supplier": "PepsiCo",
+      "Category": "Mineral Water",
+      "Amount": "15"
+    },
     {
       "id": "4",
       "ItemName": "Kinley",
@@ -601,97 +213,89 @@
     },
     {
       "id": "5",
-      "ItemName": "Oasis",
-      "Supplier": "Kraft Heinz",
-      "Category": "Mineral Water",
-      "Amount": "15"
-    },
-    {
-      "id": "6",
-      "ItemName": "Fiji",
-      "Supplier": "Coca-Cola",
-      "Category": "Mineral Water",
-      "Amount": "10"
-    },
-    {
-      "id": "7",
-      "ItemName": "Evian",
-      "Supplier": "Danone",
-      "Category": "Mineral Water",
-      "Amount": "20"
-    },
-    {
-      "id": "8",
-      "ItemName": "Dasani",
-      "Supplier": "Coca-Cola",
+      "ItemName": "Aquafina",
+      "Supplier": "PepsiCo",
       "Category": "Mineral Water",
       "Amount": "18"
     },
     {
-      "id": "9",
-      "ItemName": "Nestle Pure Life",
+      "id": "6",
+      "ItemName": "Dairy Milk",
+      "Supplier": "Cadbury",
+      "Category": "Chocolate",
+      "Amount": "25"
+    },
+    {
+      "id": "7",
+      "ItemName": "KitKat",
       "Supplier": "Nestle",
-      "Category": "Mineral Water",
+      "Category": "Chocolate",
+      "Amount": "20"
+    },
+    {
+      "id": "8",
+      "ItemName": "Snickers",
+      "Supplier": "Mars",
+      "Category": "Chocolate",
       "Amount": "22"
     },
     {
+      "id": "9",
+      "ItemName": "Bounty",
+      "Supplier": "Mars",
+      "Category": "Chocolate",
+      "Amount": "23"
+    },
+    {
+      "id": "19",
+      "ItemName": "Silk",
+      "Supplier": "Mars",
+      "Category": "Chocolate",
+      "Amount": "23"
+    },
+    {
       "id": "10",
-      "ItemName": "Volvic",
-      "Supplier": "Danone",
-      "Category": "Mineral Water",
-      "Amount": "27"
+      "ItemName": "Milkybar",
+      "Supplier": "Nestle",
+      "Category": "Chocolate",
+      "Amount": "18"
     },
     {
       "id": "11",
-      "ItemName": "Perrier",
-      "Supplier": "Nestle",
-      "Category": "Mineral Water",
-      "Amount": "13"
-    },
-    {
-      "id": "13",
-      "ItemName": "Dairy Milk",
-      "Supplier": "Cadbury",
-      "Category": "Chocolates",
-      "Amount": "40"
-    },
-    {
-      "id": "14",
-      "ItemName": "Maggi",
-      "Supplier": "Nestle",
-      "Category": "Instant Food",
-      "Amount": "30"
-    },
-    {
-      "id": "16",
-      "ItemName": "Tata Tea",
-      "Supplier": "Tata Consumer Products",
-      "Category": "Tea",
-      "Amount": "35"
-    },
-    {
-      "id": 1,
-      "ItemName": "coco",
-      "Supplier": "coco",
-      "Category": "Mineral Water",
-      "Amount": "10"
-    },
-    {
-      "id": 2,
-      "ItemName": "coco",
-      "Supplier": "coco",
+      "ItemName": "Lays",
+      "Supplier": "PepsiCo",
       "Category": "Snacks",
       "Amount": "10"
     },
     {
-      "id": 3,
-      "ItemName": "coco",
-      "Supplier": "coco",
+      "ItemName": "ceo",
+      "Supplier": "ceo",
+      "Category": "Mineral Water",
+      "Amount": "1000",
+      "id": "YolcmZa"
+    },
+    {
+      "id": 1682780818488,
+      "ItemName": "Giggy",
+      "Supplier": "Gig",
+      "Category": "Chocolates",
+      "Amount": "100"
+    },
+    {
+      "ItemName": "Giggy",
+      "Supplier": "Gig",
       "Category": "Toothpaste",
-      "Amount": "10"
+      "Amount": "100",
+      "id": "1682780828598"
+    },
+    {
+      "id": "168",
+      "ItemName": "V Rishi Vardhan",
+      "Supplier": "V Rishi Vardhan",
+      "Category": "Mineral Water",
+      "Amount": "100"
     }
   ],
-
   "employee": [
     {
       "id": "1",
@@ -765,7 +369,6 @@
       "phone": "9876543210",
       "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
     },
-
     {
       "id": "10",
       "userName": "Amit Patel",
@@ -774,7 +377,6 @@
       "phone": "9898989898",
       "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
     },
-
     {
       "id": "11",
       "userName": "Neha Gupta",
@@ -783,7 +385,6 @@
       "phone": "9876543210",
       "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
     },
-
     {
       "id": "12",
       "userName": "Kunal Desai",
