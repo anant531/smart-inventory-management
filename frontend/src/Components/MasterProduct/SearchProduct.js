@@ -6,6 +6,7 @@ const SearchProduct = (props) => {
   const { product } = useContext(GodownContext);
   const handleOptionChange = (event) => {
     props.selectedCategory(event.target.value);
+    console.log(product);
   };
 
   const uniqueCategories = product.reduce((categories, product) => {
@@ -16,7 +17,7 @@ const SearchProduct = (props) => {
   }, []);
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <InputLabel id="category-select-label">Select a category</InputLabel>
       <Select
         labelId="category-select-label"
