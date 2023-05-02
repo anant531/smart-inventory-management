@@ -1,12 +1,12 @@
 package com.inventory.embeddable;
 
-import java.io.IOException;
-import java.util.Set;
-
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import com.inventory.entities.GodownItem;
+import com.inventory.linktables.GodownItem;
+
+import java.io.IOException;
+import java.util.Set;
 
 public class GodownItemSerializer extends JsonSerializer<Set<GodownItem>> {
 

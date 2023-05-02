@@ -1,6 +1,7 @@
 package com.inventory.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.inventory.linktables.GodownItem;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,4 +29,9 @@ public class Items {
 	@OneToMany(mappedBy = "item", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JsonIgnore
     private Set<GodownItem> godownItems = new HashSet<>();
+
+	public Items(long itemId) {
+		this.itemId = itemId;
+	}
 }
+

@@ -1,8 +1,11 @@
 package com.inventory.controllers;
 
 import com.inventory.entities.Inward;
+import com.inventory.linktables.InwardItem;
 import com.inventory.repositories.GodownRepository;
+import com.inventory.repositories.InwardItemRepository;
 import com.inventory.repositories.InwardRepository;
+import com.inventory.repositories.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +22,12 @@ public class InwardController {
 	@Autowired
 	GodownRepository godownRepository;
 
+	@Autowired
+	ItemsRepository itemsRepository;
+
+	@Autowired
+	InwardItemRepository inwardItemRepository;
+
 	@GetMapping(path = "/inward")
 	public List<Inward> getInwards(){
 		return inwardRepository.findAll();
@@ -26,12 +35,15 @@ public class InwardController {
 
 	@PostMapping(path = "/inward")
 	public void addInward(@RequestBody Inward i) {
+		for(InwardItem inwardItem : i.getInwardItem()){
+			inwardItem.setInward(i);
+		}
 		inwardRepository.save(i);
 
-//		List<Inward> =
-//
-//		Optional<Godown> godown = godownRepository.findById(i.getGodown().getGodownId());
-//		godown.ifPresent(value -> godownRepository.save(value));
+	}
 
+	@GetMapping(path = "/inwardRepo")
+	public List<InwardItem> getInwardItem(){
+		return inwardItemRepository.findAll();
 	}
 }

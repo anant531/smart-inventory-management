@@ -1,7 +1,9 @@
-package com.inventory.entities;
+package com.inventory.linktables;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inventory.embeddable.GodownItemId;
+import com.inventory.entities.Godown;
+import com.inventory.entities.Items;
 import lombok.*;
 
 import javax.persistence.*;
@@ -10,7 +12,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
 @NoArgsConstructor
 @EqualsAndHashCode
 public class GodownItem {

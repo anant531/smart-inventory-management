@@ -4,12 +4,12 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.inventory.embeddable.GodownItemDeserializer;
 import com.inventory.embeddable.GodownItemSerializer;
+import com.inventory.linktables.GodownItem;
 import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,6 +36,7 @@ public class Godown {
 	@JsonDeserialize(contentUsing = GodownItemDeserializer.class)
     private Set<GodownItem> godownItems = new HashSet<>();
 
-	@OneToMany()
-	List<Inward> inwards;
+	@OneToMany(mappedBy = "godown")
+	Set<Inward> inwards = new HashSet<>();
+
 }

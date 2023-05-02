@@ -21,5 +21,4 @@ public class Roles {
 	long id;
 	
 	String name;
-
 }
