@@ -116,6 +116,7 @@ import axios from "axios";
 import "./Inward.css";
 import SelectGodown from "./selectGodown";
 import SearchProduct from "../../MasterProduct/SearchProduct";
+
 import {
   Button,
   Dialog,
@@ -124,7 +125,9 @@ import {
   DialogTitle,
 } from "@mui/material";
 import Table from "@mui/material/Table";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useLocation } from "react-router-dom";
+
+
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -133,6 +136,10 @@ function ProductList() {
   const [godownData, setGodownData] = useState(null);
   const location = useLocation();
   const query = new URLSearchParams(location.search);
+
+
+  const isAdded = query.get("added");
+
   const [category, selectedcat] = useState("Snacks");
   const isAdded = query.get("added");
   const navigate = useNavigate();
@@ -159,9 +166,13 @@ function ProductList() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3030/godown/${Godown}`)
-      .then((response) => response.json())
-      .then((data) => setGodownData(data));
+
+   
+    axios
+      .get(`http://localhost:3030/godown/${Godown}`)
+      .then((response) => setGodownData(response.data))
+      .catch((error) => console.log(error));
+
   }, [isAdded]);
   console.log(godownData);
 
@@ -262,6 +273,7 @@ function ProductList() {
         </div>
       </div>
 
+
       <Table>
         <thead>
           <tr>
@@ -318,6 +330,47 @@ function ProductList() {
           </Button>
         </DialogActions>
       </Dialog>
+=======
+      <form onSubmit={handleSubmit}>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Product Name </th>
+              <th>Price</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProducts.map((product) => (
+              <tr key={product.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    name={product.id}
+                    onChange={handleProductSelection}
+                  />
+                </td>
+                <td>{product.ItemName}</td>
+                <td>{product.Amount}</td>
+                <td>
+                  <input
+                    type="number"
+                    min="1"
+                    name={`${product.id}-quantity`}
+                    defaultValue={1}
+                    onChange={handleQuantityChange}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+
     </div>
   );
 }
