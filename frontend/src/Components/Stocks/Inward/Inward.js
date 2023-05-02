@@ -117,13 +117,16 @@ import { Table } from "react-bootstrap";
 import "./Inward.css";
 import SelectGodown from "./selectGodown";
 import SearchProduct from "../../MasterProduct/SearchProduct";
+import { useLocation } from "react-router-dom";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [Godown, selectedGodown] = useState("");
   const [godownData, setGodownData] = useState(null);
-
+  const location = useLocation();
+  const query = new URLSearchParams(location.search);
+  const isAdded = query.get("added");
   const [category, selectedcat] = useState("Snacks");
 
   const selectedCategory = (selCat) => {
@@ -138,10 +141,11 @@ function ProductList() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3030/godown/${Godown}`)
-      .then((response) => response.json())
-      .then((data) => setGodownData(data));
-  }, [Godown]);
+    axios
+      .get(`http://localhost:3030/godown/${Godown}`)
+      .then((response) => setGodownData(response.data))
+      .catch((error) => console.log(error));
+  }, [isAdded]);
   console.log(godownData);
 
   useEffect(() => {
@@ -245,6 +249,7 @@ function ProductList() {
             <tr>
               <th></th>
               <th>Product Name </th>
+              <th>Price</th>
               <th>Quantity</th>
             </tr>
           </thead>
@@ -259,6 +264,7 @@ function ProductList() {
                   />
                 </td>
                 <td>{product.ItemName}</td>
+                <td>{product.Amount}</td>
                 <td>
                   <input
                     type="number"

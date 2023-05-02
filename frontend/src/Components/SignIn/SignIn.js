@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setToken } from "../../Redux/action";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBInput,
-} from "mdb-react-ui-kit";
+
 import "./SignIn.css";
 import {
   signInWithEmailAndPassword,
@@ -20,6 +13,7 @@ import { auth } from "../firebase";
 import ForgotPassword from "./ForgotPassword";
 import { useNavigate } from "react-router-dom";
 import App from "../../App";
+import { setToken } from "../../Redux/reducer";
 
 const SignIn = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -28,6 +22,7 @@ const SignIn = () => {
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
+      console.log(user, "users");
       if (user) {
         setAuthUser(user);
       } else {
@@ -39,14 +34,6 @@ const SignIn = () => {
       listen();
     };
   }, []);
-  if (authUser) {
-    navigate("/home");
-    console.log(authUser, "authuser");
-    console.log(authUser?.accessToken);
-    const token = authUser?.accessToken;
-
-    dispatch(setToken(token));
-  }
 
   const userSignOut = () => {
     signOut(auth)
@@ -58,81 +45,86 @@ const SignIn = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showChild, setShowChild] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const signIn = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    setIsLoading(true);
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential);
+        console.log(userCredential, "user Cred");
+        let authUser = userCredential.user;
+        if (authUser) {
+          navigate("/home");
+          console.log(authUser, "authuser");
+          console.log(authUser?.accessToken);
+          const token = authUser?.accessToken;
+
+          dispatch(setToken(token));
+        }
       })
       .catch((error) => {
         console.log(error);
       });
+
+    setTimeout(() => {
+      setIsLoading(false); // Set the state variable back to false once login process is complete
+    }, 2000);
   };
 
   return (
-    <MDBContainer className="my-5 gradient-form">
-      <MDBRow>
-        <MDBCol col="6" className="mb-5">
-          <div className="d-flex flex-column ms-5">
-            <div className="text-center">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                style={{ width: "185px" }}
-                alt="logo"
-              />
-              <h4 className="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
-            </div>
+    <div>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      />
 
-            <p>Please login to your account</p>
+      <div className="wrapper">
+        <div className="login">
+          <p class="title">SMART INVENTORY SYSTEM</p>
+          <input
+            wrapperClass="mb-4"
+            label="Email address"
+            id="form1"
+            placeholder="Enter your Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <i class="fas fa-user"></i>
+          <input
+            wrapperClass="mb-4"
+            label="Password"
+            placeholder="Enter your Password"
+            id="form2"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <i className="fas fa-key"></i>
+          <a href="#">Forgot your password?</a>
 
-            <MDBInput
-              wrapperClass="mb-4"
-              label="Email address"
-              id="form1"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <MDBInput
-              wrapperClass="mb-4"
-              label="Password"
-              id="form2"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
-            <div className="text-center pt-1 mb-5 pb-1">
-              <button className="btn btn-success" onClick={signIn}>
-                {" "}
-                Sign In
-              </button>
-            </div>
-
-            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-              <p className="mb-0">Don't have an account?</p>
-              <div>{<ForgotPassword />}</div>
-            </div>
+          <div className="text-center pt-1 mb-5 pb-1">
+            <button
+              class="btn btn-success"
+              onClick={signIn}
+              disabled={isLoading}
+            >
+              {isLoading ? ( // Show the spinner if the login process is in progress
+                <i className="fas fa-spinner fa-spin"></i>
+              ) : (
+                // Show the "Log in" text otherwise
+                <span className="state">Log in</span>
+              )}
+            </button>
           </div>
-        </MDBCol>
-
-        <MDBCol col="6" className="mb-5">
-          <div className="d-flex flex-column  justify-content-center gradient-custom-2 h-100 mb-4">
-            <div className="text-white px-3 py-4 p-md-5 mx-md-4">
-              <h4 class="mb-4">We are more than just a company</h4>
-              <p class="small mb-0">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-          </div>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+        </div>
+      </div>
+    </div>
   );
 };
 
