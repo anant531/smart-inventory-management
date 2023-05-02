@@ -1,43 +1,41 @@
 package com.inventory.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.inventory.embeddable.InwardDeserializer;
+import com.inventory.embeddable.InwardSerializer;
+import com.inventory.linktables.InwardItem;
 import lombok.*;
 
-import java.sql.Date;
-import java.util.List;
-
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@JsonSerialize(using = InwardSerializer.class)
+@JsonDeserialize(using = InwardDeserializer.class)
 public class Inward {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	long inwardId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("godownId")
-	@JsonIgnore
-	private Godown godown;
+	@ManyToOne()
+	@JoinColumn(name = "godown_id")
+	Godown godown;
 
-	@ManyToMany(fetch = FetchType.LAZY)
-	@MapsId("itemId")
-	@JsonIgnore
-	private List<Items> item;
-	
+	@OneToMany(mappedBy = "inward", cascade = CascadeType.ALL)
+	private Set<InwardItem> inwardItem = new HashSet<>();
+
 	String nameofSupplier;
-	Date dateOfSupply;
-	
-	long invoice;
-	long quantity;
-	
-	String received;
-	long receiptNo;
-	String billCheckedBy;
 
+	public Inward(Godown godown, Set<InwardItem> inwardItems, String nameofSupplier) {
+		this.godown = godown;
+		this.inwardItem = inwardItems;
+		this.nameofSupplier = nameofSupplier;
+	}
 }
