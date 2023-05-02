@@ -65,15 +65,11 @@ const Header = () => {
               >
                 Dashboard
               </MenuItem>
-              <Menu iconShape="square">
-                <MenuItem icon={<FiLogOut />}>
-                  <Logout />
-                </MenuItem>
-              </Menu>
+
               <MenuItem
                 icon={<AiOutlineAppstoreAdd />}
                 onClick={() => {
-                  navigate("");
+                  navigate("/product");
                 }}
               >
                 Products
@@ -118,7 +114,10 @@ const Header = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem icon={<FiLogOut />}>
+                {" "}
+                <Logout />
+              </MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>
