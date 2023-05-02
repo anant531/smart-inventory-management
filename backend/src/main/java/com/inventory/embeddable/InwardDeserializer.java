@@ -12,6 +12,7 @@ import com.inventory.repositories.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,6 +46,12 @@ public class InwardDeserializer extends JsonDeserializer<Inward> {
             }
         }
 
-        return new Inward(godownRepository.findById(godownId).orElse(null), inwardItems, nameofSupplier);
+        String billCheckedBy = node.get("billCheckedBy").asText();
+        long invoiceNo = node.get("invoiceNo").asLong();
+        long receiptNo = node.get("receiptNo").asLong();
+        String receivedBy = node.get("receivedBy").asText();
+
+
+        return new Inward((long)0,godownRepository.findById(godownId).orElse(null), inwardItems, nameofSupplier, billCheckedBy, LocalDateTime.now(),invoiceNo,receiptNo,receivedBy);
     }
 }
