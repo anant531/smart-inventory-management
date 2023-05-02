@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Button,
   Dialog,
@@ -10,10 +10,13 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  FormControlLabel,
+  Checkbox,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import GodownContext from "../../../contexts/GodownContext";
 
 const useStyles = makeStyles({
   button: {
@@ -67,9 +70,18 @@ const AddProduct = () => {
   const [name, setName] = useState("");
   const [supplierName, setSupplierName] = useState("");
   const [total, setTotal] = useState(1);
+  const { product, addProduct } = useContext(GodownContext);
+
+  const uniqueCategories = product.reduce((categories, product) => {
+    if (!categories.includes(product.Category)) {
+      return [...categories, product.Category];
+    }
+    return categories;
+  }, []);
 
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
+  const [isCustomCategory, setIsCustomCategory] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -80,15 +92,7 @@ const AddProduct = () => {
   };
 
   const handleAddProduct = async () => {
-    // {
-    //     "id": "7",
-    //     "ItemName": "Evian",
-    //     "Supplier": "Danone",
-    //     "Category": "Mineral Water",
-    //     "Amount": "20"
-    //   }
     let newProduct = {
-      id: total,
       ItemName: name,
       Supplier: supplierName,
       Category: category,
@@ -96,22 +100,11 @@ const AddProduct = () => {
     };
     console.log(newProduct);
     try {
-      const response = await axios.post(
-        "http://localhost:3030/product",
-        newProduct,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log(response);
+      await addProduct(newProduct);
     } catch (error) {
       console.log(error);
     }
     navigate("/product?added=true");
-    setTotal(total + 1);
-
     handleClose();
   };
 
@@ -144,32 +137,47 @@ const AddProduct = () => {
             value={supplierName}
             onChange={(e) => setSupplierName(e.target.value)}
           />
-          {/* <TextField
-            className={classes.input}
-            label="category"
-            variant="outlined"
-            fullWidth
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          /> */}
 
-          <InputLabel id="category-label">Category</InputLabel>
-          <Select
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={isCustomCategory}
+                onChange={(e) => setIsCustomCategory(e.target.checked)}
+              />
+            }
+            label="Custom Category"
+          />
+          <TextField
             className={classes.input}
-            label="category"
+            label="Category"
             variant="outlined"
-            value={category}
             fullWidth
+            disabled={!isCustomCategory}
+            value={category}
             onChange={(e) => setCategory(e.target.value)}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value="Mineral Water">Mineral Water</MenuItem>
-            <MenuItem value="Snacks">Snacks</MenuItem>
-            <MenuItem value="Chocolates">Chocolates</MenuItem>
-            <MenuItem value="Toothpaste">Toothpaste</MenuItem>
-          </Select>
+          />
+          {!isCustomCategory && (
+            <FormControl fullWidth>
+              <InputLabel id="category-label">Category</InputLabel>
+              <Select
+                className={classes.input}
+                label="category"
+                variant="outlined"
+                value={category}
+                fullWidth
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {uniqueCategories.map((category) => (
+                  <MenuItem key={category} value={category}>
+                    {category}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
 
           <TextField
             className={classes.input}
