@@ -2,7 +2,7 @@ package com.inventory.controllers;
 
 import com.inventory.embeddable.GodownItemId;
 import com.inventory.entities.Godown;
-import com.inventory.entities.GodownItem;
+import com.inventory.linktables.GodownItem;
 import com.inventory.entities.Items;
 import com.inventory.repositories.GodownItemRepository;
 import com.inventory.repositories.GodownRepository;
@@ -37,6 +37,7 @@ public class GodownController {
 
 		@PostMapping("/godown")
 		public void addGodown(@RequestBody Godown g) {
+//			godownRepository.save(g);
 			System.out.println(g);
 		}
 
