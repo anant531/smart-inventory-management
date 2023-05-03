@@ -125,9 +125,7 @@ import {
   DialogTitle,
 } from "@mui/material";
 import Table from "@mui/material/Table";
-import { useLocation, useNavigate, useLocation } from "react-router-dom";
-
-
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -137,12 +135,11 @@ function ProductList() {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
 
-
-  const isAdded = query.get("added");
-
   const [category, selectedcat] = useState("Snacks");
   const isAdded = query.get("added");
   const navigate = useNavigate();
+  const [amount, setAmount] = useState("");
+  const [weight, setWeight] = useState("");
 
   const [open, setOpen] = useState(false);
 
@@ -166,13 +163,10 @@ function ProductList() {
   };
 
   useEffect(() => {
-
-   
     axios
       .get(`http://localhost:3030/godown/${Godown}`)
       .then((response) => setGodownData(response.data))
       .catch((error) => console.log(error));
-
   }, [isAdded]);
   console.log(godownData);
 
@@ -211,6 +205,25 @@ function ProductList() {
     });
   };
 
+  const handleCalculate = async (event) => {
+    try {
+      event.preventDefault();
+      let totalAmount = 0;
+      let totalWeight = 0;
+      selectedProducts.forEach((product) => {
+        const { id, quantity } = product;
+        const { Amount, Weight } = products.find((price) => price.id === id);
+        totalAmount += Amount * quantity;
+        totalWeight += quantity * Weight;
+        setWeight(totalWeight / 100);
+        setAmount(totalAmount);
+      });
+      console.log("Total Amount:", totalAmount);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleSubmit = async (event) => {
     try {
       event.preventDefault();
@@ -222,11 +235,7 @@ function ProductList() {
       const updatedProducts = [];
 
       //reducing the capacity and adding
-      const totalQuantity = selectedProducts.reduce(
-        (acc, product) => acc + product.quantity,
-        0
-      );
-      godown.Capacity -= totalQuantity;
+      godown.Capacity -= weight;
       // abc
       for (const selectedProduct of selectedProducts) {
         const existingProductIndex = godown.products.findIndex(
@@ -272,14 +281,12 @@ function ProductList() {
           <SearchProduct selectedCategory={selectedCategory} />
         </div>
       </div>
-
-
       <Table>
         <thead>
           <tr>
             <th>Add</th>
             <th>Product Name </th>
-            <th>Quantity</th>
+            <th>Quantity (kg)</th>
             <th>Amount/Unit</th>
           </tr>
         </thead>
@@ -308,13 +315,42 @@ function ProductList() {
           ))}
         </tbody>
       </Table>
-      <button onClick={handleOpen} className="btn btn-primary">
-        Submit
-      </button>
+      <div className="container">
+        <div className="row justify-content-between ">
+          <button
+            onClick={handleCalculate}
+            className="btn btn-primary mb-3 col-auto"
+          >
+            Calculate
+          </button>
+          <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
+          <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
+          <button
+            onClick={handleOpen}
+            className="btn btn-primary mb-3 col-auto"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
           Are you sure you want to add the following products?
+          <div>
+            {selectedProducts.map((selectedProduct) => {
+              const { id, quantity } = selectedProduct;
+              const { ItemName } = products.find((p) => p.id === id) || {};
+
+              return (
+                <div key={id}>
+                  <p>Product Name: {ItemName}</p>
+                  <p>Quantity: {quantity}</p>
+                </div>
+              );
+            })}
+            <p>totalAmount: {amount}</p>
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} style={{ color: "red" }}>
@@ -330,8 +366,8 @@ function ProductList() {
           </Button>
         </DialogActions>
       </Dialog>
-=======
-      <form onSubmit={handleSubmit}>
+
+      {/* <form onSubmit={handleSubmit}>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -369,8 +405,7 @@ function ProductList() {
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
-      </form>
-
+      </form> */}
     </div>
   );
 }

@@ -17,7 +17,7 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #fff9f9c6;
+  background-color: #e0e0e0f0;
 }
 
 tr:hover {
@@ -29,7 +29,7 @@ tr:hover {
 input[type="number"] {
   width: 4rem;
   padding: 0.5rem;
-  border: none;
+  border-width: thin;
   border-radius: 4px;
   background-color: #f2f2f2;
 }
@@ -53,4 +53,8 @@ input[type="number"] {
 .btn:hover {
   background-color: #0aacf7;
   color: #000000;
+}
+
+.Amount {
+  font-size: x-large;
 }
