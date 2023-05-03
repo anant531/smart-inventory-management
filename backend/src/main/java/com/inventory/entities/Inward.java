@@ -8,7 +8,6 @@ import com.inventory.linktables.InwardItem;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,13 +33,9 @@ public class Inward {
 
 	String nameofSupplier;
 
-	String billCheckedBy;
-
-	LocalDateTime dateOfSupply;
-
-	long invoiceNo;
-
-	long receiptNo;
-
-	String receivedBy;
+	public Inward(Godown godown, Set<InwardItem> inwardItems, String nameofSupplier) {
+		this.godown = godown;
+		this.inwardItem = inwardItems;
+		this.nameofSupplier = nameofSupplier;
+	}
 }

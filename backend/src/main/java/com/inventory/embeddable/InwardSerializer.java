@@ -16,7 +16,7 @@ public class InwardSerializer extends JsonSerializer<Inward> {
         jsonGenerator.writeNumberField("inwardId", inward.getInwardId());
         jsonGenerator.writeNumberField("godownId", inward.getGodown().getGodownId());
 
-        jsonGenerator.writeFieldName("InwardItem");
+        jsonGenerator.writeFieldName("InwardGodownItem");
         jsonGenerator.writeStartArray();
         for(InwardItem inwardItem : inward.getInwardItem()){
             jsonGenerator.writeStartObject();
@@ -26,11 +26,6 @@ public class InwardSerializer extends JsonSerializer<Inward> {
         }
         jsonGenerator.writeEndArray();
         jsonGenerator.writeStringField("nameofSupplier", inward.getNameofSupplier());
-        jsonGenerator.writeStringField("billCheckedBy", inward.getBillCheckedBy());
-        jsonGenerator.writeNumberField("invoiceNo", inward.getInvoiceNo());
-        jsonGenerator.writeNumberField("receiptNo", inward.getReceiptNo());
-        jsonGenerator.writeStringField("receivedBy", inward.getReceivedBy());
-        jsonGenerator.writeStringField("dateOfSupply", String.valueOf(inward.getDateOfSupply()));
         jsonGenerator.writeEndObject();
     }
 }

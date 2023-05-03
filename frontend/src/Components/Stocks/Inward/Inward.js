@@ -1,117 +1,5 @@
-// import { useState, useEffect } from "react";
-// import axios from "axios";
-// import { Table } from "react-bootstrap";
-// import "./Inward.css";
-// import SelectGodown from "./selectGodown";
-
-// function ProductList() {
-//   const [products, setProducts] = useState([]);
-//   const [selectedProducts, setSelectedProducts] = useState([]);
-//   const [Godown, selectedGodown] = useState("");
-//   const [godownData, setGodownData] = useState(null);
-//   const selectGodown = (selGod) => {
-//     selectedGodown(selGod);
-//   };
-
-//   useEffect(() => {
-//     fetch(`http://localhost:3030/godown/${Godown}`)
-//       .then((response) => response.json())
-//       .then((data) => setGodownData(data));
-//   }, [Godown]);
-//   console.log(godownData);
-
-//   useEffect(() => {
-//     axios
-//       .get(`http://localhost:3030/product`)
-//       .then((response) => setProducts(response.data))
-//       .catch((error) => console.log(error));
-//   }, []);
-
-//   const handleProductSelection = (event) => {
-//     const productId = event.target.name;
-//     const isChecked = event.target.checked;
-//     if (isChecked) {
-//       setSelectedProducts((prevState) => [
-//         ...prevState,
-//         { id: productId, quantity: 1 },
-//       ]);
-//     } else {
-//       setSelectedProducts((prevState) =>
-//         prevState.filter((product) => product.id !== productId)
-//       );
-//     }
-//   };
-
-//   const handleQuantityChange = (event) => {
-//     const productId = event.target.name.split("-")[0];
-//     const quantity = parseInt(event.target.value);
-//     setSelectedProducts((prevState) => {
-//       const productIndex = prevState.findIndex(
-//         (product) => product.id === productId
-//       );
-//       const newSelectedProducts = [...prevState];
-//       newSelectedProducts[productIndex] = { id: productId, quantity };
-//       return newSelectedProducts;
-//     });
-//   };
-
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     axios
-//       .post("http://localhost:3030/todos", selectedProducts)
-//       .then((response) => console.log(response.data))
-//       .catch((error) => console.log(error));
-//   };
-
-//   return (
-//     <div style={{ marginTop: "2rem" }} className="container">
-//       <div>
-//         <SelectGodown selectGodown={selectGodown} />
-//       </div>
-//       <form onSubmit={handleSubmit}>
-//         <Table striped bordered hover>
-//           <thead>
-//             <tr>
-//               <th></th>
-//               <th>Product Name</th>
-//               <th>Quantity</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {products.map((product) => (
-//               <tr key={product.id}>
-//                 <td>
-//                   <input
-//                     type="checkbox"
-//                     name={product.id}
-//                     onChange={handleProductSelection}
-//                   />
-//                 </td>
-//                 <td>{product.ItemName}</td>
-//                 <td>
-//                   <input
-//                     type="number"
-//                     min="1"
-//                     name={`${product.id}-quantity`}
-//                     defaultValue={1}
-//                     onChange={handleQuantityChange}
-//                   />
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </Table>
-//         <button type="submit" className="btn btn-primary">
-//           Submit
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default ProductList;
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import DatePicker from "react-datepicker";
 import axios from "axios";
 import "./Inward.css";
 import SelectGodown from "./selectGodown";
@@ -126,6 +14,10 @@ import {
 } from "@mui/material";
 import Table from "@mui/material/Table";
 import { useLocation, useNavigate } from "react-router-dom";
+import SelectSupplier from "../selectSupplier";
+import { v4 as uuid } from "uuid";
+import moment from "moment/moment";
+import GodownContext from "../../../contexts/GodownContext";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -136,10 +28,26 @@ function ProductList() {
   const query = new URLSearchParams(location.search);
 
   const [category, selectedcat] = useState("Snacks");
+  const [supplier, selectSupplier] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
   const isAdded = query.get("added");
   const navigate = useNavigate();
   const [amount, setAmount] = useState("");
+  const [formattedDate, setDate] = useState("");
   const [weight, setWeight] = useState("");
+  const { addInward } = useContext(GodownContext);
+
+  const uniqueId = uuid();
+  const smallId = uniqueId.slice(0, 8);
+
+  function handleDateChange(date) {
+    const datestr = new Date(date);
+    console.log("Date beforew format -->", date, datestr);
+    const formated = moment(datestr).format("YYYY-MM-DD");
+    setSelectedDate(date);
+    console.log("date", formated);
+    setDate(formated);
+  }
 
   const [open, setOpen] = useState(false);
 
@@ -165,9 +73,12 @@ function ProductList() {
   useEffect(() => {
     axios
       .get(`http://localhost:3030/godown/${Godown}`)
-      .then((response) => setGodownData(response.data))
+      .then((response) => {
+        setGodownData(response.data);
+        console.log("Godwn in use effect -->", response.data);
+      })
       .catch((error) => console.log(error));
-  }, [isAdded]);
+  }, [isAdded, Godown]);
   console.log(godownData);
 
   useEffect(() => {
@@ -218,7 +129,7 @@ function ProductList() {
         setWeight(totalWeight / 100);
         setAmount(totalAmount);
       });
-      console.log("Total Amount:", totalAmount);
+      console.log("Total Amount:", totalAmount, totalWeight);
     } catch (error) {
       console.error(error);
     }
@@ -264,7 +175,25 @@ function ProductList() {
       );
       handleClose();
       console.log("Updated products:", updatedProducts);
-      navigate("/inward?added=true");
+      // navigate("/inward?added=true");
+      let newInward = {
+        recieptNo: smallId,
+        SupplierName: supplier,
+        GodownId: Godown,
+        DateOfSupply: formattedDate,
+        RecievedBy: godownData.GodownSupervisor,
+        Amount: amount,
+        product: updatedProducts,
+      };
+      console.log(newInward);
+      axios
+        .post("http://localhost:3030/inward", newInward)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       return updateResponse.data;
     } catch (error) {
       console.error(error);
@@ -273,12 +202,35 @@ function ProductList() {
 
   return (
     <div className="container">
+      <div className="row justify-content-end mb-3">
+        <div className="col-auto ml-auto">
+          <SearchProduct
+            selectedCategory={selectedCategory}
+            category={category}
+          />
+        </div>
+      </div>
       <div className="row justify-content-between align-items-center">
         <div className="col-auto">
           <SelectGodown selectGodown={selectGodown} />
         </div>
-        <div className="col-auto ml-auto">
-          <SearchProduct selectedCategory={selectedCategory} />
+        <div className="col-auto">
+          <SelectSupplier
+            selectedSupplier={supplier}
+            handleChange={(val) => selectSupplier(val)}
+          />
+        </div>
+        <div className="col-auto">
+          <label>Select a date:</label>
+          <DatePicker
+            className="form-control-sm"
+            selected={selectedDate}
+            onChange={handleDateChange}
+            required
+          />
+          {!formattedDate && (
+            <div className="invalid-feedback">Date is required</div>
+          )}
         </div>
       </div>
       <Table>
@@ -337,8 +289,27 @@ function ProductList() {
         <DialogTitle>Confirmation</DialogTitle>
         <DialogContent>
           Are you sure you want to add the following products?
-          <div>
-            {selectedProducts.map((selectedProduct) => {
+          <Table>
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {selectedProducts.map((selectedProduct) => {
+                const { id, quantity } = selectedProduct;
+                const { ItemName } = products.find((p) => p.id === id) || {};
+                return (
+                  <tr key={id}>
+                    <td> {ItemName}</td>
+                    <td>X {quantity}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+          {/* {selectedProducts.map((selectedProduct) => {
               const { id, quantity } = selectedProduct;
               const { ItemName } = products.find((p) => p.id === id) || {};
 
@@ -348,10 +319,19 @@ function ProductList() {
                   <p>Quantity: {quantity}</p>
                 </div>
               );
-            })}
-            <p>totalAmount: {amount}</p>
-          </div>
+            })} */}
+          <p
+            className="center"
+            style={{
+              textAlign: "center",
+              fontSize: "18px",
+              fontWeight: "bold",
+            }}
+          >
+            Total Amount: ₹{amount}
+          </p>
         </DialogContent>
+
         <DialogActions>
           <Button onClick={handleClose} style={{ color: "red" }}>
             Cancel

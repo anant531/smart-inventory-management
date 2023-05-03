@@ -13,6 +13,7 @@ const SelectGodown = (props) => {
     setSelectedGodown(event.target.value);
     props.selectGodown(event.target.value);
   };
+  console.log(godown);
 
   return (
     <div>
