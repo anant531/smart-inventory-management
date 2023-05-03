@@ -117,7 +117,7 @@ import { Table } from "react-bootstrap";
 import "./Inward.css";
 import SelectGodown from "./selectGodown";
 import SearchProduct from "../../MasterProduct/SearchProduct";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -128,6 +128,7 @@ function ProductList() {
   const query = new URLSearchParams(location.search);
   const isAdded = query.get("added");
   const [category, selectedcat] = useState("Snacks");
+  const navigate = useNavigate();
 
   const selectedCategory = (selCat) => {
     selectedcat(selCat);
@@ -227,6 +228,7 @@ function ProductList() {
       );
 
       console.log("Updated products:", updatedProducts);
+      navigate("/inward?added=true");
       return updateResponse.data;
     } catch (error) {
       console.error(error);
