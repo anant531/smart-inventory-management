@@ -327,19 +327,42 @@
 
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Table } from "react-bootstrap";
 
 import SelectGodown from "../Inward/selectGodown";
 
 import GodownContext from "../../../contexts/GodownContext";
+import { useNavigate } from "react-router-dom";
+
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
+import Table from "@mui/material/Table";
 
 function Outward() {
+  const navigate = useNavigate();
   const { product } = useContext(GodownContext);
+  const [products, setProducts] = useState([]);
   const [godownData, setGodownData] = useState(null);
   const [Godown, selectedGodown] = useState("");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [productList, setProductlist] = useState([]);
   const [updatedProduct, setUpdatedProduct] = useState([]);
+  const [amount, setAmount] = useState("");
+  const [weight, setWeight] = useState("");
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const selectGodown = (selGod) => {
     selectedGodown(selGod);
@@ -347,6 +370,13 @@ function Outward() {
 
   console.log(selectedProducts);
   console.log(productList);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3030/product`)
+      .then((response) => setProducts(response.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   useEffect(() => {
     axios
@@ -407,6 +437,25 @@ function Outward() {
     }
   };
 
+  const handleCalculate = async (event) => {
+    try {
+      event.preventDefault();
+      let totalAmount = 0;
+      let totalWeight = 0;
+      selectedProducts.forEach((product) => {
+        const { id, quantity } = product;
+        const { Amount, Weight } = products.find((price) => price.id === id);
+        totalAmount += Amount * quantity;
+        totalWeight += quantity * Weight;
+        setWeight(totalWeight / 100);
+        setAmount(totalAmount);
+      });
+      console.log("Total Amount:", totalAmount);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // console.log(productList);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -439,6 +488,7 @@ function Outward() {
       .catch((error) => {
         console.error("Error updating product array:", error);
       });
+    navigate("/outward?added=true");
   };
 
   return (
@@ -454,52 +504,93 @@ function Outward() {
           </button>
         </div>
       </div>
-      <form>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Product Name </th>
-              <th>Avaible Quantity</th>
-              <th>Quantity</th>
+
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Product Name </th>
+            <th>Avaible Quantity</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {productList.map((product) => (
+            <tr key={product.id}>
+              <td>
+                <input
+                  type="checkbox"
+                  name={product.id}
+                  onChange={handleProductSelection}
+                />
+              </td>
+              <td>{product.ItemName}</td>
+              <td>{product.quantity}</td>
+              <td>
+                <input
+                  type="number"
+                  min="1"
+                  name={`${product.id}-quantity`}
+                  defaultValue={1}
+                  onChange={handleQuantityChange}
+                  disabled={!selectedProducts.some((p) => p.id === product.id)}
+                />
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {productList.map((product) => (
-              <tr key={product.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    name={product.id}
-                    onChange={handleProductSelection}
-                  />
-                </td>
-                <td>{product.ItemName}</td>
-                <td>{product.quantity}</td>
-                <td>
-                  <input
-                    type="number"
-                    min="1"
-                    name={`${product.id}-quantity`}
-                    defaultValue={1}
-                    onChange={handleQuantityChange}
-                    disabled={
-                      !selectedProducts.some((p) => p.id === product.id)
-                    }
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      </form>
+          ))}
+        </tbody>
+      </Table>
+      <div className="container">
+        <div className="row justify-content-between ">
+          <button
+            onClick={handleCalculate}
+            className="btn btn-primary mb-3 col-auto"
+          >
+            Calculate
+          </button>
+          <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
+          <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
+          <button
+            onClick={handleOpen}
+            className="btn btn-primary mb-3 col-auto"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Confirmation</DialogTitle>
+        <DialogContent>
+          Are you sure you want to add the following products?
+          <div>
+            {selectedProducts.map((selectedProduct) => {
+              const { id, quantity } = selectedProduct;
+              const { ItemName } = products.find((p) => p.id === id) || {};
+
+              return (
+                <div key={id}>
+                  <p>Product Name: {ItemName}</p>
+                  <p>Quantity: {quantity}</p>
+                </div>
+              );
+            })}
+            <p>totalAmount: {amount}</p>
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} style={{ color: "red" }}>
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            variant="contained"
+            color="primary"
+          >
+            Submit
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

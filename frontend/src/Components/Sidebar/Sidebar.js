@@ -34,6 +34,7 @@ const Header = () => {
   const navigate = useNavigate();
   //create initial menuCollapse state using useState hook
   const [menuCollapse, setMenuCollapse] = useState(false);
+  const [selectedItem, setSelectedItem] = useState("");
 
   //create a custom function that will change menucollapse state from false to true and true to false
   const menuIconClick = () => {
@@ -59,8 +60,11 @@ const Header = () => {
           <SidebarContent>
             <Menu iconShape="square">
               <MenuItem
-                active={true}
-                onClick={() => navigate("/home")}
+                active={selectedItem === "dashboard"}
+                onClick={() => {
+                  navigate("/home");
+                  setSelectedItem("dashboard");
+                }}
                 icon={<FiHome />}
               >
                 Dashboard
@@ -68,45 +72,72 @@ const Header = () => {
 
               <MenuItem
                 icon={<AiOutlineAppstoreAdd />}
+                active={selectedItem === "product"}
                 onClick={() => {
                   navigate("/product");
+                  setSelectedItem("product");
                 }}
               >
                 Products
               </MenuItem>
               <MenuItem
                 icon={<BiArrowToBottom />}
-                onClick={() => navigate("/inward")}
+                active={selectedItem === "inward"}
+                onClick={() => {
+                  navigate("/inward");
+                  setSelectedItem("inward");
+                }}
               >
                 Inwards
               </MenuItem>
+
               <MenuItem
                 icon={<HiOutlineHomeModern />}
-                onClick={() => navigate("/godown")}
+                active={selectedItem === "godown"}
+                onClick={() => {
+                  navigate("/godown");
+                  setSelectedItem("godown");
+                }}
               >
                 Godowns
               </MenuItem>
               <MenuItem
                 icon={<BiArrowToTop />}
-                onClick={() => navigate("/outward")}
+                active={selectedItem === "outward"}
+                onClick={() => {
+                  navigate("/outward");
+                  setSelectedItem("outward");
+                }}
               >
                 Deliveries
               </MenuItem>
               <MenuItem
                 icon={<AiOutlineStock />}
-                onClick={() => navigate("/analytics")}
+                active={selectedItem === "analytics"}
+                onClick={() => {
+                  navigate("/analytics");
+                  setSelectedItem("analytics");
+                }}
               >
                 Analytics
               </MenuItem>
               <MenuItem
                 icon={<BsPeople />}
-                onClick={() => navigate("/employees")}
+                active={selectedItem === "employees"}
+                onClick={() => {
+                  navigate("/employees");
+                  setSelectedItem("employees");
+                }}
               >
                 Employees
               </MenuItem>
               <MenuItem
                 icon={<MdOutlineAccountCircle />}
-                onClick={() => navigate("/account")}
+                active={selectedItem === "users"}
+                onClick={() => {
+                  navigate("/users");
+                  setSelectedItem("users");
+                }}
               >
                 Account
               </MenuItem>

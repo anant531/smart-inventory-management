@@ -1,28 +1,23 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import GodownContext from "../../contexts/GodownContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
-const SearchProduct = (props) => {
-  const { product } = useContext(GodownContext);
+const SelectSupplier = (props) => {
+  const { handleChange, selectedSupplier } = props;
+  const { supplier } = useContext(GodownContext);
   const handleOptionChange = (event) => {
-    props.selectedCategory(event.target.value);
-    console.log(product);
+    handleChange(event?.target?.value);
   };
 
-  const uniqueCategories = product.reduce((categories, product) => {
-    if (!categories.includes(product.Category)) {
-      return [...categories, product.Category];
-    }
-    return categories;
-  }, []);
+  console.log(supplier);
 
   return (
     <FormControl fullWidth>
-      <InputLabel id="category-select-label">Select a category</InputLabel>
+      <InputLabel id="category-select-label">Select a Supplier</InputLabel>
       <Select
         labelId="category-select-label"
         id="category-select"
-        value={props.category}
+        value={selectedSupplier}
         label="Select a category"
         onChange={handleOptionChange}
         style={{
@@ -35,9 +30,9 @@ const SearchProduct = (props) => {
           borderRadius: "4px",
         }}
       >
-        {uniqueCategories.map((category) => (
-          <MenuItem key={category} value={category}>
-            {category}
+        {supplier.map((item) => (
+          <MenuItem key={item.id} value={item.name}>
+            {item.name}
           </MenuItem>
         ))}
       </Select>
@@ -45,4 +40,4 @@ const SearchProduct = (props) => {
   );
 };
 
-export default SearchProduct;
+export default SelectSupplier;

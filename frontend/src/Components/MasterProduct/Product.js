@@ -54,7 +54,10 @@ const Product = () => {
       <div className="container">
         <div className="d-flex justify-content-end align-items-end mb-3">
           <div className="col-3">
-            <SearchProduct selectedCategory={selectedCategory} />
+            <SearchProduct
+              selectedCategory={selectedCategory}
+              category={category}
+            />
           </div>
           <div className="">
             <AddProduct />
@@ -97,8 +100,6 @@ const Product = () => {
           </Card>
         ))}
       </div>
-
- 
     </>
   );
 };

@@ -80,6 +80,7 @@ const AddProduct = () => {
   }, []);
 
   const [price, setPrice] = useState("");
+  const [Weight, setWeight] = useState("");
   const [category, setCategory] = useState("");
   const [isCustomCategory, setIsCustomCategory] = useState(false);
 
@@ -97,6 +98,7 @@ const AddProduct = () => {
       Supplier: supplierName,
       Category: category,
       Amount: price,
+      Weight: Weight,
     };
     console.log(newProduct);
     try {
@@ -186,6 +188,14 @@ const AddProduct = () => {
             fullWidth
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+          />
+          <TextField
+            className={classes.input}
+            label="Weight"
+            variant="outlined"
+            fullWidth
+            value={Weight}
+            onChange={(e) => setWeight(e.target.value)}
           />
         </DialogContent>
         <DialogActions className={classes.actions}>
