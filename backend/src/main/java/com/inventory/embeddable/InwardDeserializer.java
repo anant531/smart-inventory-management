@@ -45,6 +45,11 @@ public class InwardDeserializer extends JsonDeserializer<Inward> {
             }
         }
 
+        String billCheckedBy = node.get("billCheckedBy").asText();
+        long invoiceNo = node.get("invoiceNo").asLong();
+        long receiptNo = node.get("receiptNo").asLong();
+        String receivedBy = node.get("receivedBy").asText();
+        
         return new Inward(godownRepository.findById(godownId).orElse(null), inwardItems, nameofSupplier);
     }
 }

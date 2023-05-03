@@ -1,10 +1,14 @@
 package com.inventory.entities;
 
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.inventory.embeddable.GodownItemDeserializer;
 import com.inventory.embeddable.GodownItemSerializer;
+import com.inventory.embeddable.OutwardDeserializer;
+import com.inventory.embeddable.OutwardSerializer;
 import com.inventory.linktables.GodownItem;
+import com.inventory.linktables.OutwardItem;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,5 +42,8 @@ public class Godown {
 
 	@OneToMany(mappedBy = "godown")
 	Set<Inward> inwards = new HashSet<>();
+
+	@OneToMany(mappedBy = "godown")
+	private Set<Outward> outward = new HashSet<>();
 
 }
