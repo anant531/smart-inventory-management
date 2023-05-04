@@ -1,7 +1,9 @@
 table {
   margin-top: 1rem;
   border-collapse: collapse;
-  width: 100%;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -12,8 +14,8 @@ td {
 }
 
 th {
-  background-color: #f1d44f;
-  color: rgb(255, 255, 255);
+  background-color: #e8e66f;
+  color: rgb(113, 106, 106);
 }
 
 tr:nth-child(even) {

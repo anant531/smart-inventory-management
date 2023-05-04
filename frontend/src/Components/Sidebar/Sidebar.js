@@ -13,12 +13,15 @@ import {
 
 //import icons from react icons
 import { BsPeople } from "react-icons/bs";
+
+import { IoStorefrontSharp } from "react-icons/io5";
 import {
   FiHome,
   FiLogOut,
   FiArrowLeftCircle,
   FiArrowRightCircle,
 } from "react-icons/fi";
+
 import { BiCog, BiArrowToBottom, BiArrowToTop } from "react-icons/bi";
 import { AiOutlineAppstoreAdd, AiOutlineStock } from "react-icons/ai";
 import { MdOutlineAccountCircle } from "react-icons/md";
@@ -50,7 +53,9 @@ const Header = () => {
           <SidebarHeader>
             <div className="logotext">
               {/* small and big change using menucollapse state */}
-              <p>{menuCollapse ? "INV" : "Inventory Management"}</p>
+              <p>
+                {menuCollapse ? <IoStorefrontSharp /> : "Inventory Management"}
+              </p>
             </div>
             <div className="closemenu" onClick={menuIconClick}>
               {/* changing menu collapse icon on click */}

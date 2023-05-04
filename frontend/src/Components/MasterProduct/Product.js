@@ -51,6 +51,7 @@ const Product = () => {
 
   return (
     <>
+      <h1>Product List</h1>
       <div className="container">
         <div className="d-flex justify-content-end align-items-end mb-3">
           <div className="col-3">
@@ -71,29 +72,43 @@ const Product = () => {
             key={product.id}
             isHoverable
             variant="bordered"
-            css={{ mw: "400px", mr: "20px", mb: "20px" }}
+            css={{ mw: "200px", mr: "20px", mb: "20px" }}
           >
             <Card.Body>
-              <div style={{ display: "flex", "flex-direction": "row" }}>
-                <Text className="pro-id">Product ID: </Text>
-                <Text style={{ display: "inline" }}>{product.id}</Text>
+              <div
+                className="col "
+                style={{ display: "flex", "flex-direction": "row" }}
+              >
+                <Text className="pro-id">
+                  {" "}
+                  <b>ID:</b> {product.id}
+                </Text>
               </div>
-              <div style={{ display: "flex", "flex-direction": "row" }}>
-                <Text className="pro-id">Name: </Text>
-                <Text>{product.ItemName} </Text>
+              <div>
+                <Text className="pro-id">
+                  {" "}
+                  <b>Name:</b> {product.ItemName}
+                </Text>
               </div>
 
-              <Text className="pro-id">Brand: </Text>
-              <Text>{product.Supplier}</Text>
-              <Text className="pro-id">Amount:</Text>
-              <Text> ${product.Amount}</Text>
+              <div>
+                <Text className="pro-id">
+                  <b>Supplier:</b> {product.Supplier}
+                </Text>
+              </div>
+
+              <div
+              // style={{
+              //   display: "flex",
+              //   "flex-direction": "row",
+              >
+                <Text className="pro-id mb-3">
+                  <b>Price:</b> {product.Amount}
+                </Text>
+              </div>
+
               <div key={product.id}>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => handleDelete(product.id)}
-                >
-                  Delete
-                </button>
+                <button onClick={() => handleDelete(product.id)}>❌</button>
               </div>
             </Card.Body>
             <Outlet />
