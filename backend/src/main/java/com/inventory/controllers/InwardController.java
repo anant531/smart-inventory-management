@@ -31,6 +31,7 @@ public class InwardController {
 
 	@GetMapping(path = "/inward")
 	public List<Inward> getInwards(){
+
 		return inwardRepository.findAll();
 	}
 
@@ -63,9 +64,8 @@ public class InwardController {
 				godownItem.setQuantity(inwardItem.getQuantity());
 				godownItemRepository.save(godownItem);
 			}
-
 		}
-
 	}
 
 }
+

@@ -16,4 +16,9 @@ public class GodownItemId implements Serializable{
 	Long godownId;
 	
 	Long itemId;
+
+//	public GodownItemId(Long godownId, Long itemId) {
+//		this.godownId = godownId;
+//		this.itemId = itemId;
+//	}
 }

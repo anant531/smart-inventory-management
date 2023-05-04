@@ -14,10 +14,12 @@ import java.io.IOException;
 public class GodownItemDeserializer extends StdDeserializer<GodownItem> {
 
     public GodownItemDeserializer() {
+
         this(null);
     }
 
     public GodownItemDeserializer(Class<?> vc) {
+
         super(vc);
     }
 

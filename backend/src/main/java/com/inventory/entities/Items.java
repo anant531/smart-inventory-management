@@ -2,6 +2,7 @@ package com.inventory.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inventory.linktables.GodownItem;
+import com.inventory.linktables.OutwardItem;
 import lombok.*;
 
 import javax.persistence.*;
@@ -30,8 +31,9 @@ public class Items {
 	@JsonIgnore
     private Set<GodownItem> godownItems = new HashSet<>();
 
-	public Items(long itemId) {
-		this.itemId = itemId;
-	}
+//	public Items(long itemId) {
+//		this.itemId = itemId;
+//	}
+
 }
 
