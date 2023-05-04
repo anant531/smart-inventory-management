@@ -16,7 +16,7 @@ public class InwardSerializer extends JsonSerializer<Inward> {
         jsonGenerator.writeNumberField("inwardId", inward.getInwardId());
         jsonGenerator.writeNumberField("godownId", inward.getGodown().getGodownId());
 
-//        jsonGenerator.writeFieldName("InwardGodownItem");
+//        jsonGenerator.writeFieldName("InwardItem");
         jsonGenerator.writeFieldName("InwardItem");
         jsonGenerator.writeStartArray();
         for(InwardItem inwardItem : inward.getInwardItem()){

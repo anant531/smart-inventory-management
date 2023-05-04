@@ -1,4 +1,7 @@
 .pro-id {
-  font-weight: 800;
-  display: inline;
+  font-weight: 350;
+  padding: 2%;
+}
+.btn {
+  size: 30%;
 }

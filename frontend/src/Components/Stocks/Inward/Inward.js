@@ -201,115 +201,117 @@ function ProductList() {
   };
 
   return (
-    <div className="container">
-      <div className="row justify-content-end mb-3">
-        <div className="col-auto ml-auto">
-          <SearchProduct
-            selectedCategory={selectedCategory}
-            category={category}
-          />
-        </div>
-      </div>
-      <div className="row justify-content-between align-items-center">
-        <div className="col-auto">
-          <SelectGodown selectGodown={selectGodown} />
-        </div>
-        <div className="col-auto">
-          <SelectSupplier
-            selectedSupplier={supplier}
-            handleChange={(val) => selectSupplier(val)}
-          />
-        </div>
-        <div className="col-auto">
-          <label>Select a date:</label>
-          <DatePicker
-            className="form-control-sm"
-            selected={selectedDate}
-            onChange={handleDateChange}
-            required
-          />
-          {!formattedDate && (
-            <div className="invalid-feedback">Date is required</div>
-          )}
-        </div>
-      </div>
-      <Table>
-        <thead>
-          <tr>
-            <th>Add</th>
-            <th>Product Name </th>
-            <th>Quantity (kg)</th>
-            <th>Amount/Unit</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredProducts.map((product) => (
-            <tr key={product.id}>
-              <td>
-                <input
-                  type="checkbox"
-                  name={product.id}
-                  onChange={handleProductSelection}
-                />
-              </td>
-              <td>{product.ItemName}</td>
-              <td>
-                <input
-                  type="number"
-                  min="1"
-                  name={`${product.id}-quantity`}
-                  defaultValue={1}
-                  onChange={handleQuantityChange}
-                />
-              </td>
-              <td>₹{product.Amount}</td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
+    <>
+      <h1>Inward Request</h1>
       <div className="container">
-        <div className="row justify-content-between ">
-          <button
-            onClick={handleCalculate}
-            className="btn btn-primary mb-3 col-auto"
-          >
-            Calculate
-          </button>
-          <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
-          <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
-          <button
-            onClick={handleOpen}
-            className="btn btn-primary mb-3 col-auto"
-          >
-            Submit
-          </button>
+        <div className="row justify-content-end mb-3">
+          <div className="col-auto ml-auto">
+            <SearchProduct
+              selectedCategory={selectedCategory}
+              category={category}
+            />
+          </div>
         </div>
-      </div>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Confirmation</DialogTitle>
-        <DialogContent>
-          Are you sure you want to add the following products?
-          <Table>
-            <thead>
-              <tr>
-                <th>Product Name</th>
-                <th>Quantity</th>
+        <div className="row justify-content-between align-items-center">
+          <div className="col-auto">
+            <SelectGodown selectGodown={selectGodown} />
+          </div>
+          <div className="col-auto">
+            <SelectSupplier
+              selectedSupplier={supplier}
+              handleChange={(val) => selectSupplier(val)}
+            />
+          </div>
+          <div className="col-auto">
+            <label>Select a date:</label>
+            <DatePicker
+              className="form-control-sm"
+              selected={selectedDate}
+              onChange={handleDateChange}
+              required
+            />
+            {!formattedDate && (
+              <div className="invalid-feedback">Date is required</div>
+            )}
+          </div>
+        </div>
+        <Table>
+          <thead>
+            <tr>
+              <th>Add</th>
+              <th>Product Name </th>
+              <th>Quantity (kg)</th>
+              <th>Amount/Unit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredProducts.map((product) => (
+              <tr key={product.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    name={product.id}
+                    onChange={handleProductSelection}
+                  />
+                </td>
+                <td>{product.ItemName}</td>
+                <td>
+                  <input
+                    type="number"
+                    min="1"
+                    name={`${product.id}-quantity`}
+                    defaultValue={1}
+                    onChange={handleQuantityChange}
+                  />
+                </td>
+                <td>₹{product.Amount}</td>
               </tr>
-            </thead>
-            <tbody>
-              {selectedProducts.map((selectedProduct) => {
-                const { id, quantity } = selectedProduct;
-                const { ItemName } = products.find((p) => p.id === id) || {};
-                return (
-                  <tr key={id}>
-                    <td> {ItemName}</td>
-                    <td>X {quantity}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-          {/* {selectedProducts.map((selectedProduct) => {
+            ))}
+          </tbody>
+        </Table>
+        <div className="container">
+          <div className="row justify-content-between ">
+            <button
+              onClick={handleCalculate}
+              className="btn btn-primary mb-3 col-auto"
+            >
+              Calculate
+            </button>
+            <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
+            <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
+            <button
+              onClick={handleOpen}
+              className="btn btn-primary mb-3 col-auto"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Confirmation</DialogTitle>
+          <DialogContent>
+            Are you sure you want to add the following products?
+            <Table>
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedProducts.map((selectedProduct) => {
+                  const { id, quantity } = selectedProduct;
+                  const { ItemName } = products.find((p) => p.id === id) || {};
+                  return (
+                    <tr key={id}>
+                      <td> {ItemName}</td>
+                      <td>X {quantity}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+            {/* {selectedProducts.map((selectedProduct) => {
               const { id, quantity } = selectedProduct;
               const { ItemName } = products.find((p) => p.id === id) || {};
 
@@ -320,34 +322,34 @@ function ProductList() {
                 </div>
               );
             })} */}
-          <p
-            className="center"
-            style={{
-              textAlign: "center",
-              fontSize: "18px",
-              fontWeight: "bold",
-            }}
-          >
-            Total Amount: ₹{amount}
-          </p>
-        </DialogContent>
+            <p
+              className="center"
+              style={{
+                textAlign: "center",
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              Total Amount: ₹{amount}
+            </p>
+          </DialogContent>
 
-        <DialogActions>
-          <Button onClick={handleClose} style={{ color: "red" }}>
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            onClick={handleSubmit}
-            variant="contained"
-            color="primary"
-          >
-            Submit
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <DialogActions>
+            <Button onClick={handleClose} style={{ color: "red" }}>
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              variant="contained"
+              color="primary"
+            >
+              Submit
+            </Button>
+          </DialogActions>
+        </Dialog>
 
-      {/* <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -386,7 +388,8 @@ function ProductList() {
           Submit
         </button>
       </form> */}
-    </div>
+      </div>
+    </>
   );
 }
 

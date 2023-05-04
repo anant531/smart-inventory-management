@@ -5,6 +5,8 @@ import axios from "axios";
 const GodownProvider = ({ children }) => {
   const [godown, setGodown] = useState([]);
   const [product, setProduct] = useState([]);
+  const [inward, setInward] = useState([]);
+  const [supplier, setSupplier] = useState([]);
 
   useEffect(() => {
     axios
@@ -15,6 +17,11 @@ const GodownProvider = ({ children }) => {
     axios
       .get("http://localhost:3030/product")
       .then((response) => setProduct(response.data))
+      .catch((error) => console.log(error));
+
+    axios
+      .get("http://localhost:3030/supplier")
+      .then((response) => setSupplier(response.data))
       .catch((error) => console.log(error));
   }, []);
 
@@ -51,9 +58,42 @@ const GodownProvider = ({ children }) => {
     }
   };
 
+  const addInward = async (newInward) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3030/inward",
+        newInward
+      );
+      setInward([...inward, response.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateGodown = async (godownId, updatedGodown) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3030/godown/${godownId}`,
+        updatedGodown
+      );
+      setGodown(godown.map((g) => (g.id === godownId ? response.data : g)));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <GodownContext.Provider
-      value={{ godown, product, addGodown, deleteGodown, addProduct }}
+      value={{
+        godown,
+        product,
+        supplier,
+        addGodown,
+        deleteGodown,
+        addProduct,
+        addInward,
+        updateGodown,
+      }}
     >
       {children}
     </GodownContext.Provider>

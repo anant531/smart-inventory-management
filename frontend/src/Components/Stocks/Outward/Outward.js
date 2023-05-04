@@ -329,9 +329,10 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 import SelectGodown from "../Inward/selectGodown";
-
+import DatePicker from "react-datepicker";
 import GodownContext from "../../../contexts/GodownContext";
 import { useNavigate } from "react-router-dom";
+import "./Outward.css";
 
 import {
   Button,
@@ -341,20 +342,34 @@ import {
   DialogTitle,
 } from "@mui/material";
 import Table from "@mui/material/Table";
+import SelectSupplier from "../selectSupplier";
+import moment from "moment";
 
 function Outward() {
   const navigate = useNavigate();
-  const { product } = useContext(GodownContext);
+  const { product, updateGodown } = useContext(GodownContext);
   const [products, setProducts] = useState([]);
   const [godownData, setGodownData] = useState(null);
   const [Godown, selectedGodown] = useState("");
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [productList, setProductlist] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [updatedProduct, setUpdatedProduct] = useState([]);
+  const [supplier, selectSupplier] = useState("");
+  const [formattedDate, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [weight, setWeight] = useState("");
 
   const [open, setOpen] = useState(false);
+
+  function handleDateChange(date) {
+    const datestr = new Date(date);
+    console.log("Date beforew format -->", date, datestr);
+    const formated = moment(datestr).format("YYYY-MM-DD");
+    setSelectedDate(date);
+    console.log("date", formated);
+    setDate(formated);
+  }
 
   const handleOpen = () => {
     setOpen(true);
@@ -459,6 +474,7 @@ function Outward() {
   // console.log(productList);
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     console.log("Product List", productList);
     console.log("Selected", selectedProducts);
     console.log("Updated", updatedProduct);
@@ -477,93 +493,129 @@ function Outward() {
       }
     });
     godownData.products = updatedProduct;
+    godownData.Capacity += weight;
     console.log(godownData.products);
     console.log(godownData);
 
-    axios
-      .put(`http://localhost:3030/godown/${Godown}`, godownData)
-      .then((response) => {
-        console.log("Product array updated successfully");
-      })
-      .catch((error) => {
-        console.error("Error updating product array:", error);
-      });
-    navigate("/outward?added=true");
+    updateGodown(Godown, godownData);
+    handleClose();
   };
 
   return (
-    <div style={{ marginTop: "2rem" }} className="container">
-      <div className="container">
-        <div className="col-3"></div>
-        <div>
-          <SelectGodown selectGodown={selectGodown} />
+    <>
+      <h1>Outward Request</h1>
+      <div style={{ marginTop: "2rem" }} className="container">
+        <div className="container">
+          <div className="row justify-content-between align-items-center">
+            <div className="col-auto">
+              <SelectGodown selectGodown={selectGodown} />
+            </div>
+            <div className="col-auto">
+              <SelectSupplier
+                selectedSupplier={supplier}
+                handleChange={(val) => selectSupplier(val)}
+              />
+            </div>
+            <div className="col-auto">
+              <label>Select a date:</label>
+              <DatePicker
+                className="form-control-sm"
+                selected={selectedDate}
+                onChange={handleDateChange}
+                required
+              />
+              {!formattedDate && (
+                <div className="invalid-feedback">Date is required</div>
+              )}
+            </div>
+          </div>
+          <div class="d-inline-flex p-2">
+            <button className="btn btn-success" onClick={SearchProductHandler}>
+              Browse Godown
+            </button>
+          </div>
         </div>
-        <div>
-          <button className="btn btn-success" onClick={SearchProductHandler}>
-            Search Product
-          </button>
-        </div>
-      </div>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Product Name </th>
-            <th>Avaible Quantity</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productList.map((product) => (
-            <tr key={product.id}>
-              <td>
-                <input
-                  type="checkbox"
-                  name={product.id}
-                  onChange={handleProductSelection}
-                />
-              </td>
-              <td>{product.ItemName}</td>
-              <td>{product.quantity}</td>
-              <td>
-                <input
-                  type="number"
-                  min="1"
-                  name={`${product.id}-quantity`}
-                  defaultValue={1}
-                  onChange={handleQuantityChange}
-                  disabled={!selectedProducts.some((p) => p.id === product.id)}
-                />
-              </td>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Product Name </th>
+              <th>Avaible Quantity</th>
+              <th>Quantity</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-      <div className="container">
-        <div className="row justify-content-between ">
-          <button
-            onClick={handleCalculate}
-            className="btn btn-primary mb-3 col-auto"
-          >
-            Calculate
-          </button>
-          <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
-          <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
-          <button
-            onClick={handleOpen}
-            className="btn btn-primary mb-3 col-auto"
-          >
-            Submit
-          </button>
+          </thead>
+          <tbody>
+            {productList.map((product) => (
+              <tr key={product.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    name={product.id}
+                    onChange={handleProductSelection}
+                  />
+                </td>
+                <td>{product.ItemName}</td>
+                <td>{product.quantity}</td>
+                <td>
+                  <input
+                    type="number"
+                    min="1"
+                    name={`${product.id}-quantity`}
+                    defaultValue={1}
+                    onChange={handleQuantityChange}
+                    disabled={
+                      !selectedProducts.some((p) => p.id === product.id)
+                    }
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+        <div className="container">
+          <div className="row justify-content-between ">
+            <button
+              onClick={handleCalculate}
+              className="btn btn-primary mb-3 col-auto"
+            >
+              Calculate
+            </button>
+            <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
+            <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
+            <button
+              onClick={handleOpen}
+              className="btn btn-primary mb-3 col-auto"
+            >
+              Submit
+            </button>
+          </div>
         </div>
-      </div>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Confirmation</DialogTitle>
-        <DialogContent>
-          Are you sure you want to add the following products?
-          <div>
-            {selectedProducts.map((selectedProduct) => {
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Confirmation</DialogTitle>
+          <DialogContent>
+            Are you sure you want to add the following products?
+            <Table>
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {selectedProducts.map((selectedProduct) => {
+                  const { id, quantity } = selectedProduct;
+                  const { ItemName } = products.find((p) => p.id === id) || {};
+                  return (
+                    <tr key={id}>
+                      <td> {ItemName}</td>
+                      <td>X {quantity}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+            {/* {selectedProducts.map((selectedProduct) => {
               const { id, quantity } = selectedProduct;
               const { ItemName } = products.find((p) => p.id === id) || {};
 
@@ -573,25 +625,34 @@ function Outward() {
                   <p>Quantity: {quantity}</p>
                 </div>
               );
-            })}
-            <p>totalAmount: {amount}</p>
-          </div>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} style={{ color: "red" }}>
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            onClick={handleSubmit}
-            variant="contained"
-            color="primary"
-          >
-            Submit
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+            })} */}
+            <p
+              className="center"
+              style={{
+                textAlign: "center",
+                fontSize: "18px",
+                fontWeight: "bold",
+              }}
+            >
+              Total Amount: ₹{amount}
+            </p>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} style={{ color: "red" }}>
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              variant="contained"
+              color="primary"
+            >
+              Submit
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
+    </>
   );
 }
 

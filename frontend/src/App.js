@@ -13,6 +13,7 @@ import Inward from "./Components/Stocks/Inward/Inward";
 import AddProduct from "./Components/MasterProduct/AddProduct/AddProduct";
 import Outward from "./Components/Stocks/Outward/Outward";
 import UserPage from "./Components/UserPage/UserPage";
+import Analytics from "./Components/Analytics/Analytics";
 
 function App() {
   const { token } = useSelector((state) => state.tokenReducer);
@@ -20,7 +21,7 @@ function App() {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <Sidebar />
+      {token && <Sidebar />}
       <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f2f2ea" }}>
         <div>
           <Routes>
@@ -31,6 +32,7 @@ function App() {
             <Route path={"/godown/*"} element={<Godown />}>
               <Route path="add-godown" element={<AddGodown />} />
             </Route>
+            <Route path={"/analytics"} element={<Analytics />} />
             <Route path={"/inward"} element={<Inward />} />
             <Route path={"/outward"} element={<Outward />} />
             <Route path={"/product/*"} element={<Product />}>

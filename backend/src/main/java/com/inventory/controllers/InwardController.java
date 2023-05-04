@@ -27,9 +27,6 @@ public class InwardController {
 	ItemsRepository itemsRepository;
 
 	@Autowired
-	InwardItemRepository inwardItemRepository;
-
-	@Autowired
 	GodownItemRepository godownItemRepository;
 
 	@GetMapping(path = "/inward")
