@@ -403,7 +403,7 @@ const Godown = () => {
                     Location
                   </AnimatingStyledTableCell>
                   <AnimatingStyledTableCell align="center">
-                    Capacity
+                    Capacity (qq)
                   </AnimatingStyledTableCell>
                   <AnimatingStyledTableCell align="center">
                     Supervisor
