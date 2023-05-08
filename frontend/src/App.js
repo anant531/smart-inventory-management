@@ -14,6 +14,7 @@ import AddProduct from "./Components/MasterProduct/AddProduct/AddProduct";
 import Outward from "./Components/Stocks/Outward/Outward";
 import UserPage from "./Components/UserPage/UserPage";
 import Analytics from "./Components/Analytics/Analytics";
+import { ProductDialog } from "./Components/Analytics/ProductDialog";
 
 function App() {
   const { token } = useSelector((state) => state.tokenReducer);
@@ -29,11 +30,13 @@ function App() {
             <Route path={"/users"} element={<UserPage />} />
             <Route path={"/"} element={<SignIn />} />
             <Route path={"/home"} element={token ? <Home /> : <SignIn />} />
-            <Route path={"/godown/*"} element={<Godown />}>
+            <Route path={"/godown/*"} element={token ? <Godown /> : <SignIn />}>
               <Route path="add-godown" element={<AddGodown />} />
             </Route>
-            <Route path={"/analytics"} element={<Analytics />} />
-            <Route path={"/inward"} element={<Inward />} />
+            <Route path={"/analytics/*"} element={<Analytics />}>
+              <Route path="inward-data" element={<ProductDialog />} />
+            </Route>
+            <Route path={"/inward"} element={token ? <Inward /> : <SignIn />} />
             <Route path={"/outward"} element={<Outward />} />
             <Route path={"/product/*"} element={<Product />}>
               <Route path="add-product" element={<AddProduct />} />

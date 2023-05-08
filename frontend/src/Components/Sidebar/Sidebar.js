@@ -126,16 +126,7 @@ const Header = () => {
               >
                 Analytics
               </MenuItem>
-              <MenuItem
-                icon={<BsPeople />}
-                active={selectedItem === "employees"}
-                onClick={() => {
-                  navigate("/employees");
-                  setSelectedItem("employees");
-                }}
-              >
-                Employees
-              </MenuItem>
+
               <MenuItem
                 icon={<MdOutlineAccountCircle />}
                 active={selectedItem === "users"}
@@ -144,7 +135,7 @@ const Header = () => {
                   setSelectedItem("users");
                 }}
               >
-                Account
+                Employees
               </MenuItem>
             </Menu>
           </SidebarContent>
