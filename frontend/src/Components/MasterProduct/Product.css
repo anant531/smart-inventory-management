@@ -5,3 +5,11 @@
 .btn {
   size: 30%;
 }
+.product-container {
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: space-between;
+}

@@ -503,76 +503,75 @@ function Outward() {
 
   return (
     <>
-      <h1>Outward Request</h1>
-      <div style={{ marginTop: "2rem" }} className="container">
-        <div className="container">
-          <div className="row justify-content-between align-items-center">
-            <div className="col-auto">
-              <SelectGodown selectGodown={selectGodown} />
-            </div>
-            <div className="col-auto">
-              <SelectSupplier
-                selectedSupplier={supplier}
-                handleChange={(val) => selectSupplier(val)}
-              />
-            </div>
-            <div className="col-auto">
-              <label>Select a date:</label>
-              <DatePicker
-                className="form-control-sm"
-                selected={selectedDate}
-                onChange={handleDateChange}
-                required
-              />
-              {!formattedDate && (
-                <div className="invalid-feedback">Date is required</div>
-              )}
-            </div>
-          </div>
-          <div class="d-inline-flex p-2">
-            <button className="btn btn-success" onClick={SearchProductHandler}>
-              Browse Godown
-            </button>
-          </div>
-        </div>
+      <h1>Deliveries</h1>
+      <div className="outward-container">
+        <div className="outward-head-container">
+          <SelectGodown selectGodown={selectGodown} />
 
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Product Name </th>
-              <th>Avaible Quantity</th>
-              <th>Quantity</th>
-            </tr>
-          </thead>
-          <tbody>
-            {productList.map((product) => (
-              <tr key={product.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    name={product.id}
-                    onChange={handleProductSelection}
-                  />
-                </td>
-                <td>{product.ItemName}</td>
-                <td>{product.quantity}</td>
-                <td>
-                  <input
-                    type="number"
-                    min="1"
-                    name={`${product.id}-quantity`}
-                    defaultValue={1}
-                    onChange={handleQuantityChange}
-                    disabled={
-                      !selectedProducts.some((p) => p.id === product.id)
-                    }
-                  />
-                </td>
+          <SelectSupplier
+            selectedSupplier={supplier}
+            handleChange={(val) => selectSupplier(val)}
+          />
+
+          <DatePicker
+            className="form-control-sm"
+            selected={selectedDate}
+            onChange={handleDateChange}
+            required
+            placeholderText="select a date"
+          />
+          {!formattedDate && (
+            <div className="invalid-feedback">Date is required</div>
+          )}
+
+          <Button
+            variant="contained"
+            size="small"
+            className="browse-button"
+            onClick={SearchProductHandler}
+          >
+            Browse Godown
+          </Button>
+        </div>
+        <div className="table-container">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Product Name </th>
+                <th>Avaible Quantity</th>
+                <th>Quantity</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {productList.map((product) => (
+                <tr key={product.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name={product.id}
+                      onChange={handleProductSelection}
+                    />
+                  </td>
+                  <td>{product.ItemName}</td>
+                  <td>{product.quantity}</td>
+                  <td>
+                    <input
+                      type="number"
+                      min="1"
+                      name={`${product.id}-quantity`}
+                      defaultValue={1}
+                      onChange={handleQuantityChange}
+                      disabled={
+                        !selectedProducts.some((p) => p.id === product.id)
+                      }
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
         <div className="container">
           <div className="row justify-content-between ">
             <button

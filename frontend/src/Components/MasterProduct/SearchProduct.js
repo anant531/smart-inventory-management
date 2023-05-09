@@ -25,15 +25,14 @@ const SearchProduct = (props) => {
         value={props.category}
         label="Select a category"
         onChange={handleOptionChange}
-        style={{
-          minWidth: "200px",
-          width: "100%",
-          minWidth: "200px",
-          width: "auto",
-          background: "#f5f5f5",
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-          borderRadius: "4px",
-        }}
+        // style={{
+        //   minWidth: "20%",
+        //   width: "fit-content",
+
+        //   background: "#f5f5f5",
+        //   // boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+        //   borderRadius: "4px",
+        // }}
       >
         {uniqueCategories.map((category) => (
           <MenuItem key={category} value={category}>

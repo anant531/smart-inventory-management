@@ -203,7 +203,7 @@
 
 // export default Godown;
 
-import { Button } from "evergreen-ui";
+import { Autocomplete, Button } from "evergreen-ui";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -231,6 +231,7 @@ import { BsAlignStart } from "react-icons/bs";
 import { red } from "@nextui-org/react";
 
 import "./Godown.css";
+import { Hidden } from "@mui/material";
 
 const Godown = () => {
   const [godowns, setGodowns] = useState([]);
@@ -287,8 +288,8 @@ const Godown = () => {
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: "#E8E66F",
-      color: "#716A6A",
+      backgroundColor: "#333333",
+      color: "#ffffff",
       fontWeight: 700,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -298,7 +299,7 @@ const Godown = () => {
 
   const StyledTableRow = styled(TableRow)(({ theme }) => ({
     "&:nth-of-type(odd)": {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: theme.palette.action,
     },
     // hide last border
     "&:last-child td, &:last-child th": {
@@ -326,17 +327,12 @@ const Godown = () => {
   };
   const AnimatingStyledTableCell = styled(StyledTableCell)({
     transition: "all 0.2s ease-in-out",
-    // "&:hover": {
-    //   backgroundColor: "#f5f5f5",
-    //   color: "#1a1a1a",
-    // },
+    "&:hover": {},
   });
 
   const AnimatedStyledTableRow = styled(StyledTableRow)({
     transition: "all 0.2s ease-in-out",
-    "&:hover": {
-      transform: "scale(1.01)",
-    },
+    "&:hover": {},
     "& .DeleteTwoToneIcon": {
       cursor: "pointer",
       color: "#ff1744",
@@ -395,166 +391,154 @@ const Godown = () => {
         <div className="TableWrapper">
           <div style={{ tableStyles, BsAlignStart }}>
             {/* <TableWrapper component={Paper}> */}
-            <Table sx={{ minWidth: 200 }}>
-              <TableHead>
-                <TableRow>
-                  <AnimatingStyledTableCell>Godown ID</AnimatingStyledTableCell>
-                  <AnimatingStyledTableCell align="center">
-                    Location
-                  </AnimatingStyledTableCell>
-                  <AnimatingStyledTableCell align="center">
-                    Capacity (qq)
-                  </AnimatingStyledTableCell>
-                  <AnimatingStyledTableCell align="center">
-                    Supervisor
-                  </AnimatingStyledTableCell>
-                  <AnimatingStyledTableCell align="center">
-                    Date Established
-                  </AnimatingStyledTableCell>
-                  <AnimatingStyledTableCell align="center" colSpan={2}>
-                    Actions
-                  </AnimatingStyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {godowns.map((row, index) =>
-                  isEditing && row.id === editableGodown.id ? (
-                    <TableRow>
-                      <TableCell>
-                        {" "}
-                        <TextField
-                          type="number"
-                          name="id"
-                          value={editableGodown.id}
-                          style={{ width: "100%" }}
-                        />
-                      </TableCell>
-
-                      <TableCell>
-                        {" "}
-                        <TextField
-                          name="location"
-                          value={editableGodown.location}
-                          style={{ width: "100%" }}
-                          onChange={(e) => {
-                            setEditableGodown({
-                              ...editableGodown,
-                              location: e.target.value,
-                            });
-                          }}
-                          key={`Test-${index + 1}`}
-                        />
-                      </TableCell>
-                      <TableCell>
-                        {" "}
-                        <TextField
-                          type="number"
-                          name="Capacity"
-                          value={editableGodown.Capacity}
-                          style={{ width: "100%" }}
-                          onChange={(e) =>
-                            setEditableGodown({
-                              ...editableGodown,
-                              Capacity: e.target.value,
-                            })
-                          }
-                        />
-                      </TableCell>
-                      <TableCell>
-                        {" "}
-                        <TextField
-                          type="text"
-                          name="GodownSupervisor"
-                          value={editableGodown.GodownSupervisor}
-                          style={{ width: "100%" }}
-                          onChange={(e) =>
-                            setEditableGodown({
-                              ...editableGodown,
-                              GodownSupervisor: e.target.value,
-                            })
-                          }
-                        />
-                      </TableCell>
-                      <TableCell>
-                        {" "}
-                        <TextField
-                          type="text"
-                          name="createdAt"
-                          value={editableGodown.createdAt}
-                          style={{ width: "100%" }}
-                          onChange={(e) =>
-                            setEditableGodown({
-                              ...editableGodown,
-                              createdAt: e.target.value,
-                            })
-                          }
-                        />
-                      </TableCell>
-                      <AnimatingStyledTableCell>
-                        {" "}
-                        {/* <button type="submit" onClick={handleUpdate}>
+            <TableContainer style={{ maxHeight: 400, overflowX: "hidden" }}>
+              <Table stickyHeader sx={{ minWidth: 200 }}>
+                <TableHead>
+                  <TableRow>
+                    <AnimatingStyledTableCell align="center">
+                      Godown location
+                    </AnimatingStyledTableCell>
+                    <AnimatingStyledTableCell align="center">
+                      Capacity (qq)
+                    </AnimatingStyledTableCell>
+                    <AnimatingStyledTableCell align="center">
+                      Supervisor
+                    </AnimatingStyledTableCell>
+                    <AnimatingStyledTableCell align="center">
+                      Date Established
+                    </AnimatingStyledTableCell>
+                    <AnimatingStyledTableCell align="center" colSpan={2}>
+                      Actions
+                    </AnimatingStyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {godowns.map((row, index) =>
+                    isEditing && row.id === editableGodown.id ? (
+                      <TableRow>
+                        <TableCell>
+                          {" "}
+                          <TextField
+                            name="location"
+                            value={editableGodown.location}
+                            style={{ width: "100%" }}
+                            onChange={(e) => {
+                              setEditableGodown({
+                                ...editableGodown,
+                                location: e.target.value,
+                              });
+                            }}
+                            key={`Test-${index + 1}`}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          {" "}
+                          <TextField
+                            type="text"
+                            name="Capacity"
+                            value={editableGodown.Capacity}
+                            style={{ width: "100%" }}
+                            onChange={(e) =>
+                              setEditableGodown({
+                                ...editableGodown,
+                                Capacity: e.target.value,
+                              })
+                            }
+                          />
+                        </TableCell>
+                        <TableCell>
+                          {" "}
+                          <TextField
+                            type="text"
+                            name="GodownSupervisor"
+                            value={editableGodown.GodownSupervisor}
+                            style={{ width: "100%" }}
+                            onChange={(e) =>
+                              setEditableGodown({
+                                ...editableGodown,
+                                GodownSupervisor: e.target.value,
+                              })
+                            }
+                          />
+                        </TableCell>
+                        <TableCell>
+                          {" "}
+                          <TextField
+                            type="text"
+                            name="createdAt"
+                            value={editableGodown.createdAt}
+                            style={{ width: "100%" }}
+                            onChange={(e) =>
+                              setEditableGodown({
+                                ...editableGodown,
+                                createdAt: e.target.value,
+                              })
+                            }
+                          />
+                        </TableCell>
+                        <AnimatingStyledTableCell>
+                          {" "}
+                          {/* <button type="submit" onClick={handleUpdate}>
                         update
                       </button> */}
-                        <SaveIcon
-                          className="SaveIcon"
-                          fontSize="medium"
-                          color="#ff1744"
-                          alignItems="center"
-                          onClick={() => handleEditGodown(row.id)}
-                        ></SaveIcon>
-                      </AnimatingStyledTableCell>
-                      <AnimatingStyledTableCell colSpan={2} align="center">
-                        <CancelIcon
-                          className="CancelIcon"
-                          fontSize="medium"
-                          color="#ff1744"
-                          alignItems="center"
-                          onClick={() => setEditableGodown(false)}
-                        ></CancelIcon>
-                      </AnimatingStyledTableCell>
-                    </TableRow>
-                  ) : (
-                    <AnimatedStyledTableRow key={index}>
-                      <AnimatingStyledTableCell component="th" scope="row">
-                        {row.id}
-                      </AnimatingStyledTableCell>
-                      <AnimatingStyledTableCell align="center">
-                        {row.location}
-                      </AnimatingStyledTableCell>
-                      <AnimatingStyledTableCell align="center">
-                        {row.Capacity}
-                      </AnimatingStyledTableCell>
-                      <AnimatingStyledTableCell align="center">
-                        {row.GodownSupervisor}
-                      </AnimatingStyledTableCell>
-                      <AnimatingStyledTableCell align="center">
-                        {row.createdAt}
-                      </AnimatingStyledTableCell>
-                      <AnimatingStyledTableCell align="right">
-                        <DeleteTwoToneIcon
-                          className="DeleteTwoToneIcon"
-                          fontSize="medium"
-                          color="action"
-                          onClick={() => handleDelete(row.id)}
-                        />
-                      </AnimatingStyledTableCell>
-                      <AnimatingStyledTableCell align="left">
-                        <EditTwoToneIcon
-                          className="EditTwoToneIcon"
-                          fontSize="medium"
-                          color="action"
-                          alignItems="center"
-                          onClick={() => {
-                            setEditableGodown(row);
-                            setIsEditing(true);
-                          }}
-                        />
-                      </AnimatingStyledTableCell>
-                    </AnimatedStyledTableRow>
-                  )
-                )}
-              </TableBody>
-            </Table>
+                          <SaveIcon
+                            className="SaveIcon"
+                            fontSize="medium"
+                            color="#ff1744"
+                            alignItems="center"
+                            onClick={() => handleEditGodown(row.id)}
+                          ></SaveIcon>
+                        </AnimatingStyledTableCell>
+                        <AnimatingStyledTableCell colSpan={2} align="center">
+                          <CancelIcon
+                            className="CancelIcon"
+                            fontSize="medium"
+                            color="#ff1744"
+                            alignItems="center"
+                            onClick={() => setEditableGodown(false)}
+                          ></CancelIcon>
+                        </AnimatingStyledTableCell>
+                      </TableRow>
+                    ) : (
+                      <AnimatedStyledTableRow key={index}>
+                        <AnimatingStyledTableCell align="center">
+                          {row.location}
+                        </AnimatingStyledTableCell>
+                        <AnimatingStyledTableCell align="center">
+                          {row.Capacity}
+                        </AnimatingStyledTableCell>
+                        <AnimatingStyledTableCell align="center">
+                          {row.GodownSupervisor}
+                        </AnimatingStyledTableCell>
+                        <AnimatingStyledTableCell align="center">
+                          {row.createdAt}
+                        </AnimatingStyledTableCell>
+                        <AnimatingStyledTableCell align="right">
+                          <DeleteTwoToneIcon
+                            className="DeleteTwoToneIcon"
+                            fontSize="medium"
+                            color="action"
+                            onClick={() => handleDelete(row.id)}
+                          />
+                        </AnimatingStyledTableCell>
+                        <AnimatingStyledTableCell align="left">
+                          <EditTwoToneIcon
+                            className="EditTwoToneIcon"
+                            fontSize="medium"
+                            color="action"
+                            alignItems="center"
+                            onClick={() => {
+                              setEditableGodown(row);
+                              setIsEditing(true);
+                            }}
+                          />
+                        </AnimatingStyledTableCell>
+                      </AnimatedStyledTableRow>
+                    )
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
             {/* </TableWrapper> */}
           </div>
         </div>
