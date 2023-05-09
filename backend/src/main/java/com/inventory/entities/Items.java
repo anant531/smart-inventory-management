@@ -2,7 +2,6 @@ package com.inventory.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.inventory.linktables.GodownItem;
-import com.inventory.linktables.OutwardItem;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,7 +21,7 @@ public class Items {
 	long itemId;
 	
 	String itemName;
-	String supplier;
+
 	String category;
 	double amount;
 	double weight;

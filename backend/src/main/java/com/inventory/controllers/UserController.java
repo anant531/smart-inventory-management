@@ -2,6 +2,7 @@ package com.inventory.controllers;
 
 import com.inventory.entities.Employee;
 import com.inventory.entities.Roles;
+import com.inventory.repositories.GodownRepository;
 import com.inventory.repositories.RolesRepository;
 import com.inventory.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,17 +22,21 @@ public class UserController {
 	@Autowired
 	RolesRepository rolesRepository;
 
+	@Autowired
+	GodownRepository godownRepository;
+
 	@GetMapping(path = "/user")
 	public List<Employee> getAllUser(){
 		return userRepository.findAll();
 	}
 
 	@PostMapping(path = "/user")
-	public void addUser(@RequestBody Employee u) {
-		Optional<Roles> roleFound = rolesRepository.findByName(u.getRole().getName());
+	public void addUser(@RequestBody Employee e) {
+		Optional<Roles> roleFound = rolesRepository.findByName(e.getRole().getName());
 		if(roleFound.isPresent()) {
-			u.setRole(roleFound.get());
-			userRepository.save(u);
+			e.setRole(roleFound.get());
+			e.setGodownList(godownRepository.findAllByGodownLocation(e.getLocation()));
+			userRepository.save(e);
 		}
 	}
 

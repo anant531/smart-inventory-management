@@ -25,7 +25,7 @@ public class Godown {
 
 	String godownLocation;
 
-	long godownCapacity;
+	double godownCapacity;
 
 	String supervisor;
 

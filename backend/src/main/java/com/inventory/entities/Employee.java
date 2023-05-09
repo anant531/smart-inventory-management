@@ -3,6 +3,7 @@ package com.inventory.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,7 +23,10 @@ public class Employee{
 	String phone;
 	String password;
 	String name;
+	String location;
 
+	@OneToMany
+	List<Godown> godownList;
 
 	@OneToOne()
 	@JoinColumn(name = "role_id")
