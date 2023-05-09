@@ -1,21 +1,16 @@
 package com.inventory.controllers;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.inventory.entities.Employee;
 import com.inventory.entities.Roles;
 import com.inventory.repositories.RolesRepository;
 import com.inventory.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -45,18 +40,7 @@ public class UserController {
 		return userRepository.findById(id);
 	}
 
-//	@GetMapping("/user")
-//	ResponseEntity<?> getEmployee(@PathVariable String userName) {
-//		Employee e = userRepository.findByUserName(userName);
-//		System.out.println(userName);
-//		if (e != null) {
-//            return ResponseEntity.ok(e);
-//        } else {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-//        }
-//	}
-
-	@PostMapping("/validate")
+	@PostMapping("/userValidate")
 	ResponseEntity<?> getEmployee(@RequestBody Employee e) {
 		Optional<Employee> employeeFound = userRepository.findByUserName(e.getUserName());
 		if (employeeFound.isPresent() && employeeFound.get().getPassword().equals(e.getPassword())) {
@@ -65,6 +49,20 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+	}
+
+	@DeleteMapping("/user")
+	public void deleteUser(@RequestBody Employee e){
+		Optional<Employee> employeeFound = userRepository.findById(e.getUserId());
+		if(employeeFound.isPresent()){
+			e = employeeFound.get();
+			userRepository.delete(e);
+		}
+	}
+
+	@PutMapping("/user")
+	public void updateUser(@RequestBody Employee e){
+		userRepository.save(e);
 	}
 
 }

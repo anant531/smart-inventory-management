@@ -37,4 +37,17 @@ public class GodownController {
 			godownRepository.save(g);
 		}
 
+		@DeleteMapping("/godown")
+		public void deleteGodown(@RequestBody Godown g){
+			Optional<Godown> godownFound = godownRepository.findById(g.getGodownId());
+			if(godownFound.isPresent()){
+				godownRepository.delete(g);
+			}
+		}
+
+		@PutMapping(path = "/godown")
+		public void updateGodown(@RequestBody Godown g){
+			godownRepository.save(g);
+		}
+
 }

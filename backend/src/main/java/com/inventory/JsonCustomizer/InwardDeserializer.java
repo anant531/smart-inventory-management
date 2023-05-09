@@ -1,4 +1,4 @@
-package com.inventory.embeddable;
+package com.inventory.JsonCustomizer;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -52,6 +52,6 @@ public class InwardDeserializer extends JsonDeserializer<Inward> {
         String receivedBy = node.get("receivedBy").asText();
 
 
-        return new Inward((long)0,godownRepository.findById(godownId).orElse(null), inwardItems, nameofSupplier, billCheckedBy, LocalDateTime.now(),invoiceNo,receiptNo,receivedBy);
+        return new Inward(godownRepository.findById(godownId).orElse(null), inwardItems, nameofSupplier, billCheckedBy, LocalDateTime.now(),invoiceNo,receiptNo,receivedBy);
     }
 }
