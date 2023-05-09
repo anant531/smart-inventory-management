@@ -23,7 +23,7 @@ function App() {
   return (
     <Box sx={{ display: "flex" }}>
       {token && <Sidebar />}
-      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#f2f2ea" }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3, background: "#ffffff" }}>
         <div>
           <Routes>
             <Route path={"/signup"} element={<SignUp />} />

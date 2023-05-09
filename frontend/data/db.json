@@ -26,8 +26,13 @@
     }
   ],
   "users": [],
+  "users": [],
   "godown": [
     {
+      "location": "Hyderbad",
+      "Capacity": 9991.83,
+      "GodownSupervisor": "anantasdf",
+      "createdAt": "2023-03-27",
       "location": "Hyderbad",
       "Capacity": 9752.619999999999,
       "GodownSupervisor": "gigi",
@@ -35,15 +40,15 @@
       "products": [
         {
           "id": "6",
-          "quantity": 5
+          "quantity": 9
         },
         {
           "id": "KtgqEv5",
-          "quantity": 2111
+          "quantity": 16
         },
         {
           "id": "7",
-          "quantity": 8
+          "quantity": 9
         },
         {
           "id": "11",
@@ -51,7 +56,7 @@
         },
         {
           "id": "1",
-          "quantity": 5
+          "quantity": 25
         },
         {
           "id": "4",
@@ -64,19 +69,27 @@
         {
           "id": "wYkv6no",
           "quantity": 900
+        },
+        {
+          "id": "10",
+          "quantity": 7
+        },
+        {
+          "id": "VvMdIa_",
+          "quantity": 2
         }
       ],
       "id": 14
     },
     {
       "location": "yuyuyu",
-      "Capacity": null,
+      "Capacity": "7118",
       "GodownSupervisor": "ywad",
       "createdAt": "2023-05-16",
       "products": [
         {
           "id": "1",
-          "quantity": 8
+          "quantity": 9
         },
         {
           "id": "4",
@@ -88,15 +101,15 @@
         },
         {
           "id": "KtgqEv5",
-          "quantity": 2
+          "quantity": 1
         },
         {
           "id": "wYkv6no",
-          "quantity": 0
+          "quantity": 1
         },
         {
           "id": "7",
-          "quantity": 0
+          "quantity": 1
         },
         {
           "id": "9",
@@ -117,6 +130,70 @@
         }
       ],
       "id": 16
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 18
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 19
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 20
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 21
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 22
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 23
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 24
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 25
     }
   ],
   "product": [
@@ -223,6 +300,62 @@
       "Amount": "10",
       "Weight": "5",
       "id": "YijWgSn"
+    },
+    {
+      "ItemName": "ascasc",
+      "Supplier": "ascasc",
+      "Category": "Chocolates",
+      "Amount": "2323",
+      "Weight": "121",
+      "id": "nngfaql"
+    },
+    {
+      "ItemName": "asdfghasdfs",
+      "Supplier": "s",
+      "Category": "Chocolates",
+      "Amount": "2345",
+      "Weight": "123",
+      "id": "pqSTuVA"
+    },
+    {
+      "ItemName": "asdfghasdfs",
+      "Supplier": "s",
+      "Category": "Chocolates",
+      "Amount": "2345",
+      "Weight": "123",
+      "id": "FANtItp"
+    },
+    {
+      "ItemName": "asdfghasdfs",
+      "Supplier": "s",
+      "Category": "Chocolates",
+      "Amount": "2345",
+      "Weight": "123",
+      "id": "dKvTMH_"
+    },
+    {
+      "ItemName": "dgf",
+      "Supplier": "tdthg",
+      "Category": "hjh",
+      "Amount": "665",
+      "Weight": "667",
+      "id": "1sa-l5B"
+    },
+    {
+      "ItemName": "dgf",
+      "Supplier": "tdthg",
+      "Category": "Mineral Water",
+      "Amount": "665",
+      "Weight": "667",
+      "id": "A9Y7YJn"
+    },
+    {
+      "ItemName": "rtghjk",
+      "Supplier": "rtyuio",
+      "Category": "Chocolates",
+      "Amount": "4567234",
+      "Weight": "2345",
+      "id": "1RseSRI"
     }
   ],
   "employee": [
@@ -562,221 +695,23 @@
       "id": 8
     },
     {
-      "recieptNo": "db501e57",
-      "SupplierName": "PQR Wholesalers",
+      "recieptNo": "12b4a1d1",
+      "SupplierName": "ABC Suppliers",
       "GodownId": 14,
-      "DateOfSupply": "2023-05-01",
-      "RecievedBy": "harann",
-      "Amount": 7,
+      "DateOfSupply": "2023-05-02",
+      "RecievedBy": "anant",
+      "Amount": 8126,
       "product": [
         {
-          "id": "KtgqEv5",
-          "quantity": 17
+          "id": "10",
+          "quantity": 7
+        },
+        {
+          "id": "VvMdIa_",
+          "quantity": 8
         }
       ],
       "id": 9
-    },
-    {
-      "recieptNo": "7c95eb03",
-      "SupplierName": "PQR Wholesalers",
-      "GodownId": 14,
-      "DateOfSupply": "2023-05-01",
-      "RecievedBy": "harann",
-      "Amount": 7,
-      "product": [
-        {
-          "id": "KtgqEv5",
-          "quantity": 18
-        }
-      ],
-      "id": 10
-    },
-    {
-      "recieptNo": "1fe686b9",
-      "SupplierName": "XYZ Distributors",
-      "GodownId": 14,
-      "DateOfSupply": "2023-05-03",
-      "RecievedBy": "harann",
-      "Amount": 1393,
-      "product": [
-        {
-          "id": "KtgqEv5",
-          "quantity": 213
-        }
-      ],
-      "id": 11
-    },
-    {
-      "recieptNo": "190d43d9",
-      "SupplierName": "XYZ Distributors",
-      "GodownId": 15,
-      "DateOfSupply": "2023-05-01",
-      "RecievedBy": "ywad",
-      "Amount": 7,
-      "product": [
-        {
-          "id": "KtgqEv5",
-          "quantity": 2
-        }
-      ],
-      "id": 12
-    },
-    {
-      "recieptNo": "9f0cc58d",
-      "SupplierName": "XYZ Distributors",
-      "GodownId": 14,
-      "DateOfSupply": "2023-05-02",
-      "RecievedBy": "gigi",
-      "Amount": 13286,
-      "product": [
-        {
-          "id": "KtgqEv5",
-          "quantity": 2111
-        }
-      ],
-      "id": 13
-    }
-  ],
-  "outward": [
-    {
-      "recieptNo": "195bc4ad",
-      "CustomerName": "hbdsabhd",
-      "GodownId": "yuyuyu",
-      "DateOfSupply": "2023-05-03",
-      "RecievedBy": "ywad",
-      "Amount": 120,
-      "product": [
-        {
-          "id": "1",
-          "quantity": 9
-        },
-        {
-          "id": "4",
-          "quantity": 0
-        },
-        {
-          "id": "8",
-          "quantity": 1
-        },
-        {
-          "id": "KtgqEv5",
-          "quantity": 1
-        },
-        {
-          "id": "wYkv6no",
-          "quantity": 0
-        },
-        {
-          "id": "7",
-          "quantity": 0
-        },
-        {
-          "id": "9",
-          "quantity": 1
-        }
-      ],
-      "id": 1
-    },
-    {
-      "recieptNo": "968bc595",
-      "CustomerName": "hii",
-      "GodownId": "Hyderbad",
-      "DateOfSupply": "2023-05-03",
-      "RecievedBy": "harann",
-      "Amount": 52,
-      "product": [
-        {
-          "id": "6",
-          "quantity": 5
-        },
-        {
-          "id": "KtgqEv5",
-          "quantity": 14
-        },
-        {
-          "id": "7",
-          "quantity": 8
-        },
-        {
-          "id": "11",
-          "quantity": 25
-        },
-        {
-          "id": "1",
-          "quantity": 25
-        },
-        {
-          "id": "4",
-          "quantity": 6
-        },
-        {
-          "id": "5",
-          "quantity": 15
-        },
-        {
-          "id": "wYkv6no",
-          "quantity": 900
-        }
-      ],
-      "id": 2
-    },
-    {
-      "recieptNo": "ccff7bf6",
-      "CustomerName": "hari",
-      "GodownId": "Hyderbad",
-      "DateOfSupply": "2023-05-03",
-      "RecievedBy": "harann",
-      "Amount": 400,
-      "product": [
-        {
-          "id": "6",
-          "quantity": 5
-        },
-        {
-          "id": "KtgqEv5",
-          "quantity": 14
-        },
-        {
-          "id": "7",
-          "quantity": 8
-        },
-        {
-          "id": "11",
-          "quantity": 25
-        },
-        {
-          "id": "1",
-          "quantity": 5
-        },
-        {
-          "id": "4",
-          "quantity": 6
-        },
-        {
-          "id": "5",
-          "quantity": 15
-        },
-        {
-          "id": "wYkv6no",
-          "quantity": 900
-        }
-      ],
-      "id": 3
-    },
-    {
-      "recieptNo": "ba48c06a",
-      "CustomerName": "hsdhfd",
-      "GodownId": "yuyuyu",
-      "DateOfSupply": "2023-05-04",
-      "RecievedBy": "ywad",
-      "Amount": 20,
-      "product": [
-        {
-          "id": "1",
-          "quantity": 1
-        }
-      ],
-      "id": 4
     }
   ]
 }
