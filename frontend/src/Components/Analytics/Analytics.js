@@ -1,72 +1,78 @@
-import React, { useEffect, useState } from "react";
-
-import Table from "@mui/material/Table";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
 
-function Analytics() {
-  const [inward, setInward] = useState([]);
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import { ProductDialog } from "./ProductDialog";
 
+import { useNavigate } from "react-router-dom";
+
+function ReceiptTable() {
+  const [receipts, setReceipts] = useState([]);
+  const [selectedReceipt, setSelectedReceipt] = useState(null);
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get("http://localhost:3030/inward")
-      .then((response) => setInward(response.data))
+      .then((response) => setReceipts(response.data))
       .catch((error) => console.log(error));
   }, []);
-  console.log(inward);
+  function handleRowClick(receipt) {
+    setSelectedReceipt(receipt);
+    navigate(`inward-data/${receipt.id}`);
+  }
+  console.log(selectedReceipt);
+
+  function handleClose() {
+    setSelectedReceipt(null);
+  }
+  console.log(receipts);
+
   return (
-    <div className="container">
-      <Table>
+    <div>
+      <h1>Receipts</h1>
+      <table>
         <thead>
           <tr>
-            <th>Add</th>
-            <th>Product Name </th>
-            <th>Quantity (kg)</th>
-            <th>Amount/Unit</th>
+            <th>Inward ID</th>
+            <th>Godown ID</th>
+            <th>DateOfSupply</th>
+
+            <th>Supplier Name</th>
+
+            <th>View Invoice</th>
           </tr>
         </thead>
-      </Table>
+        <tbody>
+          {receipts.map((receipt) => (
+            <tr key={receipt.id}>
+              <td>{receipt.id}</td>
+              <td>{receipt.GodownId}</td>
+              <td>{receipt.DateOfSupply}</td>
 
-      {/* <form onSubmit={handleSubmit}>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th></th>
-          <th>Product Name </th>
-          <th>Price</th>
-          <th>Quantity</th>
-        </tr>
-      </thead>
-      <tbody>
-        {filteredProducts.map((product) => (
-          <tr key={product.id}>
-            <td>
-              <input
-                type="checkbox"
-                name={product.id}
-                onChange={handleProductSelection}
-              />
-            </td>
-            <td>{product.ItemName}</td>
-            <td>{product.Amount}</td>
-            <td>
-              <input
-                type="number"
-                min="1"
-                name={`${product.id}-quantity`}
-                defaultValue={1}
-                onChange={handleQuantityChange}
-              />
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </Table>
-    <button type="submit" className="btn btn-primary">
-      Submit
-    </button>
-  </form> */}
+              <td>{receipt.SupplierName}</td>
+
+              <td>
+                <ReceiptIcon
+                  key={receipt.id}
+                  onClick={() => handleRowClick(receipt)}
+                ></ReceiptIcon>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {selectedReceipt && (
+        <ProductDialog receipt={selectedReceipt} onClose={handleClose} />
+      )}
     </div>
   );
 }
 
-export default Analytics;
+export default ReceiptTable;

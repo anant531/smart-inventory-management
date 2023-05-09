@@ -2,11 +2,9 @@
   display: flex;
   width: auto;
 }
+
 #header .pro-sidebar-header {
   padding: 10px;
-}
-#header .pro-sidebar-content {
-  height: auto;
 }
 
 #header .closemenu {
@@ -21,47 +19,60 @@
   top: 55px;
   cursor: pointer;
 }
+
 #header .pro-sidebar {
   height: auto;
-  width: 100%;
-  min-width: 100%;
+  width: 300px; /* Adjust the width based on the contents */
+  min-width: 100px; /* Set a minimum width to prevent collapsing */
 }
+
 #header .pro-sidebar.collapsed {
   width: 80px;
   height: 100vh;
   min-width: 80px;
 }
+
 #header .pro-sidebar-inner {
-  background-color: white;
-  box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout {
   overflow-y: hidden;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout .logotext p {
   font-size: 20px;
   padding: 0 10px;
-  color: #e8e66f;
+  color: #eeeee4; /* Change the text color in the header */
   font-weight: bold;
+  margin-bottom: 0;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout ul {
-  padding: 0 5px;
+  padding: 0;
+  margin-top: 15px;
 }
+
 #header .pro-sidebar-inner .pro-sidebar-layout ul .pro-inner-item {
   color: #000;
-  margin: 5px 0px;
+  margin: 10px 0px;
   font-weight: bold;
+  font-size: 18px; /* Increase the contents fontsize */
 }
+
 #header
   .pro-sidebar-inner
   .pro-sidebar-layout
   ul
   .pro-inner-item
   .pro-icon-wrapper {
-  background-color: #fbf4cd;
+  background-color: #6384e6;
   color: #000;
-  border-radius: 3px;
+  border-radius: 50%;
+  transition: 0.3s ease;
 }
+
 #header
   .pro-sidebar-inner
   .pro-sidebar-layout
@@ -70,10 +81,22 @@
   .pro-icon-wrapper
   .pro-item-content {
   color: #000;
+  font-size: 20px; /* Increase the icons fontsize */
 }
+
+#header
+  .pro-sidebar-inner
+  .pro-sidebar-layout
+  ul
+  .pro-inner-item
+  .pro-icon-wrapper:hover {
+  background-color: #8ec324;
+}
+
 #header .pro-sidebar-inner .pro-sidebar-layout .active {
-  background-image: linear-gradient(0deg, #a9a9a9 0%, #f1d983 100%);
+  background-color: #bbb1b1;
 }
+
 #header .logo {
   padding: 15px;
 }
