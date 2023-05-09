@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import "./Inward.css";
+import FormControl from "@mui/material/FormControl";
 import SelectGodown from "./selectGodown";
 import SearchProduct from "../../MasterProduct/SearchProduct";
 
@@ -203,8 +204,33 @@ function ProductList() {
   return (
     <>
       <h1>Inward Request</h1>
-      <div className="container">
-        <div className="row justify-content-end mb-3">
+
+      <div className="inward-container">
+        <div className="inward-head-container">
+          <SearchProduct
+            selectedCategory={selectedCategory}
+            category={category}
+          />
+          <SelectGodown selectGodown={selectGodown} />
+          <SelectSupplier
+            selectedSupplier={supplier}
+            handleChange={(val) => selectSupplier(val)}
+          />
+
+          <DatePicker
+            className="form-control-sm custom-date-picker"
+            selected={selectedDate}
+            onChange={handleDateChange}
+            required
+            placeholderText="Select a date"
+          />
+
+          {!formattedDate && (
+            <div className="invalid-feedback">Date is required</div>
+          )}
+        </div>
+
+        {/* <div className="row justify-content-end mb-3">
           <div className="col-auto ml-auto">
             <SearchProduct
               selectedCategory={selectedCategory}
@@ -234,41 +260,43 @@ function ProductList() {
               <div className="invalid-feedback">Date is required</div>
             )}
           </div>
-        </div>
-        <Table>
-          <thead>
-            <tr>
-              <th>Add</th>
-              <th>Product Name </th>
-              <th>Quantity (kg)</th>
-              <th>Amount/Unit</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.map((product) => (
-              <tr key={product.id}>
-                <td>
-                  <input
-                    type="checkbox"
-                    name={product.id}
-                    onChange={handleProductSelection}
-                  />
-                </td>
-                <td>{product.ItemName}</td>
-                <td>
-                  <input
-                    type="number"
-                    min="1"
-                    name={`${product.id}-quantity`}
-                    defaultValue={1}
-                    onChange={handleQuantityChange}
-                  />
-                </td>
-                <td>₹{product.Amount}</td>
+        </div> */}
+        <div className="table-container">
+          <Table>
+            <thead>
+              <tr>
+                <th>Add</th>
+                <th>Product Name </th>
+                <th>Quantity (kg)</th>
+                <th>Amount/Unit</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {filteredProducts.map((product) => (
+                <tr key={product.id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      name={product.id}
+                      onChange={handleProductSelection}
+                    />
+                  </td>
+                  <td>{product.ItemName}</td>
+                  <td>
+                    <input
+                      type="number"
+                      min="1"
+                      name={`${product.id}-quantity`}
+                      defaultValue={1}
+                      onChange={handleQuantityChange}
+                    />
+                  </td>
+                  <td>₹{product.Amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
         <div className="container">
           <div className="row justify-content-between ">
             <button

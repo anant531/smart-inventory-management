@@ -15,8 +15,10 @@ td {
 }
 
 th {
-  background-color: #e8e66f;
-  color: rgb(113, 106, 106);
+  background-color: #333333;
+  color: rgb(251, 251, 251);
+  position: sticky;
+  top: 0;
 }
 
 tr:nth-child(even) {
@@ -24,7 +26,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-  background-color: #b0f4ff;
+  background-color: hsl(260, 3%, 81%);
   transform: scale(1.005);
   transition: transform 0.25s ease-in-out;
 }
@@ -43,21 +45,45 @@ input[type="number"] {
   text-align: center;
   width: 100%;
   max-width: 200px;
-  background-color: #00ddff;
-  color: #000000;
+  background-color: #574ac0;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   padding: 12px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
   margin-top: 1.5rem;
+  font-size: large;
 }
 
 .btn:hover {
-  background-color: #0aacf7;
-  color: #000000;
+  background-color: #301dc0;
+  color: #ffffff;
 }
 
 .Amount {
   font-size: x-large;
+}
+
+.table-container {
+  overflow: auto;
+  height: 400px;
+}
+.inward-container {
+  height: 200px;
+  width: auto;
+}
+.inward-head-container {
+  width: fit-content;
+  min-width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin: 2;
+}
+
+.form-control-sm,
+.custom-date-picker {
+  height: 52px;
+  border-width: 1;
+  border-color: rgb(207, 207, 216);
 }

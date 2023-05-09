@@ -50,29 +50,35 @@ const Product = () => {
   };
 
   return (
-    <>
+    <div className="product-outer-container">
       <h1>Product List</h1>
-      <div className="container">
-        <div className="d-flex justify-content-end align-items-end mb-3">
-          <div className="col-3">
-            <SearchProduct
-              selectedCategory={selectedCategory}
-              category={category}
-            />
-          </div>
-          <div className="">
-            <AddProduct />
-          </div>
+      <div className="product-container">
+        <div className="col-3">
+          <SearchProduct
+            selectedCategory={selectedCategory}
+            category={category}
+          />
+        </div>
+        <div className="">
+          <AddProduct />
         </div>
       </div>
 
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <div
+        className="product-container"
+        style={{ display: "flex", flexWrap: "wrap" }}
+      >
         {filteredProducts.map((product) => (
           <Card
             key={product.id}
             isHoverable
             variant="bordered"
-            css={{ mw: "200px", mr: "20px", mb: "20px" }}
+            css={{
+              mw: "200px",
+              mr: "20px",
+              mb: "20px",
+              mt: "20px",
+            }}
           >
             <Card.Body>
               <div
@@ -115,7 +121,7 @@ const Product = () => {
           </Card>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

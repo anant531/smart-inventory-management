@@ -17,7 +17,7 @@ const SelectGodown = (props) => {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 150 }}>
+      <FormControl sx={{ mr: 1, ml: 1, width: "300px" }}>
         <InputLabel id="godown-select-label">Select a Godown</InputLabel>
         <Select
           labelId="godown-select-label"
@@ -25,15 +25,13 @@ const SelectGodown = (props) => {
           value={selectedGodown}
           label="Select a Godown"
           onChange={handleGodownChange}
-          style={{
-            minWidth: "200px",
-            width: "100%",
-            minWidth: "200px",
-            width: "auto",
-            background: "#f5f5f5",
-            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-            borderRadius: "4px",
-          }}
+          // style={{
+          //   minWidth: "120%",
+          //   width: "fit-content",
+          //   background: "#f5f5f5",
+          //   boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+          //   borderRadius: "4px",
+          // }}
           // <FormControl sx={{ m: 1, minWidth: 150 }}>
           //   <InputLabel id="godown-select-label"> Select a Godown</InputLabel>
           //   <Select
