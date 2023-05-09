@@ -18,6 +18,7 @@ import SelectSupplier from "../selectSupplier";
 import { v4 as uuid } from "uuid";
 import moment from "moment/moment";
 import GodownContext from "../../../contexts/GodownContext";
+import Test from "../../test/test";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -35,7 +36,6 @@ function ProductList() {
   const [amount, setAmount] = useState("");
   const [formattedDate, setDate] = useState("");
   const [weight, setWeight] = useState("");
-  const { addInward } = useContext(GodownContext);
 
   const uniqueId = uuid();
   const smallId = uniqueId.slice(0, 8);
@@ -64,7 +64,7 @@ function ProductList() {
   };
   console.log(category);
 
-  const filteredProducts = products.filter((cat) => cat.Category === category);
+  const filteredProducts = products.filter((cat) => cat.category === category);
 
   const selectGodown = (selGod) => {
     selectedGodown(selGod);
@@ -72,7 +72,7 @@ function ProductList() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/godown/${Godown}`)
+      .get(`http://localhost:8080/godown/${Godown}`)
       .then((response) => {
         setGodownData(response.data);
         console.log("Godwn in use effect -->", response.data);
@@ -83,7 +83,7 @@ function ProductList() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/product`)
+      .get(`http://localhost:8080/items`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -123,9 +123,9 @@ function ProductList() {
       let totalWeight = 0;
       selectedProducts.forEach((product) => {
         const { id, quantity } = product;
-        const { Amount, Weight } = products.find((price) => price.id === id);
-        totalAmount += Amount * quantity;
-        totalWeight += quantity * Weight;
+        const { amount, weight } = products.find((price) => price.id === id);
+        totalAmount += amount * quantity;
+        totalWeight += quantity * weight;
         setWeight(totalWeight / 100);
         setAmount(totalAmount);
       });
@@ -139,38 +139,38 @@ function ProductList() {
     try {
       event.preventDefault();
       const response = await axios.get(
-        `http://localhost:3030/godown/${Godown}`
+        `http://localhost:8080/godown/${Godown}`
       );
       const godown = response.data;
 
       const updatedProducts = [];
 
       //reducing the capacity and adding
-      godown.Capacity -= weight;
+      godown.capacity -= weight;
       // abc
       for (const selectedProduct of selectedProducts) {
-        const existingProductIndex = godown.products.findIndex(
-          (product) => product.id === selectedProduct.id
+        const existingProductIndex = godown.godownItems.findIndex(
+          (product) => product.itemId === selectedProduct.itemId
         );
 
         if (existingProductIndex !== -1) {
           // Update the quantity of the existing product
-          const existingProduct = godown.products[existingProductIndex];
+          const existingProduct = godown.godownItems[existingProductIndex];
           const updatedProduct = {
-            id: existingProduct.id,
+            id: existingProduct.itemId,
             quantity: existingProduct.quantity + selectedProduct.quantity,
           };
-          godown.products[existingProductIndex] = updatedProduct;
+          godown.godownItems[existingProductIndex] = updatedProduct;
           updatedProducts.push(updatedProduct);
         } else {
           // Add the new product to the array
-          godown.products.push(selectedProduct);
+          godown.godownItems.push(selectedProduct);
           updatedProducts.push(selectedProduct);
         }
       }
 
       const updateResponse = await axios.put(
-        `http://localhost:3030/godown/${Godown}`,
+        `http://localhost:8080/godown/${Godown}`,
         godown
       );
       handleClose();
@@ -178,16 +178,16 @@ function ProductList() {
       // navigate("/inward?added=true");
       let newInward = {
         recieptNo: smallId,
-        SupplierName: supplier,
+        supplier: supplier,
         GodownId: Godown,
         DateOfSupply: formattedDate,
-        RecievedBy: godownData.GodownSupervisor,
+        billCheckedBy: godownData.GodownSupervisor,
         Amount: amount,
         product: updatedProducts,
       };
       console.log(newInward);
       axios
-        .post("http://localhost:3030/inward", newInward)
+        .post("http://localhost:8080/inward", newInward)
         .then((response) => {
           console.log(response);
         })
@@ -203,6 +203,7 @@ function ProductList() {
   return (
     <>
       <h1>Inward Request</h1>
+      <Test />
       <div className="container">
         <div className="row justify-content-end mb-3">
           <div className="col-auto ml-auto">
@@ -246,11 +247,11 @@ function ProductList() {
           </thead>
           <tbody>
             {filteredProducts.map((product) => (
-              <tr key={product.id}>
+              <tr key={product.itemId}>
                 <td>
                   <input
                     type="checkbox"
-                    name={product.id}
+                    name={product.itemId}
                     onChange={handleProductSelection}
                   />
                 </td>
@@ -259,12 +260,12 @@ function ProductList() {
                   <input
                     type="number"
                     min="1"
-                    name={`${product.id}-quantity`}
+                    name={`${product.itemId}-quantity`}
                     defaultValue={1}
                     onChange={handleQuantityChange}
                   />
                 </td>
-                <td>₹{product.Amount}</td>
+                <td>₹{product.amount}</td>
               </tr>
             ))}
           </tbody>

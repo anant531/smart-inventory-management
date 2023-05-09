@@ -27,10 +27,10 @@ const AddGodown = () => {
   const addGodownHandler = async (e) => {
     e.preventDefault();
     let newGodown = {
-      location: location,
-      Capacity: capacity,
-      GodownSupervisor: supervisor,
-      createdAt: formattedDate,
+      godownLocation: location,
+      godownCapacity: capacity,
+      supervisor: supervisor,
+      startDate: formattedDate,
       products: [],
     };
 
