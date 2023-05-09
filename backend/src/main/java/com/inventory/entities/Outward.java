@@ -2,22 +2,15 @@ package com.inventory.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.inventory.embeddable.InwardDeserializer;
-import com.inventory.embeddable.InwardSerializer;
-import com.inventory.embeddable.OutwardDeserializer;
-import com.inventory.embeddable.OutwardSerializer;
-import com.inventory.linktables.InwardItem;
+import com.inventory.JsonCustomizer.OutwardDeserializer;
+import com.inventory.JsonCustomizer.OutwardSerializer;
 import com.inventory.linktables.OutwardItem;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -49,11 +42,10 @@ public class Outward {
 
     double billValue;
 
-    @Column(unique = true)
     @GeneratedValue(strategy = GenerationType.AUTO)
     long billNumber;
 
-    public Outward(Godown godown, Set<OutwardItem> outwardItem, LocalDate deliveryDate, String deliveredTo, String billCheckedBy, String destination, double billValue) {
+    public Outward(Godown godown, Set<OutwardItem> outwardItem, LocalDate deliveryDate, String deliveredTo, String billCheckedBy, String destination, double billValue, long billNumber) {
         this.godown = godown;
         this.outwardItem = outwardItem;
         this.deliveryDate = deliveryDate;
@@ -61,6 +53,7 @@ public class Outward {
         this.billCheckedBy = billCheckedBy;
         this.destination = destination;
         this.billValue = billValue;
+        this.billNumber = billNumber;
     }
 
 }

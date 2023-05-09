@@ -1,6 +1,6 @@
 package com.inventory.controllers;
 
-import com.inventory.embeddable.GodownItemId;
+import com.inventory.JsonCustomizer.GodownItemId;
 import com.inventory.entities.Godown;
 import com.inventory.entities.Inward;
 import com.inventory.linktables.GodownItem;
