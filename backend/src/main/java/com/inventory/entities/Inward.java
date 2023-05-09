@@ -2,13 +2,12 @@ package com.inventory.entities;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.inventory.embeddable.InwardDeserializer;
-import com.inventory.embeddable.InwardSerializer;
+import com.inventory.JsonCustomizer.InwardDeserializer;
+import com.inventory.JsonCustomizer.InwardSerializer;
 import com.inventory.linktables.InwardItem;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,4 +43,15 @@ public class Inward {
 	long receiptNo;
 
 	String receivedBy;
+
+	public Inward(Godown godown, Set<InwardItem> inwardItem, String nameofSupplier, String billCheckedBy, LocalDateTime dateOfSupply, long invoiceNo, long receiptNo, String receivedBy) {
+		this.godown = godown;
+		this.inwardItem = inwardItem;
+		this.nameofSupplier = nameofSupplier;
+		this.billCheckedBy = billCheckedBy;
+		this.dateOfSupply = dateOfSupply;
+		this.invoiceNo = invoiceNo;
+		this.receiptNo = receiptNo;
+		this.receivedBy = receivedBy;
+	}
 }

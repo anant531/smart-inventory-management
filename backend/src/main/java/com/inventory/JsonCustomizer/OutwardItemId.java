@@ -1,4 +1,4 @@
-package com.inventory.embeddable;
+package com.inventory.JsonCustomizer;
 
 import lombok.*;
 
@@ -21,10 +21,5 @@ public class OutwardItemId implements Serializable {
 
     @Column(name = "item_id")
     private Long itemId;
-
-//    public OutwardItemId(Long outwardId, Long itemId) {
-//        this.outwardId = outwardId;
-//        this.itemId = itemId;
-//    }
 
 }

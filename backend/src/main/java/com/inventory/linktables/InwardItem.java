@@ -1,7 +1,7 @@
 package com.inventory.linktables;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.inventory.embeddable.InwardItemId;
+import com.inventory.JsonCustomizer.InwardItemId;
 import com.inventory.entities.Inward;
 import com.inventory.entities.Items;
 import lombok.*;

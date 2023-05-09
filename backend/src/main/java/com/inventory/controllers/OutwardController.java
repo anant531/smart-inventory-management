@@ -1,10 +1,9 @@
 package com.inventory.controllers;
 
-import com.inventory.embeddable.GodownItemId;
+import com.inventory.JsonCustomizer.GodownItemId;
 import com.inventory.entities.Godown;
 import com.inventory.entities.Outward;
 import com.inventory.linktables.GodownItem;
-import com.inventory.linktables.InwardItem;
 import com.inventory.linktables.OutwardItem;
 import com.inventory.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +36,7 @@ public class OutwardController {
 
     @PostMapping(path = "/outward")
     public void addOutward(@RequestBody Outward o){
+
         for(OutwardItem outwardItem : o.getOutwardItem()){
             outwardItem.setOutward(o);
         }
@@ -48,11 +48,13 @@ public class OutwardController {
 
 		double totalWeight = 0;
 
+        System.out.println(o.getBillNumber());
 		for(OutwardItem outwardItem : o.getOutwardItem()){
 			GodownItemId godownItemId = new GodownItemId(o.getGodown().getGodownId(), outwardItem.getItem().getItemId());
 			Optional<GodownItem> godownItemFound = godownItemRepository.findById(godownItemId);
 			if(godownItemFound.isPresent()){
 				GodownItem godownItem = godownItemFound.get();
+
                 if(godownItem.getQuantity() > outwardItem.getQuantity()){
                     godownItem.setQuantity(godownItem.getQuantity() - outwardItem.getQuantity());
                     godownItemRepository.save(godownItem);
@@ -65,7 +67,6 @@ public class OutwardController {
 
                 else{
                     System.out.println("Only " + godownItem.getQuantity() + " available inside the godown");
-
                 }
 
 			}
@@ -74,6 +75,8 @@ public class OutwardController {
                 System.out.println("Item not found");
             }
 		}
+
+
     }
 
 //    @PostMapping(path = "/outward")

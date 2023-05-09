@@ -1,4 +1,4 @@
-package com.inventory.embeddable;
+package com.inventory.JsonCustomizer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

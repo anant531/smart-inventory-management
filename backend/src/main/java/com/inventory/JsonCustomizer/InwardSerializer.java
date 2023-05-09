@@ -1,4 +1,4 @@
-package com.inventory.embeddable;
+package com.inventory.JsonCustomizer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

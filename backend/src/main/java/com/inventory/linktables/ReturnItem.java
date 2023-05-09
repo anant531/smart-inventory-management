@@ -1,9 +1,9 @@
 package com.inventory.linktables;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.inventory.JsonCustomizer.OutwardItemId;
+import com.inventory.JsonCustomizer.ReturnItemId;
 import com.inventory.entities.Items;
-import com.inventory.entities.Outward;
+import com.inventory.entities.Returns;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,15 +14,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class OutwardItem {
+@ToString
+public class ReturnItem {
 
     @EmbeddedId
-    OutwardItemId id = new OutwardItemId();
+    ReturnItemId id = new ReturnItemId();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @MapsId("outwardId")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("returnId")
     @JsonIgnore
-    private Outward outward;
+    private Returns returns;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("itemId")
@@ -30,5 +32,4 @@ public class OutwardItem {
     private Items item;
 
     private int quantity;
-
 }
