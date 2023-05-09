@@ -26,7 +26,7 @@ public class InwardSerializer extends JsonSerializer<Inward> {
             jsonGenerator.writeEndObject();
         }
         jsonGenerator.writeEndArray();
-        jsonGenerator.writeStringField("nameofSupplier", inward.getNameofSupplier());
+        jsonGenerator.writeStringField("supplier", inward.getSupplier().getSupplierName());
         jsonGenerator.writeStringField("billCheckedBy", inward.getBillCheckedBy());
         jsonGenerator.writeNumberField("invoiceNo", inward.getInvoiceNo());
         jsonGenerator.writeNumberField("receiptNo", inward.getReceiptNo());

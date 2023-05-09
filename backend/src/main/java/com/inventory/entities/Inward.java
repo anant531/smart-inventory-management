@@ -32,7 +32,8 @@ public class Inward {
 	@OneToMany(mappedBy = "inward", cascade = CascadeType.ALL)
 	private Set<InwardItem> inwardItem = new HashSet<>();
 
-	String nameofSupplier;
+	@OneToOne
+	Supplier supplier;
 
 	String billCheckedBy;
 
@@ -44,10 +45,10 @@ public class Inward {
 
 	String receivedBy;
 
-	public Inward(Godown godown, Set<InwardItem> inwardItem, String nameofSupplier, String billCheckedBy, LocalDateTime dateOfSupply, long invoiceNo, long receiptNo, String receivedBy) {
+	public Inward(Godown godown, Set<InwardItem> inwardItem, Supplier supplier, String billCheckedBy, LocalDateTime dateOfSupply, long invoiceNo, long receiptNo, String receivedBy) {
 		this.godown = godown;
 		this.inwardItem = inwardItem;
-		this.nameofSupplier = nameofSupplier;
+		this.supplier = supplier;
 		this.billCheckedBy = billCheckedBy;
 		this.dateOfSupply = dateOfSupply;
 		this.invoiceNo = invoiceNo;
