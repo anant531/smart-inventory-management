@@ -10,8 +10,8 @@ const SearchProduct = (props) => {
   };
 
   const uniqueCategories = product.reduce((categories, product) => {
-    if (!categories.includes(product.category)) {
-      return [...categories, product.category];
+    if (!categories.includes(product.Category)) {
+      return [...categories, product.Category];
     }
     return categories;
   }, []);

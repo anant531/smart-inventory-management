@@ -113,7 +113,7 @@ const AddProduct = () => {
   return (
     <>
       <Button
-        size="large"
+        size="small"
         variant="outlined"
         className={classes.button}
         onClick={handleClickOpen}

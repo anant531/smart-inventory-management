@@ -19,13 +19,14 @@ import SelectSupplier from "../selectSupplier";
 import { v4 as uuid } from "uuid";
 import moment from "moment/moment";
 import GodownContext from "../../../contexts/GodownContext";
-import Test from "../../test/test";
 
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [Godown, selectedGodown] = useState("");
   const [godownData, setGodownData] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+
   const location = useLocation();
   const query = new URLSearchParams(location.search);
 
@@ -37,6 +38,7 @@ function ProductList() {
   const [amount, setAmount] = useState("");
   const [formattedDate, setDate] = useState("");
   const [weight, setWeight] = useState("");
+  const { addInward } = useContext(GodownContext);
 
   const uniqueId = uuid();
   const smallId = uniqueId.slice(0, 8);
@@ -65,7 +67,7 @@ function ProductList() {
   };
   console.log(category);
 
-  const filteredProducts = products.filter((cat) => cat.category === category);
+  const filteredProducts = products.filter((cat) => cat.Category === category);
 
   const selectGodown = (selGod) => {
     selectedGodown(selGod);
@@ -73,7 +75,7 @@ function ProductList() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/godown/${Godown}`)
+      .get(`http://localhost:3030/godown/${Godown}`)
       .then((response) => {
         setGodownData(response.data);
         console.log("Godwn in use effect -->", response.data);
@@ -84,7 +86,7 @@ function ProductList() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/items`)
+      .get(`http://localhost:3030/product`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -124,9 +126,9 @@ function ProductList() {
       let totalWeight = 0;
       selectedProducts.forEach((product) => {
         const { id, quantity } = product;
-        const { amount, weight } = products.find((price) => price.id === id);
-        totalAmount += amount * quantity;
-        totalWeight += quantity * weight;
+        const { Amount, Weight } = products.find((price) => price.id === id);
+        totalAmount += Amount * quantity;
+        totalWeight += quantity * Weight;
         setWeight(totalWeight / 100);
         setAmount(totalAmount);
       });
@@ -140,38 +142,38 @@ function ProductList() {
     try {
       event.preventDefault();
       const response = await axios.get(
-        `http://localhost:8080/godown/${Godown}`
+        `http://localhost:3030/godown/${Godown}`
       );
       const godown = response.data;
 
       const updatedProducts = [];
 
       //reducing the capacity and adding
-      godown.capacity -= weight;
+      godown.Capacity -= weight;
       // abc
       for (const selectedProduct of selectedProducts) {
-        const existingProductIndex = godown.godownItems.findIndex(
-          (product) => product.itemId === selectedProduct.itemId
+        const existingProductIndex = godown.products.findIndex(
+          (product) => product.id === selectedProduct.id
         );
 
         if (existingProductIndex !== -1) {
           // Update the quantity of the existing product
-          const existingProduct = godown.godownItems[existingProductIndex];
+          const existingProduct = godown.products[existingProductIndex];
           const updatedProduct = {
-            id: existingProduct.itemId,
+            id: existingProduct.id,
             quantity: existingProduct.quantity + selectedProduct.quantity,
           };
-          godown.godownItems[existingProductIndex] = updatedProduct;
+          godown.products[existingProductIndex] = updatedProduct;
           updatedProducts.push(updatedProduct);
         } else {
           // Add the new product to the array
-          godown.godownItems.push(selectedProduct);
+          godown.products.push(selectedProduct);
           updatedProducts.push(selectedProduct);
         }
       }
 
       const updateResponse = await axios.put(
-        `http://localhost:8080/godown/${Godown}`,
+        `http://localhost:3030/godown/${Godown}`,
         godown
       );
       handleClose();
@@ -179,22 +181,25 @@ function ProductList() {
       // navigate("/inward?added=true");
       let newInward = {
         recieptNo: smallId,
-        supplier: supplier,
-        GodownId: Godown,
+        SupplierName: supplier,
+        GodownId: godownData.location,
         DateOfSupply: formattedDate,
-        billCheckedBy: godownData.GodownSupervisor,
+        RecievedBy: godownData.GodownSupervisor,
         Amount: amount,
         product: updatedProducts,
       };
       console.log(newInward);
       axios
-        .post("http://localhost:8080/inward", newInward)
+        .post("http://localhost:3030/inward", newInward)
         .then((response) => {
           console.log(response);
         })
         .catch((error) => {
           console.log(error);
         });
+      setSubmitting(true);
+      setSelectedProducts([]); // Reset selectedProducts to an empty array
+
       return updateResponse.data;
     } catch (error) {
       console.error(error);
@@ -279,6 +284,7 @@ function ProductList() {
                       type="checkbox"
                       name={product.id}
                       onChange={handleProductSelection}
+                      disabled={submitting}
                     />
                   </td>
                   <td>{product.ItemName}</td>
@@ -305,8 +311,20 @@ function ProductList() {
             >
               Calculate
             </button>
-            <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
-            <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
+            <input
+              className="Amount col-auto mt-4 narrow-input"
+              type="text"
+              value={`Total Amount: ₹${amount}`}
+              readOnly
+              style={{ margin: "0px 5px 0px 5px" }}
+            />
+            <input
+              className="Amount col-auto mt-4 narrow-input"
+              type="text"
+              value={`Total Weight: ${weight} (in qq)`}
+              readOnly
+            />
+
             <button
               onClick={handleOpen}
               className="btn btn-primary mb-3 col-auto"

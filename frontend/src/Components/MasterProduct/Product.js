@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Text, Modal, Card } from "@nextui-org/react";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import axios from "axios";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./Product.css";
 import SearchProduct from "./SearchProduct";
 import { Button } from "@material-ui/core";
 import AddProduct from "./AddProduct/AddProduct";
+import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
+import EditProduct from "./EditProduct";
+import EditIcon from "@mui/icons-material/Edit";
+// import { useNavigate } from "react-router-dom";
 
 const Product = () => {
   const [products, setProduct] = useState([]);
@@ -13,34 +18,46 @@ const Product = () => {
   const location = useLocation();
   const [category, selectedcat] = useState("Chocolates");
 
-  const selectedCategory = (selCat) => {
-    selectedcat(selCat);
+  const [editOpen, setEditOpen] = useState(false);
+  const [selectedData, setSelectedData] = useState();
+  const [selectedId, setSelectedId] = useState();
+
+  const uniqueCategories = products.reduce((categories, product) => {
+    if (!categories.includes(product.Category)) {
+      return [...categories, product.Category];
+    }
+    return categories;
+  }, []);
+  const handleOptionChange = (event) => {
+    selectedcat(event.target.value);
   };
-  console.log(category);
 
-  const filteredProducts = products.filter((cat) => cat.category === category);
-
-  console.log("Filtered prods --->", filteredProducts);
+  const filteredProducts = products.filter((cat) => cat.Category === category);
 
   const query = new URLSearchParams(location.search);
   const isAdded = query.get("added");
   const isDeleted = query.get("delete");
 
   useEffect(() => {
+    fetchData();
+  }, [isDeleted, isAdded]);
+
+  const fetchData = () => {
     axios
-      .get("http://localhost:8080/items")
+      .get("http://localhost:3030/product")
       .then((response) => {
         setProduct(response.data);
-        console.log("response...", response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.error(error);
       });
     navigate("/product");
-  }, [isDeleted, isAdded]);
+  };
+
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8080/items/${id}`)
+      .delete(`http://localhost:3030/product/${id}`)
       .then((response) => {
         console.log("Resource deleted successfully");
         // remove deleted resource from state
@@ -51,15 +68,41 @@ const Product = () => {
     navigate("/product?delete=true");
   };
 
+  const handleEdit = (id) => {
+    console.log("edit clicked " + id);
+    <EditProduct id={id} />;
+  };
+
   return (
     <div className="product-outer-container">
-      <h1>Product List</h1>
+      <h1 style={{ paddingBottom: "30px" }}>Product List</h1>
       <div className="product-container">
         <div className="col-3">
-          <SearchProduct
-            selectedCategory={selectedCategory}
-            category={category}
-          />
+          <FormControl fullWidth>
+            <InputLabel id="category-select-label">
+              Select a category
+            </InputLabel>
+            <Select
+              labelId="category-select-label"
+              id="category-select"
+              value={category}
+              label="Select a category"
+              onChange={handleOptionChange}
+            >
+              {uniqueCategories.map((category) => (
+                <MenuItem
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                  key={category}
+                  value={category}
+                >
+                  {category}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <div className="">
           <AddProduct />
@@ -86,71 +129,70 @@ const Product = () => {
               <div
                 className="col "
                 style={{ display: "flex", "flex-direction": "row" }}
-              >
-                <Text className="pro-id">
-                  {" "}
-                  <b>ID:</b> {product.id}
-                </Text>
-              </div>
+              ></div>
               <div>
                 <Text className="pro-id">
                   {" "}
                   <b>Name:</b> {product.ItemName}
                 </Text>
               </div>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {filteredProducts.map((product) => {
-          return (
-            <Card
-              key={product.itemId}
-              isHoverable
-              variant="bordered"
-              css={{ mw: "200px", mr: "20px", mb: "20px" }}
-            >
-              <Card.Body>
-                <div
-                  className="col "
-                  style={{ display: "flex", "flex-direction": "row" }}
-                >
-                  <Text className="pro-id">
-                    {" "}
-                    <b>ID:</b> {product.itemId}
-                  </Text>
-                </div>
-                <div>
-                  <Text className="pro-id">
-                    {" "}
-                    <b>Name:</b> {product.itemName}
-                  </Text>
-                </div>
 
-                <div>
-                  <Text className="pro-id">
-                    <b>Supplier:</b> {product.supplier}
-                  </Text>
-                </div>
+              <div>
+                <Text className="pro-id">
+                  <b>Supplier:</b> {product.Supplier}
+                </Text>
+              </div>
 
-                <div
-                // style={{
-                //   display: "flex",
-                //   "flex-direction": "row",
-                >
-                  <Text className="pro-id mb-3">
-                    <b>Price:</b> {product.amount}
-                  </Text>
-                </div>
+              <div
+              // style={{
+              //   display: "flex",
+              //   "flex-direction": "row",
+              >
+                <Text className="pro-id mb-3">
+                  <b>Price:</b> {product.Amount}
+                </Text>
+              </div>
 
-                <div key={product.id}>
-                  <button onClick={() => handleDelete(product.itemId)}>
-                    ❌
-                  </button>
-                </div>
-              </Card.Body>
-              <Outlet />
-            </Card>
-          );
-        })}
+              <div key={product.id}>
+                {/* <button onClick={() => handleDelete(product.id)}>❌</button> */}
+                <DeleteTwoToneIcon
+                  className="DeleteTwoToneIcon"
+                  fontSize="medium"
+                  color="action"
+                  onClick={() => handleDelete(product.id)}
+                  sx={{ color: "#ff1744" }}
+                />
+                {/* <DeleteTwoToneIcon
+                  className="DeleteTwoToneIcon"
+                  fontSize="medium"
+                  color="action"
+                  onClick={() => navigate(`/edit-product/?id=${product.id}`)}
+                  sx={{ color: "#ff1744" }}
+                /> */}
+                <EditIcon
+                  className="EditIcon"
+                  fontSize="medium"
+                  color="action"
+                  alignItems="center"
+                  onClick={() => {
+                    setEditOpen(true);
+                    setSelectedData(product);
+                    setSelectedId(product?.id);
+                  }}
+                />
+              </div>
+            </Card.Body>
+            <Outlet />
+          </Card>
+        ))}
       </div>
+      <EditProduct
+        dialogOpen={editOpen}
+        onCancel={() => setEditOpen(false)}
+        data={selectedData}
+        id={selectedId}
+        fetchData={fetchData}
+      />
     </div>
   );
 };

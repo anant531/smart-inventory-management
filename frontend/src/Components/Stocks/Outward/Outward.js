@@ -537,12 +537,7 @@ function Outward() {
       <div className="outward-container">
         <div className="outward-head-container">
           <SelectGodown selectGodown={selectGodown} />
-
-          <SelectSupplier
-            selectedSupplier={supplier}
-            handleChange={(val) => selectSupplier(val)}
-          />
-
+          &nbsp; &nbsp;
           <DatePicker
             className="form-control-sm"
             selected={selectedDate}
@@ -553,12 +548,12 @@ function Outward() {
           {!formattedDate && (
             <div className="invalid-feedback">Date is required</div>
           )}
-
           <Button
             variant="contained"
             size="small"
             className="browse-button"
             onClick={SearchProductHandler}
+            sx={{ backgroundColor: "#574AC0" }}
           >
             Browse Godown
           </Button>
@@ -610,8 +605,18 @@ function Outward() {
             >
               Calculate
             </button>
-            <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
-            <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
+            <input
+              className="Amount col-auto mt-4 narrow-input"
+              type="text"
+              value={`Total Amount: ₹${amount}`}
+              readOnly
+            />
+            <input
+              className="Amount col-auto mt-4 narrow-input"
+              type="text"
+              value={`Total Weight: ${weight} (in qq)`}
+              readOnly
+            />
             <button
               onClick={handleOpen}
               className="btn btn-primary mb-3 col-auto"

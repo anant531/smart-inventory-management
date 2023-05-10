@@ -214,12 +214,12 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DeleteTwoToneIcon from "@mui/icons-material/DeleteTwoTone";
-import EditTwoToneIcon from "@mui/icons-material/EditTwoTone";
+import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 
 import Box from "@mui/material/Box";
@@ -231,7 +231,6 @@ import { BsAlignStart } from "react-icons/bs";
 import { red } from "@nextui-org/react";
 
 import "./Godown.css";
-import GodownContext from "../../contexts/GodownContext";
 import { Hidden } from "@mui/material";
 
 const Godown = () => {
@@ -252,7 +251,6 @@ const Godown = () => {
   const isAdded = query.get("added");
 
   const isDeleted = query.get("delete");
-  const { product, godown, deleteGodown } = useContext(GodownContext);
 
   //Editable vars
   const [locationVar, setLocationVar] = useState("");
@@ -260,8 +258,11 @@ const Godown = () => {
 
   useEffect(() => {
     fetchData();
+
     navigate("/godown");
   }, [isAdded, isDeleted]);
+
+  useEffect(() => {}, [godowns]);
 
   const fetchData = async () => {
     const result = await axios.get("http://localhost:8080/godown");
@@ -269,9 +270,9 @@ const Godown = () => {
     setGodowns(result.data);
   };
 
-  const handleDelete = (godownId) => {
+  const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:8080/godown/${godownId}`)
+      .delete(`http://localhost:8080/godown/${id}`)
       .then((response) => {
         console.log("Resource deleted successfully");
         // remove deleted resource from state
@@ -341,11 +342,11 @@ const Godown = () => {
         color: "#d50000",
       },
     },
-    "& .EditTwoToneIcon": {
+    "& .EditIcon": {
       cursor: "pointer",
-      color: "#ff1744",
+      color: "#1eb31c",
       "&:hover": {
-        color: "#d50000",
+        color: "#1eb31c",
       },
     },
     "& .SaveIcon": {
@@ -357,16 +358,18 @@ const Godown = () => {
     },
   });
 
-  const handleEditGodown = (godownId) => {
+  const handleEditGodown = (id) => {
     axios
-      .put(`http://localhost:8080/godown`, editableGodown)
+      .put(`http://localhost:8080/godown/${id}`, editableGodown)
       .then((response) => {
+        console.log("Records after update--->", response.data);
         const updatedGodown = response.data;
-        setGodowns(
-          godown.map((row) =>
-            row.godownId === updatedGodown.godownId ? updatedGodown : row
-          )
-        );
+        // setGodowns(
+        //   godowns.map((row) =>
+        //     row.godownId === updatedGodown.godownId ? updatedGodown : row
+        //   )
+        // );
+        // setGodowns(response?.data);
         setEditableGodown({});
         setShowPopup(true);
 
@@ -380,12 +383,14 @@ const Godown = () => {
       .finally(() => {
         fetchData();
       });
+    console.log(editableGodown);
+
+    // axios.get("http://localhost:8080/godown");
   };
 
   return (
     <>
       <h1>Godowns</h1>
-
       <div>
         {showPopup && (
           <div className="popup">Godown Details updated successfully!</div>
@@ -418,19 +423,19 @@ const Godown = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {godowns.map((row, index) =>
-                    isEditing && row.id === editableGodown.id ? (
+                  {godowns?.map((row, index) =>
+                    isEditing && row.godownId === editableGodown.godownId ? (
                       <TableRow>
                         <TableCell>
                           {" "}
                           <TextField
                             name="location"
-                            value={editableGodown.location}
+                            value={editableGodown.godownLocation}
                             style={{ width: "100%" }}
                             onChange={(e) => {
                               setEditableGodown({
                                 ...editableGodown,
-                                location: e.target.value,
+                                godownLocation: e.target.value,
                               });
                             }}
                             key={`Test-${index + 1}`}
@@ -441,12 +446,12 @@ const Godown = () => {
                           <TextField
                             type="text"
                             name="Capacity"
-                            value={editableGodown.Capacity}
+                            value={editableGodown.godownCapacity}
                             style={{ width: "100%" }}
                             onChange={(e) =>
                               setEditableGodown({
                                 ...editableGodown,
-                                Capacity: e.target.value,
+                                godownCapacity: e.target.value,
                               })
                             }
                           />
@@ -456,12 +461,12 @@ const Godown = () => {
                           <TextField
                             type="text"
                             name="GodownSupervisor"
-                            value={editableGodown.GodownSupervisor}
+                            value={editableGodown.supervisor}
                             style={{ width: "100%" }}
                             onChange={(e) =>
                               setEditableGodown({
                                 ...editableGodown,
-                                GodownSupervisor: e.target.value,
+                                supervisor: e.target.value,
                               })
                             }
                           />
@@ -471,12 +476,12 @@ const Godown = () => {
                           <TextField
                             type="text"
                             name="createdAt"
-                            value={editableGodown.createdAt}
+                            value={editableGodown.startDate}
                             style={{ width: "100%" }}
                             onChange={(e) =>
                               setEditableGodown({
                                 ...editableGodown,
-                                createdAt: e.target.value,
+                                startDate: e.target.value,
                               })
                             }
                           />
@@ -491,7 +496,7 @@ const Godown = () => {
                             fontSize="medium"
                             color="#ff1744"
                             alignItems="center"
-                            onClick={() => handleEditGodown(row.id)}
+                            onClick={() => handleEditGodown(row.godownId)}
                           ></SaveIcon>
                         </AnimatingStyledTableCell>
                         <AnimatingStyledTableCell colSpan={2} align="center">
@@ -507,28 +512,28 @@ const Godown = () => {
                     ) : (
                       <AnimatedStyledTableRow key={index}>
                         <AnimatingStyledTableCell align="center">
-                          {row.location}
+                          {row.godownLocation}
                         </AnimatingStyledTableCell>
                         <AnimatingStyledTableCell align="center">
-                          {row.Capacity}
+                          {row.godownCapacity}
                         </AnimatingStyledTableCell>
                         <AnimatingStyledTableCell align="center">
-                          {row.GodownSupervisor}
+                          {row.supervisor}
                         </AnimatingStyledTableCell>
                         <AnimatingStyledTableCell align="center">
-                          {row.createdAt}
+                          {row.startDate}
                         </AnimatingStyledTableCell>
                         <AnimatingStyledTableCell align="right">
                           <DeleteTwoToneIcon
                             className="DeleteTwoToneIcon"
                             fontSize="medium"
                             color="action"
-                            onClick={() => handleDelete(row.id)}
+                            onClick={() => handleDelete(row.godownId)}
                           />
                         </AnimatingStyledTableCell>
                         <AnimatingStyledTableCell align="left">
-                          <EditTwoToneIcon
-                            className="EditTwoToneIcon"
+                          <EditIcon
+                            className="EditIcon"
                             fontSize="medium"
                             color="action"
                             alignItems="center"

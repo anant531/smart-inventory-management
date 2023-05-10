@@ -32,6 +32,7 @@ const Logout = () => {
       .then(() => {
         console.log("sign out successful");
         dispatch(setToken(null));
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
