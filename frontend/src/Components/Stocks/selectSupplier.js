@@ -29,8 +29,8 @@ const SelectSupplier = (props) => {
         // }}
       >
         {supplier.map((item) => (
-          <MenuItem key={item.id} value={item.name}>
-            {item.name}
+          <MenuItem key={item.supplierId} value={item.supplierName}>
+            {item.supplierName}
           </MenuItem>
         ))}
       </Select>

@@ -50,8 +50,8 @@ const SelectGodown = (props) => {
           //     }}
         >
           {godown.map((item) => (
-            <MenuItem key={item.id} value={item.id}>
-              {item.location}
+            <MenuItem key={item.godownId} value={item.godownId}>
+              {item.godownLocation}
             </MenuItem>
           ))}
         </Select>

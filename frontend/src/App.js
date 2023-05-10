@@ -15,10 +15,14 @@ import Outward from "./Components/Stocks/Outward/Outward";
 import UserPage from "./Components/UserPage/UserPage";
 import Analytics from "./Components/Analytics/Analytics";
 import { ProductDialog } from "./Components/Analytics/ProductDialog";
+import AccessDeniedPage from "./Components/AccessDeniedPage/AccessDeniedPage";
+import EditProduct from "./Components/MasterProduct/EditProduct";
 
 function App() {
   const { token } = useSelector((state) => state.tokenReducer);
+  const { role } = useSelector((state) => state.tokenReducer);
   console.log(token, "token");
+  console.log(role, "role");
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -29,6 +33,7 @@ function App() {
             <Route path={"/signup"} element={<SignUp />} />
             <Route path={"/users"} element={<UserPage />} />
             <Route path={"/"} element={<SignIn />} />
+            <Route path={"/edit-product"} element={<EditProduct />} />
             <Route path={"/home"} element={token ? <Home /> : <SignIn />} />
             <Route path={"/godown/*"} element={token ? <Godown /> : <SignIn />}>
               <Route path="add-godown" element={<AddGodown />} />
@@ -36,8 +41,19 @@ function App() {
             <Route path={"/analytics/*"} element={<Analytics />}>
               <Route path="inward-data" element={<ProductDialog />} />
             </Route>
-            <Route path={"/inward"} element={token ? <Inward /> : <SignIn />} />
-            <Route path={"/outward"} element={<Outward />} />
+            <Route
+              path={"/inward"}
+              element={
+                token && role === "manager" ? <Inward /> : <AccessDeniedPage />
+              }
+            />
+            <Route
+              path={"/outward"}
+              element={
+                token && role === "manager" ? <Outward /> : <AccessDeniedPage />
+              }
+            />
+
             <Route path={"/product/*"} element={<Product />}>
               <Route path="add-product" element={<AddProduct />} />
             </Route>

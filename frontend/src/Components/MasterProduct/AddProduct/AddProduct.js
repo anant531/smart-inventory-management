@@ -100,12 +100,9 @@ const AddProduct = () => {
       amount: price,
       weight: Weight,
     };
-    console.log(newProduct);
-    try {
-      await addProduct(newProduct);
-    } catch (error) {
-      console.log(error);
-    }
+
+    addProduct(newProduct);
+
     navigate("/product?added=true");
     handleClose();
   };
