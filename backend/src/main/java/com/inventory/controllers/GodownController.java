@@ -45,7 +45,7 @@ public class GodownController {
 			}
 		}
 
-		@PutMapping(path = "/godown")
+		@PutMapping(path = "/godown/{id}")
 		public void updateGodown(@RequestBody Godown g){
 			godownRepository.save(g);
 		}

@@ -30,6 +30,7 @@ public class Godown {
 	String supervisor;
 
 	Date startDate;
+
 	
 	@OneToMany(mappedBy = "godown", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JsonSerialize(using = GodownItemSerializer.class)

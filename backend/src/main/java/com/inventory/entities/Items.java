@@ -22,17 +22,14 @@ public class Items {
 	
 	String itemName;
 
-	String category;
+	@OneToOne
+	Category category;
+
 	double amount;
 	double weight;
 	
 	@OneToMany(mappedBy = "item", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JsonIgnore
     private Set<GodownItem> godownItems = new HashSet<>();
-
-//	public Items(long itemId) {
-//		this.itemId = itemId;
-//	}
-
 }
 
