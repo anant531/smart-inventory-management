@@ -24,21 +24,16 @@ public class ItemsController {
 		return itemsRepository.findAll();
 	}
 
-//	@GetMapping("/items/{itemName}")
-//	public Items getItemsById(String itemName) {
-//        return itemsRepository.findBy(itemName).orElse(null)
-//	}
+	@GetMapping("/items/{id}")
+	public Items getItemsById(@PathVariable long id) {
+        return itemsRepository.findById(id).orElse(null);
+	}
 
 	@PostMapping("/items")
 	public void addItems(@RequestBody Items item) {
-		Category categoryFound = categoryRepository.findByCategory(item.getCategory().getCategory());
-		if(categoryFound == null){
-			categoryFound = new Category();
-			categoryFound = item.getCategory();
-			categoryRepository.save(categoryFound);
-		}
+		Optional<Category> categoryFound = categoryRepository.findByCategory(item.getCategory().getCategory());
+		categoryFound.ifPresent(item::setCategory);
 
-		item.setCategory(categoryFound);
 		itemsRepository.save(item);
 	}
 
