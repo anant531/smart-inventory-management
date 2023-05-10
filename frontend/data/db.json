@@ -26,11 +26,16 @@
     }
   ],
   "users": [],
+  "users": [],
   "godown": [
     {
       "location": "Hyderbad",
       "Capacity": 9991.83,
       "GodownSupervisor": "anantasdf",
+      "createdAt": "2023-03-27",
+      "location": "Hyderbad",
+      "Capacity": 9752.619999999999,
+      "GodownSupervisor": "gigi",
       "createdAt": "2023-03-27",
       "products": [
         {

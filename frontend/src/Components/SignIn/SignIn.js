@@ -13,12 +13,29 @@ import { auth } from "../firebase";
 import ForgotPassword from "./ForgotPassword";
 import { useNavigate } from "react-router-dom";
 import App from "../../App";
-import { setToken } from "../../Redux/reducer";
+import { setRole, setToken } from "../../Redux/reducer";
+import axios from "axios";
 
 const SignIn = () => {
   const [authUser, setAuthUser] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [employeeData, setEmployeeData] = useState(null);
+
+  useEffect(() => {
+    // Fetch employee data
+    axios
+      .get("http://localhost:3030/employee")
+      .then((response) => {
+        // Update state with the response data
+        setEmployeeData(response.data);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error fetching employee data:", error);
+      });
+  }, []);
 
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
@@ -43,6 +60,10 @@ const SignIn = () => {
       .catch((error) => console.log(error));
   };
 
+  const navigateToSignup = () => {
+    navigate("/signup");
+  };
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -55,16 +76,26 @@ const SignIn = () => {
         console.log(userCredential, "user Cred");
         let authUser = userCredential.user;
         if (authUser) {
-          navigate("/home");
+          navigate("/analytics");
           console.log(authUser, "authuser");
           console.log(authUser?.accessToken);
           const token = authUser?.accessToken;
+          console.log(authUser.email);
+          const authUserRole = employeeData.find(
+            (employee) => employee.email === authUser.email
+          )?.role;
 
           dispatch(setToken(token));
+          dispatch(setRole(authUserRole));
+          console.log(authUserRole);
         }
       })
       .catch((error) => {
         console.log(error);
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+        }, 2000);
       });
 
     setTimeout(() => {
@@ -82,6 +113,7 @@ const SignIn = () => {
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       />
+      {showPopup && <div className="popupDel">Invalid Username/Password</div>}
 
       <div className="wrapper">
         <div className="login">
@@ -120,6 +152,9 @@ const SignIn = () => {
                 // Show the "Log in" text otherwise
                 <span className="state">Log in</span>
               )}
+            </button>
+            <button variant="primary" onClick={navigateToSignup}>
+              New User?
             </button>
           </div>
         </div>

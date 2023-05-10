@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import GodownContext from "../../../contexts/GodownContext";
-import { FormControl } from "react-bootstrap";
+import { TextField, Button, FormControl } from "@mui/material";
 
 const AddGodown = () => {
   const navigate = useNavigate();
@@ -27,10 +27,10 @@ const AddGodown = () => {
   const addGodownHandler = async (e) => {
     e.preventDefault();
     let newGodown = {
-      location: location,
-      Capacity: capacity,
-      GodownSupervisor: supervisor,
-      createdAt: formattedDate,
+      godownLocation: location,
+      godownCapacity: capacity,
+      supervisor: supervisor,
+      startDate: formattedDate,
       products: [],
     };
 

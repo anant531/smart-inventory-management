@@ -64,7 +64,7 @@ const Header = () => {
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem
+              {/* <MenuItem
                 active={selectedItem === "dashboard"}
                 onClick={() => {
                   navigate("/home");
@@ -73,6 +73,16 @@ const Header = () => {
                 icon={<FiHome />}
               >
                 Dashboard
+              </MenuItem> */}
+              <MenuItem
+                icon={<AiOutlineStock />}
+                active={selectedItem === "analytics"}
+                onClick={() => {
+                  navigate("/analytics");
+                  setSelectedItem("analytics");
+                }}
+              >
+                Analytics
               </MenuItem>
 
               <MenuItem
@@ -115,16 +125,6 @@ const Header = () => {
                 }}
               >
                 Deliveries
-              </MenuItem>
-              <MenuItem
-                icon={<AiOutlineStock />}
-                active={selectedItem === "analytics"}
-                onClick={() => {
-                  navigate("/analytics");
-                  setSelectedItem("analytics");
-                }}
-              >
-                Analytics
               </MenuItem>
 
               <MenuItem
