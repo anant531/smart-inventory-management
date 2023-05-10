@@ -14,12 +14,11 @@ const EditProduct = (props) => {
   const { dialogOpen, onCancel, id, fetchData } = props;
 
   const [product, setProduct] = useState({
-    id: "",
-    ItemName: "",
-    Supplier: "",
-    Category: "",
-    Amount: "",
-    Weight: "",
+    itemId: "",
+    itemName: "",
+    category: "",
+    amount: "",
+    weight: "",
   });
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ const EditProduct = (props) => {
 
   const fetchProduct = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3030/product/${id}`);
+      const response = await axios.get(`http://localhost:8080/items/${id}`);
       setProduct(response.data);
     } catch (error) {
       console.log(error);
@@ -51,7 +50,7 @@ const EditProduct = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.put(`http://localhost:3030/product/${id}`, product);
+      await axios.put(`http://localhost:8080/items/${id}`, product);
       fetchData();
       onCancel();
       // handle successful update, navigate or perform other actions
@@ -82,51 +81,42 @@ const EditProduct = (props) => {
             autoFocus
             margin="dense"
             id="itemName"
-            name="ItemName"
+            name="itemName"
             label="Item Name"
             type="text"
             fullWidth
-            value={product.ItemName}
+            value={product.itemName}
             onChange={handleInputChange}
           />
-          <TextField
-            margin="dense"
-            id="supplier"
-            name="Supplier"
-            label="Supplier"
-            type="text"
-            fullWidth
-            value={product.Supplier}
-            onChange={handleInputChange}
-          />
+
           <TextField
             margin="dense"
             id="category"
-            name="Category"
+            name="category"
             label="Category"
             type="text"
             fullWidth
-            value={product.Category}
+            value={product.category}
             onChange={handleInputChange}
           />
           <TextField
             margin="dense"
             id="amount"
-            name="Amount"
+            name="amount"
             label="Amount"
             type="text"
             fullWidth
-            value={product.Amount}
+            value={product.amount}
             onChange={handleInputChange}
           />
           <TextField
             margin="dense"
             id="weight"
-            name="Weight"
+            name="weight"
             label="Weight"
             type="text"
             fullWidth
-            value={product.Weight}
+            value={product.weight}
             onChange={handleInputChange}
           />
         </DialogContent>
