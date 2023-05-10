@@ -1,0 +1,21 @@
+.backdrop {
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  padding: 10vh;
+}
+
+.msg-dialog {
+  margin: auto;
+  width: 50%;
+  height: 100%;
+}
+
+.moveright {
+  float: right;
+}

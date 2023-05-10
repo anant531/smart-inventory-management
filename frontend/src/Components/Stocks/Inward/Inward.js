@@ -25,6 +25,8 @@ function ProductList() {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [Godown, selectedGodown] = useState("");
   const [godownData, setGodownData] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+
   const location = useLocation();
   const query = new URLSearchParams(location.search);
 
@@ -180,7 +182,7 @@ function ProductList() {
       let newInward = {
         recieptNo: smallId,
         SupplierName: supplier,
-        GodownId: Godown,
+        GodownId: godownData.location,
         DateOfSupply: formattedDate,
         RecievedBy: godownData.GodownSupervisor,
         Amount: amount,
@@ -195,6 +197,9 @@ function ProductList() {
         .catch((error) => {
           console.log(error);
         });
+      setSubmitting(true);
+      setSelectedProducts([]); // Reset selectedProducts to an empty array
+
       return updateResponse.data;
     } catch (error) {
       console.error(error);
@@ -279,6 +284,7 @@ function ProductList() {
                       type="checkbox"
                       name={product.id}
                       onChange={handleProductSelection}
+                      disabled={submitting}
                     />
                   </td>
                   <td>{product.ItemName}</td>
@@ -305,8 +311,20 @@ function ProductList() {
             >
               Calculate
             </button>
-            <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
-            <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
+            <input
+              className="Amount col-auto mt-4 narrow-input"
+              type="text"
+              value={`Total Amount: ₹${amount}`}
+              readOnly
+              style={{ margin: "0px 5px 0px 5px" }}
+            />
+            <input
+              className="Amount col-auto mt-4 narrow-input"
+              type="text"
+              value={`Total Weight: ${weight} (in qq)`}
+              readOnly
+            />
+
             <button
               onClick={handleOpen}
               className="btn btn-primary mb-3 col-auto"

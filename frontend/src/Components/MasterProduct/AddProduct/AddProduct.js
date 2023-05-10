@@ -94,11 +94,11 @@ const AddProduct = () => {
 
   const handleAddProduct = async () => {
     let newProduct = {
-      ItemName: name,
-      Supplier: supplierName,
-      Category: category,
-      Amount: price,
-      Weight: Weight,
+      itemName: name,
+      supplier: supplierName,
+      category: category,
+      amount: price,
+      weight: Weight,
     };
     console.log(newProduct);
     try {
@@ -113,7 +113,7 @@ const AddProduct = () => {
   return (
     <>
       <Button
-        size="large"
+        size="small"
         variant="outlined"
         className={classes.button}
         onClick={handleClickOpen}

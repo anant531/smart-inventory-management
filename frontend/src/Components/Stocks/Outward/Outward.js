@@ -330,8 +330,11 @@ import axios from "axios";
 
 import SelectGodown from "../Inward/selectGodown";
 import DatePicker from "react-datepicker";
+
 import GodownContext from "../../../contexts/GodownContext";
 import { useNavigate } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import { v4 as uuid } from "uuid";
 import "./Outward.css";
 
 import {
@@ -340,6 +343,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
 } from "@mui/material";
 import Table from "@mui/material/Table";
 import SelectSupplier from "../selectSupplier";
@@ -355,12 +359,15 @@ function Outward() {
   const [productList, setProductlist] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [updatedProduct, setUpdatedProduct] = useState([]);
-  const [supplier, selectSupplier] = useState("");
+  const [customer, setCustomer] = useState("");
   const [formattedDate, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [weight, setWeight] = useState("");
 
   const [open, setOpen] = useState(false);
+
+  const uniqueId = uuid();
+  const smallId = uniqueId.slice(0, 8);
 
   function handleDateChange(date) {
     const datestr = new Date(date);
@@ -370,6 +377,10 @@ function Outward() {
     console.log("date", formated);
     setDate(formated);
   }
+
+  const handleCustomerChange = (event) => {
+    setCustomer(event.target.value);
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -499,6 +510,25 @@ function Outward() {
 
     updateGodown(Godown, godownData);
     handleClose();
+
+    let newOutward = {
+      recieptNo: smallId,
+      CustomerName: customer,
+      GodownId: godownData.location,
+      DateOfSupply: formattedDate,
+      RecievedBy: godownData.GodownSupervisor,
+      Amount: amount,
+      product: selectedProducts,
+    };
+    console.log("Outward", newOutward);
+    axios
+      .post("http://localhost:3030/outward", newOutward)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -507,12 +537,7 @@ function Outward() {
       <div className="outward-container">
         <div className="outward-head-container">
           <SelectGodown selectGodown={selectGodown} />
-
-          <SelectSupplier
-            selectedSupplier={supplier}
-            handleChange={(val) => selectSupplier(val)}
-          />
-
+          &nbsp; &nbsp;
           <DatePicker
             className="form-control-sm"
             selected={selectedDate}
@@ -523,12 +548,12 @@ function Outward() {
           {!formattedDate && (
             <div className="invalid-feedback">Date is required</div>
           )}
-
           <Button
             variant="contained"
             size="small"
             className="browse-button"
             onClick={SearchProductHandler}
+            sx={{ backgroundColor: "#574AC0" }}
           >
             Browse Godown
           </Button>
@@ -580,8 +605,18 @@ function Outward() {
             >
               Calculate
             </button>
-            <p className="Amount col-auto mt-4">Total Amount : ₹{amount}</p>
-            <p className="Amount col-auto mt-4">Total Weight : {weight} q</p>
+            <input
+              className="Amount col-auto mt-4 narrow-input"
+              type="text"
+              value={`Total Amount: ₹${amount}`}
+              readOnly
+            />
+            <input
+              className="Amount col-auto mt-4 narrow-input"
+              type="text"
+              value={`Total Weight: ${weight} (in qq)`}
+              readOnly
+            />
             <button
               onClick={handleOpen}
               className="btn btn-primary mb-3 col-auto"
