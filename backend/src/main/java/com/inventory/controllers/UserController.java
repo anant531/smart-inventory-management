@@ -35,7 +35,6 @@ public class UserController {
 		Optional<Roles> roleFound = rolesRepository.findByName(e.getRole().getName());
 		if(roleFound.isPresent()) {
 			e.setRole(roleFound.get());
-			e.setGodownList(godownRepository.findAllByGodownLocation(e.getLocation()));
 			userRepository.save(e);
 		}
 	}
@@ -65,7 +64,7 @@ public class UserController {
 		}
 	}
 
-	@PutMapping("/user")
+	@PutMapping("/user/{id}")
 	public void updateUser(@RequestBody Employee e){
 		userRepository.save(e);
 	}

@@ -1,6 +1,8 @@
 package com.inventory.controllers;
 
+import com.inventory.entities.Category;
 import com.inventory.entities.Items;
+import com.inventory.repositories.CategoryRepository;
 import com.inventory.repositories.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ public class ItemsController {
 	@Autowired
 	ItemsRepository itemsRepository;
 
+	@Autowired
+	CategoryRepository categoryRepository;
+
 	@GetMapping("/items")
 	public List<Items> getAllItems(){
 		return itemsRepository.findAll();
@@ -26,6 +31,14 @@ public class ItemsController {
 
 	@PostMapping("/items")
 	public void addItems(@RequestBody Items item) {
+		Category categoryFound = categoryRepository.findByCategory(item.getCategory().getCategory());
+		if(categoryFound == null){
+			categoryFound = new Category();
+			categoryFound = item.getCategory();
+			categoryRepository.save(categoryFound);
+		}
+
+		item.setCategory(categoryFound);
 		itemsRepository.save(item);
 	}
 
@@ -37,7 +50,7 @@ public class ItemsController {
 		}
 	}
 
-	@PutMapping(path = "/items")
+	@PutMapping(path = "/items/{id}")
 	public void updateItem(@RequestBody Items item){
 		itemsRepository.save(item);
 	}

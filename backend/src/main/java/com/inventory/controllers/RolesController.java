@@ -32,7 +32,7 @@ public class RolesController {
 		}
 	}
 	
-	@PutMapping(path = "/roles")
+	@PutMapping(path = "/roles/{id}")
 	public void updateUser(@RequestBody Roles r) {
 		rolesRepository.save(r);
 	}
