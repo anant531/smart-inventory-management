@@ -13,44 +13,43 @@ import java.util.Optional;
 @RestController
 public class GodownController {
 
-		@Autowired
-		GodownRepository godownRepository;
-		
-		@Autowired
-		ItemsRepository itemsRepository;
-		
-		@Autowired
-		GodownItemRepository godownItemRepository;
+	@Autowired
+	GodownRepository godownRepository;
 
-		@GetMapping("/godown")
-		public List<Godown> getAllGodown() {
-			return godownRepository.findAll();
+	@Autowired
+	ItemsRepository itemsRepository;
+
+	@Autowired
+	GodownItemRepository godownItemRepository;
+
+	@GetMapping("/godown")
+	public List<Godown> getAllGodown() {
+		System.out.println(godownRepository.findAll());
+		return godownRepository.findAll();
+	}
+
+	@GetMapping("/godown/{id}")
+	public Optional<Godown> getGodownById(@PathVariable long id) {
+		return godownRepository.findById(id);
+	}
+
+	@PostMapping("/godown")
+	public void addGodown(@RequestBody Godown g) {
+		g.setCurrentCapacity(g.getGodownCapacity());
+		godownRepository.save(g);
+	}
+
+	@DeleteMapping("/godown/{id}")
+	public void deleteGodown(@PathVariable long id){
+		Optional<Godown> godownFound = godownRepository.findById(id);
+		if(godownFound.isPresent()){
+			godownRepository.delete(godownFound.get());
 		}
+	}
 
-		@GetMapping("/godown/{id}")
-		public Optional<Godown> getGodownById(@PathVariable long id) {
-
-			return godownRepository.findById(id);
-		}
-
-		@PostMapping("/godown")
-		public void addGodown(@RequestBody Godown g) {
-
-			godownRepository.save(g);
-		}
-
-		@DeleteMapping("/godown")
-		public void deleteGodown(@RequestBody Godown g){
-			Optional<Godown> godownFound = godownRepository.findById(g.getGodownId());
-			if(godownFound.isPresent()){
-				godownRepository.delete(g);
-			}
-		}
-
-		@PutMapping(path = "/godown/{id}")
-		public void updateGodown(@RequestBody Godown g){
-
-			godownRepository.save(g);
-		}
+	@PutMapping(path = "/godown/{id}")
+	public void updateGodown(@RequestBody Godown g){
+		godownRepository.save(g);
+	}
 
 }

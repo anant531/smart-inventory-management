@@ -17,6 +17,7 @@ import Analytics from "./Components/Analytics/Analytics";
 import { ProductDialog } from "./Components/Analytics/ProductDialog";
 import AccessDeniedPage from "./Components/AccessDeniedPage/AccessDeniedPage";
 import EditProduct from "./Components/MasterProduct/EditProduct";
+import { OutwardDialog } from "./Components/Analytics/OutwardDialog";
 
 function App() {
   const { token } = useSelector((state) => state.tokenReducer);
@@ -40,17 +41,23 @@ function App() {
             </Route>
             <Route path={"/analytics/*"} element={<Analytics />}>
               <Route path="inward-data" element={<ProductDialog />} />
+              <Route path="outward-data" element={<OutwardDialog />} />
             </Route>
             <Route
               path={"/inward"}
               element={
-                token && role === "manager" ? <Inward /> : <AccessDeniedPage />
+                token &&
+                (role === "Manager" || role === "Godown Supervisor") ? (
+                  <Inward />
+                ) : (
+                  <AccessDeniedPage />
+                )
               }
             />
             <Route
               path={"/outward"}
               element={
-                token && role === "manager" ? <Outward /> : <AccessDeniedPage />
+                token && role === "Manager" ? <Outward /> : <AccessDeniedPage />
               }
             />
 

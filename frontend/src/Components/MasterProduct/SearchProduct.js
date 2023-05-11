@@ -68,7 +68,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
-const SearchProduct = ({ handleSelectedCategory }) => {
+const SearchProduct = ({ handleSelectedCategory, category }) => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
 
@@ -93,9 +93,9 @@ const SearchProduct = ({ handleSelectedCategory }) => {
   };
 
   return (
-    <FormControl>
+    <FormControl fullWidth>
       <InputLabel>Category</InputLabel>
-      <Select value={selectedCategory} onChange={handleCategoryChange}>
+      <Select value={category} onChange={handleCategoryChange}>
         {categories.map((category) => (
           <MenuItem key={category.categoryId} value={category.category}>
             {category.category}

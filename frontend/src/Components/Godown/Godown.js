@@ -236,7 +236,7 @@ import { Hidden } from "@mui/material";
 const Godown = () => {
   const [godowns, setGodowns] = useState([]);
 
-  const [editableGodown, setEditableGodown] = useState({});
+  const [editableGodown, setEditableGodown] = useState([{}]);
 
   const [showPopup, setShowPopup] = useState(false);
 
@@ -409,7 +409,7 @@ const Godown = () => {
                       Godown location
                     </AnimatingStyledTableCell>
                     <AnimatingStyledTableCell align="center">
-                      Capacity (qq)
+                      Capacity (q)
                     </AnimatingStyledTableCell>
                     <AnimatingStyledTableCell align="center">
                       Supervisor

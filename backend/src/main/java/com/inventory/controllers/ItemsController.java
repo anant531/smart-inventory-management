@@ -37,16 +37,17 @@ public class ItemsController {
 		itemsRepository.save(item);
 	}
 
-	@DeleteMapping(path = "/items")
-	public void deleteItem(@RequestBody Items item){
-		Optional<Items> itemFound = itemsRepository.findById(item.getItemId());
+	@DeleteMapping(path = "/items/{id}")
+	public void deleteItem(@PathVariable long id){
+		Optional<Items> itemFound = itemsRepository.findById(id);
 		if(itemFound.isPresent()){
-			itemsRepository.delete(item);
+			itemsRepository.delete(itemFound.get());
 		}
 	}
 
 	@PutMapping(path = "/items/{id}")
-	public void updateItem(@RequestBody Items item){
+	public void updateItem(@PathVariable long id, @RequestBody Items item){
+		item.setItemId(id);
 		itemsRepository.save(item);
 	}
 

@@ -26,7 +26,7 @@ const SignIn = () => {
   useEffect(() => {
     // Fetch employee data
     axios
-      .get("http://localhost:3030/employee")
+      .get("http://localhost:8080/user")
       .then((response) => {
         // Update state with the response data
         setEmployeeData(response.data);
