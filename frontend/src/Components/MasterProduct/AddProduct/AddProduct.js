@@ -94,18 +94,15 @@ const AddProduct = () => {
 
   const handleAddProduct = async () => {
     let newProduct = {
-      ItemName: name,
-      Supplier: supplierName,
-      Category: category,
-      Amount: price,
-      Weight: Weight,
+      itemName: name,
+      supplier: supplierName,
+      category: category,
+      amount: price,
+      weight: Weight,
     };
-    console.log(newProduct);
-    try {
-      await addProduct(newProduct);
-    } catch (error) {
-      console.log(error);
-    }
+
+    addProduct(newProduct);
+
     navigate("/product?added=true");
     handleClose();
   };

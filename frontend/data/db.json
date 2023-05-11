@@ -25,208 +25,175 @@
       "createdAt": "2022-12-20T00:00:00.000Z"
     }
   ],
-  "users": [
-    {
-      "name": "abc",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 1
-    },
-    {
-      "name": "abc",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 2
-    },
-    {
-      "name": "abc",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 3
-    },
-    {
-      "name": "abc",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 4
-    },
-    {
-      "name": "abc",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 5
-    },
-    {
-      "name": "abc",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 6
-    },
-    {
-      "name": "xss",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 7
-    },
-    {
-      "name": "xss",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 8
-    },
-    {
-      "name": "xss",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 9
-    },
-    {
-      "name": "xss",
-      "email": "abc@abc",
-      "password": "abc",
-      "id": 10
-    },
-    {
-      "name": "Rishi",
-      "email": "rishi.vardhan9899@gmail.com",
-      "password": "Rish",
-      "id": 11
-    },
-    {
-      "name": "Rishi",
-      "email": "rishi.vardhan9899@gmail.com",
-      "password": "anc",
-      "id": 12
-    }
-  ],
+  "users": [],
+  "users": [],
   "godown": [
     {
-      "location": "Mumbai",
-      "Capacity": 18338,
-      "GodownSupervisor": "Muruha",
-      "createdAt": "2023-04-24",
-      "products": [
-        {
-          "id": "6",
-          "quantity": 12
-        },
-        {
-          "id": "7",
-          "quantity": 6
-        },
-        {
-          "id": "VvMdIa_",
-          "quantity": 16
-        },
-        {
-          "id": "KtgqEv5",
-          "quantity": 10
-        }
-      ],
-      "id": 11
-    },
-    {
-      "location": "Mumbai",
-      "Capacity": 17133,
-      "GodownSupervisor": "Muruha",
-      "createdAt": "2023-04-24",
-      "products": [
-        {
-          "id": "7",
-          "quantity": 0
-        },
-        {
-          "id": "8",
-          "quantity": 0
-        },
-        {
-          "id": "6",
-          "quantity": 132
-        },
-        {
-          "id": "19",
-          "quantity": 14
-        },
-        {
-          "id": "9",
-          "quantity": 15
-        },
-        {
-          "id": "7sOKSdz",
-          "quantity": 901
-        }
-      ],
-      "id": 12
-    },
-    {
-      "location": "Mumbai",
-      "Capacity": 18227,
-      "GodownSupervisor": "Muruha",
-      "createdAt": "2023-04-24",
-      "products": [
-        {
-          "id": "1",
-          "quantity": 29
-        },
-        {
-          "id": "5",
-          "quantity": 39
-        },
-        {
-          "id": "4",
-          "quantity": 81
-        }
-      ],
-      "id": 13
-    },
-    {
       "location": "Hyderbad",
-      "Capacity": 8777,
-      "GodownSupervisor": "haran",
+      "Capacity": 9991.83,
+      "GodownSupervisor": "anantasdf",
+      "createdAt": "2023-03-27",
+      "location": "Hyderbad",
+      "Capacity": 9752.619999999999,
+      "GodownSupervisor": "gigi",
       "createdAt": "2023-03-27",
       "products": [
         {
           "id": "6",
-          "quantity": 0
+          "quantity": 9
+        },
+        {
+          "id": "KtgqEv5",
+          "quantity": 16
         },
         {
           "id": "7",
-          "quantity": 0
+          "quantity": 9
         },
         {
-          "id": "19",
-          "quantity": 101
+          "id": "11",
+          "quantity": 25
+        },
+        {
+          "id": "1",
+          "quantity": 25
+        },
+        {
+          "id": "4",
+          "quantity": 6
+        },
+        {
+          "id": "5",
+          "quantity": 15
+        },
+        {
+          "id": "wYkv6no",
+          "quantity": 900
         },
         {
           "id": "10",
-          "quantity": 100
+          "quantity": 7
         },
         {
-          "id": "YolcmZa",
-          "quantity": 12
-        },
-        {
-          "id": "168",
-          "quantity": 17
-        },
-        {
-          "id": "9",
-          "quantity": 77
-        },
-        {
-          "id": "8",
-          "quantity": 19
+          "id": "VvMdIa_",
+          "quantity": 2
         }
       ],
       "id": 14
     },
     {
-      "location": "hfdah",
-      "Capacity": "127",
-      "GodownSupervisor": "shbadhy",
-      "createdAt": "2023-04-03",
-      "products": [],
+      "location": "yuyuyu",
+      "Capacity": "7118",
+      "GodownSupervisor": "ywad",
+      "createdAt": "2023-05-16",
+      "products": [
+        {
+          "id": "1",
+          "quantity": 9
+        },
+        {
+          "id": "4",
+          "quantity": 0
+        },
+        {
+          "id": "8",
+          "quantity": 1
+        },
+        {
+          "id": "KtgqEv5",
+          "quantity": 1
+        },
+        {
+          "id": "wYkv6no",
+          "quantity": 1
+        },
+        {
+          "id": "7",
+          "quantity": 1
+        },
+        {
+          "id": "9",
+          "quantity": 1
+        }
+      ],
       "id": 15
+    },
+    {
+      "location": "chennai",
+      "Capacity": 999.88,
+      "GodownSupervisor": "Bharath",
+      "createdAt": "2023-05-17",
+      "products": [
+        {
+          "id": "KtgqEv5",
+          "quantity": 1
+        }
+      ],
+      "id": 16
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 18
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 19
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 20
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 21
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 22
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 23
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 24
+    },
+    {
+      "location": "zxcv ",
+      "Capacity": "234",
+      "GodownSupervisor": "asdfg",
+      "createdAt": "+011111-01",
+      "products": [],
+      "id": 25
     }
   ],
   "product": [
@@ -235,83 +202,71 @@
       "ItemName": "Mineral Water 1L",
       "Supplier": "Nestle",
       "Category": "Mineral Water",
-      "Amount": "20"
+      "Amount": "20",
+      "Weight": "17"
     },
     {
       "id": "4",
       "ItemName": "Kinley",
       "Supplier": "Coca-Cola",
       "Category": "Mineral Water",
-      "Amount": "30"
-    },
-    {
-      "id": "5",
-      "ItemName": "Aquafina",
-      "Supplier": "PepsiCo",
-      "Category": "Mineral Water",
-      "Amount": "18"
+      "Amount": "30",
+      "Weight": "10"
     },
     {
       "id": "6",
       "ItemName": "Dairy Milk",
       "Supplier": "Cadbury",
       "Category": "Chocolates",
-      "Amount": "25"
+      "Amount": "25",
+      "Weight": "14"
     },
     {
       "id": "7",
       "ItemName": "KitKat",
       "Supplier": "Nestle",
       "Category": "Chocolates",
-      "Amount": "20"
+      "Amount": "20",
+      "Weight": "18"
     },
     {
       "id": "8",
       "ItemName": "Snickers",
       "Supplier": "Mars",
       "Category": "Chocolates",
-      "Amount": "22"
+      "Amount": "22",
+      "Weight": "15"
     },
     {
       "id": "9",
       "ItemName": "Bounty",
       "Supplier": "Mars",
       "Category": "Chocolates",
-      "Amount": "23"
+      "Amount": "23",
+      "Weight": "16"
     },
     {
       "id": "19",
       "ItemName": "Silk",
       "Supplier": "Mars",
       "Category": "Chocolates",
-      "Amount": "23"
+      "Amount": "23",
+      "Weight": "19"
     },
     {
       "id": "10",
       "ItemName": "Milkybar",
       "Supplier": "Nestle",
       "Category": "Chocolates",
-      "Amount": "18"
-    },
-    {
-      "id": "11",
-      "ItemName": "Lays",
-      "Supplier": "PepsiCo",
-      "Category": "Snacks",
-      "Amount": "10"
-    },
-    {
-      "id": 1682780818488,
-      "ItemName": "Giggy",
-      "Supplier": "Gig",
-      "Category": "Chocolates",
-      "Amount": "100"
+      "Amount": "18",
+      "Weight": "11"
     },
     {
       "ItemName": "Giggy",
       "Supplier": "Gig",
       "Category": "Toothpaste",
       "Amount": "100",
+      "Weight": "18",
       "id": "1682780828598"
     },
     {
@@ -319,35 +274,88 @@
       "Supplier": "ip",
       "Category": "Chocolates",
       "Amount": "1000",
+      "Weight": "14",
       "id": "VvMdIa_"
-    },
-    {
-      "ItemName": "Subri",
-      "Supplier": "NA",
-      "Category": "Toothpaste",
-      "Amount": "1999",
-      "id": "zKY7LhB"
     },
     {
       "ItemName": "Samosa",
       "Supplier": "mumbai",
       "Category": "Snacks",
       "Amount": "7",
+      "Weight": "12",
       "id": "KtgqEv5"
     },
     {
-      "ItemName": "Tamarai",
-      "Supplier": "tn",
-      "Category": "Mineral Water",
-      "Amount": "5",
-      "id": "dB6vhfU"
+      "ItemName": "Chicken",
+      "Supplier": "gigi",
+      "Category": "Non-veg",
+      "Amount": "100",
+      "Weight": "190",
+      "id": "wYkv6no"
     },
     {
-      "ItemName": "Samsung",
-      "Supplier": "Japan",
-      "Category": "Mobile Phone",
-      "Amount": "700",
-      "id": "7sOKSdz"
+      "ItemName": "Colgate",
+      "Supplier": "Colgate",
+      "Category": "Toothpaste",
+      "Amount": "10",
+      "Weight": "5",
+      "id": "YijWgSn"
+    },
+    {
+      "ItemName": "ascasc",
+      "Supplier": "ascasc",
+      "Category": "Chocolates",
+      "Amount": "2323",
+      "Weight": "121",
+      "id": "nngfaql"
+    },
+    {
+      "ItemName": "asdfghasdfs",
+      "Supplier": "s",
+      "Category": "Chocolates",
+      "Amount": "2345",
+      "Weight": "123",
+      "id": "pqSTuVA"
+    },
+    {
+      "ItemName": "asdfghasdfs",
+      "Supplier": "s",
+      "Category": "Chocolates",
+      "Amount": "2345",
+      "Weight": "123",
+      "id": "FANtItp"
+    },
+    {
+      "ItemName": "asdfghasdfs",
+      "Supplier": "s",
+      "Category": "Chocolates",
+      "Amount": "2345",
+      "Weight": "123",
+      "id": "dKvTMH_"
+    },
+    {
+      "ItemName": "dgf",
+      "Supplier": "tdthg",
+      "Category": "hjh",
+      "Amount": "665",
+      "Weight": "667",
+      "id": "1sa-l5B"
+    },
+    {
+      "ItemName": "dgf",
+      "Supplier": "tdthg",
+      "Category": "Mineral Water",
+      "Amount": "665",
+      "Weight": "667",
+      "id": "A9Y7YJn"
+    },
+    {
+      "ItemName": "rtghjk",
+      "Supplier": "rtyuio",
+      "Category": "Chocolates",
+      "Amount": "4567234",
+      "Weight": "2345",
+      "id": "1RseSRI"
     }
   ],
   "employee": [
@@ -454,6 +462,256 @@
       "email": "riya.shah@example.com",
       "phone": "9876543210",
       "imageUrl": "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg"
+    }
+  ],
+  "supplier": [
+    {
+      "id": "1",
+      "name": "ABC Suppliers",
+      "address": "123 Main Street, Anytown, USA",
+      "email": "abc@example.com",
+      "contactNumber": "123-456-7890"
+    },
+    {
+      "id": "2",
+      "name": "XYZ Distributors",
+      "address": "456 Maple Avenue, Anytown, USA",
+      "email": "xyz@example.com",
+      "contactNumber": "555-555-5555"
+    },
+    {
+      "id": "3",
+      "name": "PQR Wholesalers",
+      "address": "789 Oak Road, Anytown, USA",
+      "email": "pqr@example.com",
+      "contactNumber": "888-888-8888"
+    },
+    {
+      "id": "4",
+      "name": "LMN Suppliers",
+      "address": "321 Elm Street, Anytown, USA",
+      "email": "lmn@example.com",
+      "contactNumber": "777-777-7777"
+    },
+    {
+      "id": "5",
+      "name": "DEF Distributors",
+      "address": "654 Birch Lane, Anytown, USA",
+      "email": "def@example.com",
+      "contactNumber": "999-999-9999"
+    }
+  ],
+  "inward": [
+    {
+      "recieptNo": "74a968ab",
+      "SupplierName": "ABC Suppliers",
+      "GodownId": 11,
+      "DateOfSupply": "2023-05-04",
+      "RecievedBy": "Bharat",
+      "Amount": 26085,
+      "product": [
+        {
+          "id": "KtgqEv5",
+          "quantity": 13
+        },
+        {
+          "id": "8",
+          "quantity": 236
+        },
+        {
+          "id": "9",
+          "quantity": 568
+        },
+        {
+          "id": "19",
+          "quantity": 343
+        }
+      ],
+      "id": 1
+    },
+    {
+      "recieptNo": "c6a529d9",
+      "SupplierName": "ABC Suppliers",
+      "GodownId": 13,
+      "DateOfSupply": "2023-05-09",
+      "RecievedBy": "Muruha",
+      "Amount": 27,
+      "product": [
+        {
+          "id": "KtgqEv5",
+          "quantity": 11
+        },
+        {
+          "id": "1",
+          "quantity": 69
+        }
+      ],
+      "id": 2
+    },
+    {
+      "recieptNo": "e26ad5eb",
+      "SupplierName": "XYZ Distributors",
+      "GodownId": 13,
+      "DateOfSupply": "2023-05-16",
+      "RecievedBy": "Muruha",
+      "Amount": 107,
+      "product": [
+        {
+          "id": "KtgqEv5",
+          "quantity": 12
+        },
+        {
+          "id": "wYkv6no",
+          "quantity": 1
+        }
+      ],
+      "id": 3
+    },
+    {
+      "recieptNo": "783ca00f",
+      "SupplierName": "ABC Suppliers",
+      "GodownId": 15,
+      "DateOfSupply": "2023-04-30",
+      "RecievedBy": "ywad",
+      "Amount": 172,
+      "product": [
+        {
+          "id": "KtgqEv5",
+          "quantity": 1
+        },
+        {
+          "id": "wYkv6no",
+          "quantity": 1
+        },
+        {
+          "id": "7",
+          "quantity": 1
+        },
+        {
+          "id": "8",
+          "quantity": 1
+        },
+        {
+          "id": "9",
+          "quantity": 1
+        }
+      ],
+      "id": 4
+    },
+    {
+      "recieptNo": "8038e664",
+      "SupplierName": "DEF Distributors",
+      "GodownId": 13,
+      "DateOfSupply": "2023-03-29",
+      "RecievedBy": "Muruha",
+      "Amount": 222,
+      "product": [
+        {
+          "id": "KtgqEv5",
+          "quantity": 13
+        },
+        {
+          "id": "wYkv6no",
+          "quantity": 2
+        },
+        {
+          "id": "7",
+          "quantity": 11
+        },
+        {
+          "id": "8",
+          "quantity": 124
+        },
+        {
+          "id": "9",
+          "quantity": 97
+        },
+        {
+          "id": "1",
+          "quantity": 70
+        },
+        {
+          "id": "4",
+          "quantity": 224
+        }
+      ],
+      "id": 5
+    },
+    {
+      "recieptNo": "9f26f8e0",
+      "SupplierName": "XYZ Distributors",
+      "GodownId": 13,
+      "DateOfSupply": "2023-05-04",
+      "RecievedBy": "Muruha",
+      "Amount": 647,
+      "product": [
+        {
+          "id": "YijWgSn",
+          "quantity": 18
+        },
+        {
+          "id": "6",
+          "quantity": 134
+        },
+        {
+          "id": "7",
+          "quantity": 12
+        },
+        {
+          "id": "8",
+          "quantity": 125
+        }
+      ],
+      "id": 6
+    },
+    {
+      "recieptNo": "fb9a0af9",
+      "SupplierName": "ABC Suppliers",
+      "GodownId": 16,
+      "DateOfSupply": "2023-05-02",
+      "RecievedBy": "Bharat",
+      "Amount": 7,
+      "product": [
+        {
+          "id": "KtgqEv5",
+          "quantity": 1
+        }
+      ],
+      "id": 7
+    },
+    {
+      "recieptNo": "d8b6dafb",
+      "SupplierName": "ABC Suppliers",
+      "GodownId": 14,
+      "DateOfSupply": "2023-05-02",
+      "RecievedBy": "haran",
+      "Amount": 7,
+      "product": [
+        {
+          "id": "KtgqEv5",
+          "quantity": 16
+        }
+      ],
+      "id": 8
+    },
+    {
+      "recieptNo": "12b4a1d1",
+      "SupplierName": "ABC Suppliers",
+      "GodownId": 14,
+      "DateOfSupply": "2023-05-02",
+      "RecievedBy": "anant",
+      "Amount": 8126,
+      "product": [
+        {
+          "id": "10",
+          "quantity": 7
+        },
+        {
+          "id": "VvMdIa_",
+          "quantity": 8
+        }
+      ],
+      "id": 9
     }
   ]
 }

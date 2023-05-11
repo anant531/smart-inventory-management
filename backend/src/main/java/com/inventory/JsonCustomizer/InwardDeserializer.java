@@ -6,9 +6,11 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.inventory.entities.Inward;
+import com.inventory.entities.Supplier;
 import com.inventory.linktables.InwardItem;
 import com.inventory.repositories.GodownRepository;
 import com.inventory.repositories.ItemsRepository;
+import com.inventory.repositories.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
@@ -24,13 +26,17 @@ public class InwardDeserializer extends JsonDeserializer<Inward> {
     @Autowired
     ItemsRepository itemsRepository;
 
+    @Autowired
+    SupplierRepository supplierRepository;
+
     @Override
     public Inward deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException {
         ObjectCodec codec = jsonParser.getCodec();
         JsonNode node = codec.readTree(jsonParser);
 
         long godownId = node.get("godownId").asLong();
-        String nameofSupplier = node.get("nameofSupplier").asText();
+        String supplierName = node.get("supplier").asText();
+        Supplier supplier = supplierRepository.findBySupplierName(supplierName);
         Set<InwardItem> inwardItems = new HashSet<>();
         JsonNode inwardItemNode = node.get("inwardItem");
         if(inwardItemNode.isArray()){
@@ -52,6 +58,6 @@ public class InwardDeserializer extends JsonDeserializer<Inward> {
         String receivedBy = node.get("receivedBy").asText();
 
 
-        return new Inward(godownRepository.findById(godownId).orElse(null), inwardItems, nameofSupplier, billCheckedBy, LocalDateTime.now(),invoiceNo,receiptNo,receivedBy);
+        return new Inward(godownRepository.findById(godownId).orElse(null), inwardItems, supplier, billCheckedBy, LocalDateTime.now(),invoiceNo,receiptNo,receivedBy);
     }
 }

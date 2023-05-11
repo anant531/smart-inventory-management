@@ -1,8 +1,11 @@
 package com.inventory.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.inventory.JsonCustomizer.ItemsDeserializer;
+import com.inventory.JsonCustomizer.ItemsSerializer;
 import com.inventory.linktables.GodownItem;
-import com.inventory.linktables.OutwardItem;
 import lombok.*;
 
 import javax.persistence.*;
@@ -15,6 +18,8 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 @NoArgsConstructor
+@JsonSerialize(using = ItemsSerializer.class)
+@JsonDeserialize(using = ItemsDeserializer.class)
 public class Items {
 
 	@Id
@@ -22,8 +27,10 @@ public class Items {
 	long itemId;
 	
 	String itemName;
-	String supplier;
-	String category;
+
+	@OneToOne
+	Category category;
+
 	double amount;
 	double weight;
 	
@@ -31,9 +38,11 @@ public class Items {
 	@JsonIgnore
     private Set<GodownItem> godownItems = new HashSet<>();
 
-//	public Items(long itemId) {
-//		this.itemId = itemId;
-//	}
-
+	public Items(String itemName, Category category, double amount, double weight) {
+		this.itemName = itemName;
+		this.category = category;
+		this.amount = amount;
+		this.weight = weight;
+	}
 }
 

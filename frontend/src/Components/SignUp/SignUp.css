@@ -1,0 +1,89 @@
+/* .container {
+  max-width: 500px;
+} */
+
+.mt-5 {
+  margin-top: 3rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.bg-light {
+  background-color: #f8f9fa;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.h5 {
+  font-size: 1.25rem;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  margin-bottom: 1rem;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+.btn-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  text-decoration: underline;
+}
+.table-container {
+  max-height: 350px; /* Adjust the height value as needed */
+  overflow-y: auto;
+}
+
+.table {
+  width: 100%; /* Adjust the width value as needed */
+}
+
+.wrapper-signup {
+  background-image: url(https://ik.imagekit.io/ccyubla1p9v/wp-content/uploads/2023/01/shutterstock_1930996376-1.png);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  /* width: 100%;
+  min-height: 100%;
+  padding: 140px; */
+}
+
+.popup {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: #49d269;
+  color: white;
+  border-radius: 5px;
+  animation-name: popup;
+  animation-duration: 2s;
+}

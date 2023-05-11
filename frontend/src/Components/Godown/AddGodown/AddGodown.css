@@ -4,16 +4,17 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 50%;
+  z-index: 100;
   background-color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 15%;
 }
 
 .msg-dialog {
   position: fixed;
   left: 30vw;
-  top: 20vh;
+  top: 5vh;
   width: 40vw;
   /* height: 30vh; */
-  z-index: 70%;
+  /* z-index: 70%; */
   background-color: #fff;
 }

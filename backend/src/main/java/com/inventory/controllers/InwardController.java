@@ -51,10 +51,14 @@ public class InwardController {
 		for(InwardItem inwardItem : i.getInwardItem()){
 			GodownItemId godownItemId = new GodownItemId(i.getGodown().getGodownId(), inwardItem.getItem().getItemId());
 			Optional<GodownItem> godownItemFound = godownItemRepository.findById(godownItemId);
+			totalWeight = totalWeight + (inwardItem.getItem().getWeight() * inwardItem.getQuantity());
 			if(godownItemFound.isPresent()){
 				GodownItem godownItem = godownItemFound.get();
 				godownItem.setQuantity(godownItem.getQuantity() + inwardItem.getQuantity());
-				godownItemRepository.save(godownItem);
+				if((totalWeight / 100) < godownFound.get().getGodownCapacity()){
+					godownItemRepository.save(godownItem);
+				}
+
 			}
 			else{
 				GodownItem godownItem = new GodownItem();
@@ -62,7 +66,10 @@ public class InwardController {
 				godownItem.setItem(itemsRepository.findById(inwardItem.getItem().getItemId()).orElse(null));
 				godownItem.setGodown(godownRepository.findById(i.getGodown().getGodownId()).orElse(null));
 				godownItem.setQuantity(inwardItem.getQuantity());
-				godownItemRepository.save(godownItem);
+
+				if((totalWeight / 100) < godownFound.get().getGodownCapacity()){
+					godownItemRepository.save(godownItem);
+				}
 			}
 		}
 	}

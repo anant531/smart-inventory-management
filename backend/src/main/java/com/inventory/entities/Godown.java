@@ -25,11 +25,12 @@ public class Godown {
 
 	String godownLocation;
 
-	long godownCapacity;
+	double godownCapacity;
 
 	String supervisor;
 
 	Date startDate;
+
 	
 	@OneToMany(mappedBy = "godown", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JsonSerialize(using = GodownItemSerializer.class)

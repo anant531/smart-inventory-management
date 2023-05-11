@@ -13,17 +13,20 @@ code {
 }
 
 .pro-sidebar-content {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(51, 51, 51);
 }
 
 #header .pro-sidebar-header {
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(51, 51, 51);
 }
 
 .pro-item-content {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
-.css-jh1zeg {
-  background-color: rgb(138, 138, 1);
+.css-15wwp11-MuiTableHead-root {
+  background-color: black;
+}
+.css-zd7ftd-MuiFormControl-root {
+  padding-right: 20px;
 }

@@ -10,17 +10,17 @@ const GodownProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3030/godown")
+      .get("http://localhost:8080/godown")
       .then((response) => setGodown(response.data))
       .catch((error) => console.log(error));
 
     axios
-      .get("http://localhost:3030/product")
+      .get("http://localhost:8080/items")
       .then((response) => setProduct(response.data))
       .catch((error) => console.log(error));
 
     axios
-      .get("http://localhost:3030/supplier")
+      .get("http://localhost:8080/supplier")
       .then((response) => setSupplier(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -28,7 +28,7 @@ const GodownProvider = ({ children }) => {
   const addGodown = async (newGodown) => {
     try {
       const response = await axios.post(
-        "http://localhost:3030/godown",
+        "http://localhost:8080/godown",
         newGodown
       );
       setGodown([...godown, response.data]);
@@ -49,7 +49,7 @@ const GodownProvider = ({ children }) => {
   const addProduct = async (newProduct) => {
     try {
       const response = await axios.post(
-        "http://localhost:3030/product",
+        "http://localhost:8080/items",
         newProduct
       );
       setProduct([...product, response.data]);
@@ -70,13 +70,18 @@ const GodownProvider = ({ children }) => {
     }
   };
 
-  const updateGodown = async (godownId, updatedGodown) => {
+  const handleEditGodown = async (editableGodown) => {
     try {
       const response = await axios.put(
-        `http://localhost:3030/godown/${godownId}`,
-        updatedGodown
+        `http://localhost:3030/godown`,
+        editableGodown
       );
-      setGodown(godown.map((g) => (g.id === godownId ? response.data : g)));
+      const updatedGodown = response.data;
+      setGodown(
+        godown.map((row) =>
+          row.godownId === updatedGodown.godownId ? updatedGodown : row
+        )
+      );
     } catch (error) {
       console.log(error);
     }
@@ -92,7 +97,7 @@ const GodownProvider = ({ children }) => {
         deleteGodown,
         addProduct,
         addInward,
-        updateGodown,
+        handleEditGodown,
       }}
     >
       {children}

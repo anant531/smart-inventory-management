@@ -22,7 +22,7 @@ public class Employee{
 	String phone;
 	String password;
 	String name;
-
+	String location;
 
 	@OneToOne()
 	@JoinColumn(name = "role_id")

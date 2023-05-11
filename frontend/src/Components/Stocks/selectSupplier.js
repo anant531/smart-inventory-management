@@ -12,7 +12,7 @@ const SelectSupplier = (props) => {
   console.log(supplier);
 
   return (
-    <FormControl fullWidth>
+    <FormControl fullWidth sx={{ marginRight: 4 }}>
       <InputLabel id="category-select-label">Select a Supplier</InputLabel>
       <Select
         labelId="category-select-label"
@@ -20,19 +20,17 @@ const SelectSupplier = (props) => {
         value={selectedSupplier}
         label="Select a category"
         onChange={handleOptionChange}
-        style={{
-          minWidth: "200px",
-          width: "100%",
-          minWidth: "200px",
-          width: "auto",
-          background: "#f5f5f5",
-          boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-          borderRadius: "4px",
-        }}
+        // style={{
+        //   minWidth: "20%",
+        //   width: "10%",
+        //   background: "#f5f5f5",
+        //   boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+        //   borderRadius: "4px",
+        // }}
       >
         {supplier.map((item) => (
-          <MenuItem key={item.id} value={item.name}>
-            {item.name}
+          <MenuItem key={item.supplierId} value={item.supplierName}>
+            {item.supplierName}
           </MenuItem>
         ))}
       </Select>
