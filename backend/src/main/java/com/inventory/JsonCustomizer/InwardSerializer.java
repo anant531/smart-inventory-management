@@ -12,11 +12,11 @@ public class InwardSerializer extends JsonSerializer<Inward> {
 
     @Override
     public void serialize(Inward inward, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        System.out.println(inward);
         jsonGenerator.writeStartObject();
         jsonGenerator.writeNumberField("inwardId", inward.getInwardId());
         jsonGenerator.writeNumberField("godownId", inward.getGodown().getGodownId());
 
-//        jsonGenerator.writeFieldName("InwardItem");
         jsonGenerator.writeFieldName("InwardItem");
         jsonGenerator.writeStartArray();
         for(InwardItem inwardItem : inward.getInwardItem()){

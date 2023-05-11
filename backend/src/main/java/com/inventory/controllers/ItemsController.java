@@ -46,7 +46,8 @@ public class ItemsController {
 	}
 
 	@PutMapping(path = "/items/{id}")
-	public void updateItem(@RequestBody Items item){
+	public void updateItem(@PathVariable long id, @RequestBody Items item){
+		item.setItemId(id);
 		itemsRepository.save(item);
 	}
 

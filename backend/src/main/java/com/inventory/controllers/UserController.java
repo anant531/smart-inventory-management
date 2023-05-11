@@ -1,13 +1,10 @@
 package com.inventory.controllers;
 
 import com.inventory.entities.Employee;
-import com.inventory.entities.Roles;
 import com.inventory.repositories.GodownRepository;
 import com.inventory.repositories.RolesRepository;
 import com.inventory.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,11 +29,7 @@ public class UserController {
 
 	@PostMapping(path = "/user")
 	public void addUser(@RequestBody Employee e) {
-		Optional<Roles> roleFound = rolesRepository.findByName(e.getRole().getName());
-		if(roleFound.isPresent()) {
-			e.setRole(roleFound.get());
-			userRepository.save(e);
-		}
+		userRepository.save(e);
 	}
 
 	@GetMapping(path = "/user/{id}")
@@ -44,16 +37,16 @@ public class UserController {
 		return userRepository.findById(id);
 	}
 
-	@PostMapping("/userValidate")
-	ResponseEntity<?> getEmployee(@RequestBody Employee e) {
-		Optional<Employee> employeeFound = userRepository.findByUserName(e.getUserName());
-		if (employeeFound.isPresent() && employeeFound.get().getPassword().equals(e.getPassword())) {
-			e = employeeFound.get();
-            return ResponseEntity.ok(e);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-	}
+//	@PostMapping("/userValidate")
+//	ResponseEntity<?> getEmployee(@RequestBody Employee e) {
+//		Optional<Employee> employeeFound = userRepository.findByUserName(e.getUserName());
+//		if (employeeFound.isPresent() && employeeFound.get().getPassword().equals(e.getPassword())) {
+//			e = employeeFound.get();
+//            return ResponseEntity.ok(e);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//	}
 
 	@DeleteMapping("/user")
 	public void deleteUser(@RequestBody Employee e){

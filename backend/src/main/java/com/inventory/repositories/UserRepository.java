@@ -1,12 +1,11 @@
 package com.inventory.repositories;
 
-import java.util.Optional;
-
+import com.inventory.entities.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.inventory.entities.Employee;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<Employee, Long>{
-	Optional<Employee> findByUserName(String userName);
+	Optional<Employee> findByName(String name);
 
 }

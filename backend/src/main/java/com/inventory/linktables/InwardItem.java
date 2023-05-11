@@ -31,4 +31,13 @@ public class InwardItem {
 
     private int quantity;
 
+    @Override
+    public String toString() {
+        return "InwardItem{" +
+                "id=" + id +
+                ", inward=" + inward.getInwardId() +
+                ", item=" + item.getItemId() +
+                ", quantity=" + quantity +
+                '}';
+    }
 }

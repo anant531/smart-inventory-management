@@ -31,7 +31,6 @@ public class InwardController {
 
 	@GetMapping(path = "/inward")
 	public List<Inward> getInwards(){
-
 		return inwardRepository.findAll();
 	}
 
@@ -42,8 +41,9 @@ public class InwardController {
 		}
 		inwardRepository.save(i);
 		Optional<Godown> godownFound = godownRepository.findById(i.getGodown().getGodownId());
+		Godown godown = new Godown();
 		if(godownFound.isPresent()){
-			Godown godown = godownFound.get();
+			godown = godownFound.get();
 		}
 
 		double totalWeight = 0;
@@ -55,7 +55,9 @@ public class InwardController {
 			if(godownItemFound.isPresent()){
 				GodownItem godownItem = godownItemFound.get();
 				godownItem.setQuantity(godownItem.getQuantity() + inwardItem.getQuantity());
-				if((totalWeight / 100) < godownFound.get().getGodownCapacity()){
+				if((totalWeight / 100) < godown.getCurrentCapacity()){
+					godown.setCurrentCapacity(godown.getCurrentCapacity() - (totalWeight / 100));
+					godownRepository.save(godown);
 					godownItemRepository.save(godownItem);
 				}
 
@@ -67,7 +69,9 @@ public class InwardController {
 				godownItem.setGodown(godownRepository.findById(i.getGodown().getGodownId()).orElse(null));
 				godownItem.setQuantity(inwardItem.getQuantity());
 
-				if((totalWeight / 100) < godownFound.get().getGodownCapacity()){
+				if((totalWeight / 100) < godown.getGodownCapacity()){
+					godown.setCurrentCapacity(godown.getCurrentCapacity() - (totalWeight / 100));
+					godownRepository.save(godown);
 					godownItemRepository.save(godownItem);
 				}
 			}
