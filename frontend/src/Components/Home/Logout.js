@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setToken } from "../../Redux/reducer";
 import { blue } from "@nextui-org/react";
@@ -10,6 +10,7 @@ import "./Logout.css";
 
 const Logout = () => {
   const [authUser, setAuthUser] = useState(null);
+  const { role } = useSelector((state) => state.tokenReducer);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -41,7 +42,8 @@ const Logout = () => {
     <div>
       {authUser ? (
         <>
-          <p>{`Signed In as ${authUser.email}`}</p>
+          <p>{`Signed In as ${authUser.email} `}</p>
+          <p>{` Role:   ${role}`}</p>
           <button className="sinout" onClick={userSignOut}>
             Sign Out
           </button>

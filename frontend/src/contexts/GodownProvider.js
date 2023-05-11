@@ -6,6 +6,7 @@ const GodownProvider = ({ children }) => {
   const [godown, setGodown] = useState([]);
   const [product, setProduct] = useState([]);
   const [inward, setInward] = useState([]);
+  const [outward, setOutward] = useState([]);
   const [supplier, setSupplier] = useState([]);
 
   useEffect(() => {
@@ -39,7 +40,7 @@ const GodownProvider = ({ children }) => {
 
   const deleteGodown = async (id) => {
     try {
-      await axios.delete(`http://localhost:3030/godown/${id}`);
+      await axios.delete(`http://localhost:8080/godown/${id}`);
       setGodown(godown.filter((godown) => godown.id !== id));
     } catch (error) {
       console.log(error);
@@ -61,10 +62,22 @@ const GodownProvider = ({ children }) => {
   const addInward = async (newInward) => {
     try {
       const response = await axios.post(
-        "http://localhost:3030/inward",
+        "http://localhost:8080/inward",
         newInward
       );
       setInward([...inward, response.data]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addOutward = async (newOutward) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/outward",
+        newOutward
+      );
+      setOutward([...outward, response.data]);
     } catch (error) {
       console.log(error);
     }
@@ -97,6 +110,7 @@ const GodownProvider = ({ children }) => {
         deleteGodown,
         addProduct,
         addInward,
+        addOutward,
         handleEditGodown,
       }}
     >

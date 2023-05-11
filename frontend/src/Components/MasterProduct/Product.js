@@ -16,7 +16,7 @@ const Product = () => {
   const [products, setProduct] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const [category, selectedcat] = useState("Chocolates");
+  const [category, selectedcat] = useState("Chocolate");
 
   const [editOpen, setEditOpen] = useState(false);
   const [selectedData, setSelectedData] = useState();
@@ -72,10 +72,13 @@ const Product = () => {
 
   return (
     <div className="product-outer-container">
-      <h1 style={{ paddingBottom: "30px" }}>Product List</h1>
+      <h1 style={{ marginBottom: "25px", marginTop: "-21px" }}>Product List</h1>
       <div className="product-container">
         <div className="col-3">
-          <SearchProduct handleSelectedCategory={handleSelectedCategory} />
+          <SearchProduct
+            handleSelectedCategory={handleSelectedCategory}
+            category={category}
+          />
         </div>
         <div className="">
           <AddProduct />
@@ -83,7 +86,7 @@ const Product = () => {
       </div>
 
       <div
-        className="product-container"
+        className="product-inner-container"
         style={{ display: "flex", flexWrap: "wrap" }}
       >
         {filteredProducts.map((product) => (

@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 import GodownContext from "../../contexts/GodownContext";
 
-export function ProductDialog({ receipt, onClose }) {
+export function OutwardDialog({ receipt, onClose }) {
   //   function renderProductRows() {
 
   //     return receipt.product.map((product) => (
@@ -46,7 +46,7 @@ export function ProductDialog({ receipt, onClose }) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {receipt.InwardItem.map((selectedProduct) => {
+              {receipt.outwardItem.map((selectedProduct) => {
                 const { itemId, quantity } = selectedProduct;
                 const { itemName } =
                   product.find((p) => p.itemId === itemId) || {};
@@ -68,7 +68,7 @@ export function ProductDialog({ receipt, onClose }) {
               marginTop: "10px",
             }}
           >
-            Total Amount: ₹{receipt.invoiceNo}
+            Total Amount: ₹{receipt.billValue}
           </p>
         </TableContainer>
         <DialogActions>

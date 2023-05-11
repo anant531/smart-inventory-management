@@ -307,17 +307,19 @@ export default function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const userData = {
-      userName: name,
-      role: role,
+      name: name,
       email: email,
-      phoneNumber: phoneNumber,
-      imageUrl:
+      phone: parseInt(phoneNumber),
+
+      location: location,
+      imgUrl:
         "https://previews.123rf.com/images/captainvector/captainvector1601/captainvector160107847/51389236-employee.jpg",
+      role: role,
     };
     console.log(userData);
 
     axios
-      .post("http://localhost:3030/employee", userData)
+      .post("http://localhost:8080/user", userData)
       .then((response) => {
         console.log("Data successfully posted:", response.data);
       })
@@ -343,6 +345,7 @@ export default function SignUp() {
   const [role, setRole] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [location, setLocation] = useState("");
   const [errors, setErrors] = useState({});
 
   const validateForm = () => {
@@ -469,8 +472,9 @@ export default function SignUp() {
                       required
                     >
                       <option value="">Select role</option>
-                      <option value="admin">Admin</option>
-                      <option value="manager">Manager</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Manager">Manager</option>
+                      <option value="Godown Supervisor">Supervisor</option>
                     </select>
                     {errors.role && (
                       <div className="invalid-feedback">{errors.role}</div>
@@ -496,6 +500,26 @@ export default function SignUp() {
                       <div className="invalid-feedback">
                         {errors.phoneNumber}
                       </div>
+                    )}
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="name" className="form-label">
+                      Employee Name
+                    </label>
+                    <input
+                      type="text"
+                      className={`form-control ${
+                        errors.name ? "is-invalid" : ""
+                      }`}
+                      id="name"
+                      name="name"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                      autoComplete="given-name"
+                      required
+                    />
+                    {errors.name && (
+                      <div className="invalid-feedback">{errors.name}</div>
                     )}
                   </div>
 

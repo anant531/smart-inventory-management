@@ -17,6 +17,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import GodownContext from "../../../contexts/GodownContext";
+import SearchProduct from "../SearchProduct";
 
 const useStyles = makeStyles({
   button: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles({
     "&:hover": {
       background: "#000080",
     },
+    height: "55px",
   },
   dialog: {
     "& .MuiDialog-paper": {
@@ -107,6 +109,12 @@ const AddProduct = () => {
     handleClose();
   };
 
+  const handleSelectedCategory = (selectedCategory) => {
+    // Perform actions with the selectedCategory value
+    console.log("Selected category:", selectedCategory);
+    setCategory(selectedCategory);
+  };
+
   return (
     <>
       <Button
@@ -157,24 +165,10 @@ const AddProduct = () => {
           />
           {!isCustomCategory && (
             <FormControl fullWidth>
-              <InputLabel id="category-label">Category</InputLabel>
-              <Select
-                className={classes.input}
-                label="category"
-                variant="outlined"
-                value={category}
-                fullWidth
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                {uniqueCategories.map((category) => (
-                  <MenuItem key={category} value={category}>
-                    {category}
-                  </MenuItem>
-                ))}
-              </Select>
+              <SearchProduct
+                handleSelectedCategory={handleSelectedCategory}
+                category={category}
+              />
             </FormControl>
           )}
 

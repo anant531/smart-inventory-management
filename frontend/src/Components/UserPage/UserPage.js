@@ -73,7 +73,7 @@ const UserPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3030/employee")
+    fetch("http://localhost:8080/user")
       .then((response) => response.json())
       .then((result) => {
         setEmployee(
@@ -89,7 +89,7 @@ const UserPage = () => {
     if (searchTerm === "") {
       return val;
     } else if (
-      val.userName.toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
+      val.name.toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
       val.role.toLowerCase().includes(searchTerm.toLocaleLowerCase()) ||
       val.email.toLowerCase().includes(searchTerm.toLocaleLowerCase())
     ) {
@@ -118,12 +118,15 @@ const UserPage = () => {
           No records found!
         </div>
       )}
-      <div className="row">
+      <div
+        className="row"
+        style={{ height: "400px", overflow: "auto", overflowX: "hidden" }}
+      >
         {filteredEmployee.map((emp) => (
-          <div className="col-4 mb-4" key={emp.id}>
+          <div className="col-4 mb-4" key={emp.userId}>
             <UserCard
-              key={emp.id}
-              employee={emp}
+              key={emp.userId}
+              user={emp}
               css={{ padding: "10px", mw: "200px" }}
             />
           </div>
