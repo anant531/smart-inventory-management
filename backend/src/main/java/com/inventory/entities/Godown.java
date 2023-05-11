@@ -27,17 +27,19 @@ public class Godown {
 
 	double godownCapacity;
 
+	double currentCapacity;
+
 	String supervisor;
 
 	Date startDate;
 
 	
-	@OneToMany(mappedBy = "godown", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy = "godown", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JsonSerialize(using = GodownItemSerializer.class)
 	@JsonDeserialize(contentUsing = GodownItemDeserializer.class)
     private Set<GodownItem> godownItems = new HashSet<>();
 
-	@OneToMany(mappedBy = "godown")
+	@OneToMany(mappedBy = "godown", cascade = CascadeType.REMOVE)
 	Set<Inward> inwards = new HashSet<>();
 
 	@OneToMany(mappedBy = "godown")

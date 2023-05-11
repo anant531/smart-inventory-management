@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.inventory.JsonCustomizer.InwardDeserializer;
 import com.inventory.JsonCustomizer.InwardSerializer;
 import com.inventory.linktables.InwardItem;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -54,5 +57,14 @@ public class Inward {
 		this.invoiceNo = invoiceNo;
 		this.receiptNo = receiptNo;
 		this.receivedBy = receivedBy;
+	}
+
+	@Override
+	public String toString() {
+		return "Inward{" +
+				"inwardId=" + inwardId +
+				", godown=" + godown.getGodownId() +
+				", inwardItem=" + inwardItem +
+				'}';
 	}
 }

@@ -39,6 +39,7 @@ public class InwardDeserializer extends JsonDeserializer<Inward> {
         Supplier supplier = supplierRepository.findBySupplierName(supplierName);
         Set<InwardItem> inwardItems = new HashSet<>();
         JsonNode inwardItemNode = node.get("inwardItem");
+
         if(inwardItemNode.isArray()){
             for(JsonNode gn : inwardItemNode){
                 long itemId = gn.get("itemId").asLong();
