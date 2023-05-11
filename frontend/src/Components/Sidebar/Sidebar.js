@@ -141,7 +141,7 @@ const Header = () => {
           </SidebarContent>
           <SidebarFooter>
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>
+              <MenuItem>
                 {" "}
                 <Logout />
               </MenuItem>

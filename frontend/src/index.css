@@ -30,3 +30,23 @@ code {
 .css-zd7ftd-MuiFormControl-root {
   padding-right: 20px;
 }
+.nextui-c-BDLTQ-ikXHmfO-css {
+  max-width: 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  max-height: 220px;
+}
+.css-6hp17o-MuiList-root-MuiMenu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  outline: 0;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

@@ -1,335 +1,9 @@
-// import { useState, useEffect, useContext } from "react";
-// import axios from "axios";
-// import { Table } from "react-bootstrap";
-
-// import SelectGodown from "../Inward/selectGodown";
-
-// import GodownContext from "../../../contexts/GodownContext";
-
-// function Outward() {
-//   const { product } = useContext(GodownContext);
-//   const [godownData, setGodownData] = useState(null);
-//   const [Godown, selectedGodown] = useState("");
-//   const [selectedProducts, setSelectedProducts] = useState([]);
-//   const [productList, setProductlist] = useState([]);
-
-//   const selectGodown = (selGod) => {
-//     selectedGodown(selGod);
-//   };
-
-//   console.log(selectedProducts);
-//   console.log(productList);
-
-//   useEffect(() => {
-//     axios
-//       .get(`http://localhost:3030/godown/${Godown}`)
-//       .then((response) => setGodownData(response.data))
-//       .catch((error) => console.log(error));
-//   }, [Godown]);
-//   console.log(godownData);
-
-//   const handleProductSelection = (event) => {
-//     const productId = event.target.name;
-//     const isChecked = event.target.checked;
-//     if (isChecked) {
-//       setSelectedProducts((prevState) => [
-//         ...prevState,
-//         { id: productId, quantity: 1 },
-//       ]);
-//     } else {
-//       setSelectedProducts((prevState) =>
-//         prevState.filter((product) => product.id !== productId)
-//       );
-//     }
-//   };
-
-//   const handleQuantityChange = (event) => {
-//     const productId = event.target.name.split("-")[0];
-//     const quantity = parseInt(event.target.value);
-//     setSelectedProducts((prevState) => {
-//       const productIndex = prevState.findIndex(
-//         (product) => product.id === productId
-//       );
-//       const newSelectedProducts = [...prevState];
-//       newSelectedProducts[productIndex] = { id: productId, quantity };
-//       return newSelectedProducts;
-//     });
-//   };
-
-//   const SearchProductHandler = async (e) => {
-//     try {
-//       e.preventDefault();
-//       const products = godownData.products.map((item) => {
-//         const { id, quantity } = item;
-//         const productMatch = product.find((p) => p.id === id);
-//         const { ItemName } = productMatch ? productMatch : { ItemName: "" };
-
-//         return { id, ItemName, quantity };
-//       });
-
-//       setProductlist(products);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   // console.log(productList);
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     console.log(productList);
-//     console.log(selectedProducts);
-
-//     selectedProducts.forEach((order) => {
-//       const item = productList.find((item) => item.id === order.id);
-//       if (item && item.quantity >= order.quantity) {
-//         item.quantity -= order.quantity;
-//       }
-//     });
-//   };
-
-//   return (
-//     <div style={{ marginTop: "2rem" }} className="container">
-//       <div className="container">
-//         <div className="col-3"></div>
-//         <div>
-//           <SelectGodown selectGodown={selectGodown} />
-//         </div>
-//         <div>
-//           <button onClick={SearchProductHandler}>Search Product</button>
-//         </div>
-//       </div>
-//       <form>
-//         <Table striped bordered hover>
-//           <thead>
-//             <tr>
-//               <th></th>
-//               <th>Product Name </th>
-//               <th>Avaible Quantity</th>
-//               <th>Quantity</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {productList.map((product) => (
-//               <tr key={product.id}>
-//                 <td>
-//                   <input
-//                     type="checkbox"
-//                     name={product.id}
-//                     onChange={handleProductSelection}
-//                   />
-//                 </td>
-//                 <td>{product.ItemName}</td>
-//                 <td>{product.quantity}</td>
-//                 <td>
-//                   <input
-//                     type="number"
-//                     min="1"
-//                     name={`${product.id}-quantity`}
-//                     defaultValue={1}
-//                     onChange={handleQuantityChange}
-//                   />
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </Table>
-//         <button
-//           type="submit"
-//           className="btn btn-primary"
-//           onClick={handleSubmit}
-//         >
-//           Submit
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default Outward;
-
-// import { useState, useEffect, useContext } from "react";
-// import axios from "axios";
-// import { Table } from "react-bootstrap";
-
-// import SelectGodown from "../Inward/selectGodown";
-
-// import GodownContext from "../../../contexts/GodownContext";
-
-// function Outward() {
-//   const { product } = useContext(GodownContext);
-//   const [godownData, setGodownData] = useState(null);
-//   const [Godown, selectedGodown] = useState("");
-//   const [selectedProducts, setSelectedProducts] = useState([]);
-//   const [productList, setProductlist] = useState([]);
-//   const [updatedProduct, setUpdatedProduct] = useState([]);
-
-//   const selectGodown = (selGod) => {
-//     selectedGodown(selGod);
-//   };
-
-//   console.log(selectedProducts);
-//   console.log(productList);
-
-//   useEffect(() => {
-//     axios
-//       .get(`http://localhost:3030/godown/${Godown}`)
-//       .then((response) => setGodownData(response.data))
-//       .catch((error) => console.log(error));
-//   }, [Godown]);
-//   console.log(godownData);
-
-//   const handleProductSelection = (event) => {
-//     const productId = event.target.name;
-//     const isChecked = event.target.checked;
-//     if (isChecked) {
-//       setSelectedProducts((prevState) => [
-//         ...prevState,
-//         { id: productId, quantity: 1 },
-//       ]);
-//     } else {
-//       setSelectedProducts((prevState) =>
-//         prevState.filter((product) => product.id !== productId)
-//       );
-//     }
-//   };
-
-//   const handleQuantityChange = (event) => {
-//     const productId = event.target.name.split("-")[0];
-//     const quantity = parseInt(event.target.value);
-//     setSelectedProducts((prevState) => {
-//       const productIndex = prevState.findIndex(
-//         (product) => product.id === productId
-//       );
-//       const newSelectedProducts = [...prevState];
-//       newSelectedProducts[productIndex] = { id: productId, quantity };
-//       return newSelectedProducts;
-//     });
-//   };
-
-//   const SearchProductHandler = async (e) => {
-//     try {
-//       e.preventDefault();
-//       const products = godownData.products.map((item) => {
-//         const { id, quantity } = item;
-//         const productMatch = product.find((p) => p.id === id);
-//         const { ItemName } = productMatch ? productMatch : { ItemName: "" };
-
-//         return { id, ItemName, quantity };
-//       });
-//       const updatedProduct = godownData.products.map((item) => {
-//         const { id, quantity } = item;
-
-//         return { id, quantity };
-//       });
-
-//       setProductlist(products);
-//       setUpdatedProduct(updatedProduct);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-
-//   // console.log(productList);
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     console.log("Product List", productList);
-//     console.log("Selected", selectedProducts);
-//     console.log("Updated", updatedProduct);
-//     console.log("godown updated", godownData.products);
-
-//     selectedProducts.forEach((order) => {
-//       const item = productList.find((item) => item.id === order.id);
-//       if (item && item.quantity >= order.quantity) {
-//         item.quantity -= order.quantity;
-//       }
-//     });
-//     selectedProducts.forEach((order) => {
-//       const item = updatedProduct.find((item) => item.id === order.id);
-//       if (item && item.quantity >= order.quantity) {
-//         item.quantity -= order.quantity;
-//       }
-//     });
-//     godownData.products = updatedProduct;
-//     console.log(godownData.products);
-//     console.log(godownData);
-
-//     axios
-//       .put(`http://localhost:3030/godown/${Godown}`, godownData)
-//       .then((response) => {
-//         console.log("Product array updated successfully");
-//       })
-//       .catch((error) => {
-//         console.error("Error updating product array:", error);
-//       });
-//   };
-
-//   return (
-//     <div style={{ marginTop: "2rem" }} className="container">
-//       <div className="container">
-//         <div className="col-3"></div>
-//         <div>
-//           <SelectGodown selectGodown={selectGodown} />
-//         </div>
-//         <div>
-//           <button className="btn btn-success" onClick={SearchProductHandler}>
-//             Search Product
-//           </button>
-//         </div>
-//       </div>
-//       <form>
-//         <Table striped bordered hover>
-//           <thead>
-//             <tr>
-//               <th></th>
-//               <th>Product Name </th>
-//               <th>Avaible Quantity</th>
-//               <th>Quantity</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {productList.map((product) => (
-//               <tr key={product.id}>
-//                 <td>
-//                   <input
-//                     type="checkbox"
-//                     name={product.id}
-//                     onChange={handleProductSelection}
-//                   />
-//                 </td>
-//                 <td>{product.ItemName}</td>
-//                 <td>{product.quantity}</td>
-//                 <td>
-//                   <input
-//                     type="number"
-//                     min="1"
-//                     name={`${product.id}-quantity`}
-//                     defaultValue={1}
-//                     onChange={handleQuantityChange}
-//                   />
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </Table>
-//         <button
-//           type="submit"
-//           className="btn btn-primary"
-//           onClick={handleSubmit}
-//         >
-//           Submit
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default Outward;
-
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
 import SelectGodown from "../Inward/selectGodown";
 import DatePicker from "react-datepicker";
+import Box from "@mui/material/Box";
 
 import GodownContext from "../../../contexts/GodownContext";
 import { useNavigate } from "react-router-dom";
@@ -359,10 +33,14 @@ function Outward() {
   const [productList, setProductlist] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [updatedProduct, setUpdatedProduct] = useState([]);
+  const [submitting, setSubmitting] = useState(false);
   const [customer, setCustomer] = useState("");
   const [formattedDate, setDate] = useState("");
   const [amount, setAmount] = useState("");
   const [weight, setWeight] = useState("");
+  const [location, setLocation] = useState("");
+  const [customerName, setCustomerName] = useState("");
+  const [outward, setOutward] = useState();
 
   const [open, setOpen] = useState(false);
 
@@ -394,31 +72,41 @@ function Outward() {
     selectedGodown(selGod);
   };
 
+  const handleCustomerNameChange = (event) => {
+    setCustomerName(event.target.value);
+  };
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
   console.log(selectedProducts);
   console.log(productList);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/product`)
+      .get(`http://localhost:8080/items`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3030/godown/${Godown}`)
-      .then((response) => setGodownData(response.data))
-      .catch((error) => console.log(error));
-  }, [Godown]);
+    fetchData();
+  }, [Godown, outward]);
   console.log(godownData);
 
+  const fetchData = async () => {
+    const result = await axios.get(`http://localhost:8080/godown/${Godown}`);
+    setGodownData(result.data);
+  };
+
   const handleProductSelection = (event) => {
-    const productId = event.target.name;
+    const productId = parseInt(event.target.name);
     const isChecked = event.target.checked;
     if (isChecked) {
       setSelectedProducts((prevState) => [
         ...prevState,
-        { id: productId, quantity: 1 },
+        { itemId: productId, quantity: 0 },
       ]);
     } else {
       setSelectedProducts((prevState) =>
@@ -428,29 +116,28 @@ function Outward() {
   };
 
   const handleQuantityChange = (event) => {
-    const productId = event.target.name.split("-")[0];
+    const productId = parseInt(event.target.name.split("-")[0]);
     const quantity = parseInt(event.target.value);
     setSelectedProducts((prevState) => {
       const productIndex = prevState.findIndex(
-        (product) => product.id === productId
+        (product) => product.itemId === productId
       );
       const newSelectedProducts = [...prevState];
-      newSelectedProducts[productIndex] = { id: productId, quantity };
+      newSelectedProducts[productIndex] = { itemId: productId, quantity };
       return newSelectedProducts;
     });
   };
-
   const SearchProductHandler = async (e) => {
     try {
       e.preventDefault();
-      const products = godownData.products.map((item) => {
-        const { id, quantity } = item;
-        const productMatch = product.find((p) => p.id === id);
-        const { ItemName } = productMatch ? productMatch : { ItemName: "" };
+      const products = godownData.godownItems.map((item) => {
+        const { itemId, quantity } = item;
+        const productMatch = product.find((p) => p.itemId === itemId);
+        const { itemName } = productMatch ? productMatch : { itemName: "" };
 
-        return { id, ItemName, quantity };
+        return { itemId, itemName, quantity };
       });
-      const updatedProduct = godownData.products.map((item) => {
+      const updatedProduct = godownData.godownItems.map((item) => {
         const { id, quantity } = item;
 
         return { id, quantity };
@@ -469,10 +156,12 @@ function Outward() {
       let totalAmount = 0;
       let totalWeight = 0;
       selectedProducts.forEach((product) => {
-        const { id, quantity } = product;
-        const { Amount, Weight } = products.find((price) => price.id === id);
-        totalAmount += Amount * quantity;
-        totalWeight += quantity * Weight;
+        const { itemId, quantity } = product;
+        const { amount, weight } = products.find(
+          (price) => price.itemId === itemId
+        );
+        totalAmount += amount * quantity;
+        totalWeight += quantity * weight;
         setWeight(totalWeight / 100);
         setAmount(totalAmount);
       });
@@ -480,6 +169,8 @@ function Outward() {
     } catch (error) {
       console.error(error);
     }
+
+    console.log("Selected", selectedProducts);
   };
 
   // console.log(productList);
@@ -487,77 +178,119 @@ function Outward() {
     e.preventDefault();
 
     console.log("Product List", productList);
-    console.log("Selected", selectedProducts);
+
     console.log("Updated", updatedProduct);
     console.log("godown updated", godownData.products);
 
-    selectedProducts.forEach((order) => {
-      const item = productList.find((item) => item.id === order.id);
-      if (item && item.quantity >= order.quantity) {
-        item.quantity -= order.quantity;
-      }
-    });
-    selectedProducts.forEach((order) => {
-      const item = updatedProduct.find((item) => item.id === order.id);
-      if (item && item.quantity >= order.quantity) {
-        item.quantity -= order.quantity;
-      }
-    });
-    godownData.products = updatedProduct;
-    godownData.Capacity += weight;
-    console.log(godownData.products);
-    console.log(godownData);
+    // selectedProducts.forEach((order) => {
+    //   const item = productList.find((item) => item.id === order.id);
+    //   if (item && item.quantity >= order.quantity) {
+    //     item.quantity -= order.quantity;
+    //   }
+    // });
+    // selectedProducts.forEach((order) => {
+    //   const item = updatedProduct.find((item) => item.id === order.id);
+    //   if (item && item.quantity >= order.quantity) {
+    //     item.quantity -= order.quantity;
+    //   }
+    // });
+    // godownData.products = updatedProduct;
+    // godownData.Capacity += weight;
+    // console.log(godownData.products);
+    // console.log(godownData);
 
-    updateGodown(Godown, godownData);
-    handleClose();
+    // updateGodown(Godown, godownData);
 
     let newOutward = {
-      recieptNo: smallId,
-      CustomerName: customer,
-      GodownId: godownData.location,
-      DateOfSupply: formattedDate,
-      RecievedBy: godownData.GodownSupervisor,
-      Amount: amount,
-      product: selectedProducts,
+      godownId: Godown,
+      outwardItem: selectedProducts,
+      deliveredTo: customerName,
+      billCheckedBy: godownData.supervisor,
+      destination: location,
+      billNumber: amount,
     };
+
+    // OUTWARD POST :
+
+    // {
+
+    //     "godownId" : 164,
+
+    //     "outwardItem" : [
+
+    //         {
+
+    //             "itemId": 72,
+
+    //             "quantity" : 20
+
+    //         }
+
+    //     ],
+
+    //     "deliveredTo" : "Pikachu",
+
+    //     "billCheckedBy" : "Anant",
+
+    //     "destination" : "Chennai",
+
+    //     "billNumber" : 12983
+
+    // }
     console.log("Outward", newOutward);
     axios
-      .post("http://localhost:3030/outward", newOutward)
+      .post("http://localhost:8080/outward", newOutward)
       .then((response) => {
         console.log(response);
+        setOutward(newOutward);
       })
       .catch((error) => {
         console.log(error);
       });
+
+    setSubmitting(true);
+    handleClose();
+    setSelectedProducts([]);
   };
 
   return (
     <>
       <h1>Deliveries</h1>
       <div className="outward-container">
-        <div className="outward-head-container">
+        <div
+          className="outward-head-container"
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <SelectGodown selectGodown={selectGodown} />
           &nbsp; &nbsp;
-          <DatePicker
-            className="form-control-sm"
-            selected={selectedDate}
-            onChange={handleDateChange}
-            required
-            placeholderText="select a date"
+          <TextField
+            id="outlined-basic"
+            label="Customer Name"
+            variant="outlined"
+            style={{ marginRight: "5px" }}
+            value={customerName}
+            onChange={handleCustomerNameChange}
           />
-          {!formattedDate && (
-            <div className="invalid-feedback">Date is required</div>
-          )}
+          <TextField
+            id="outlined-basic"
+            label="Location"
+            variant="outlined"
+            style={{ marginRight: "5px", marginLeft: "5px" }}
+            value={location}
+            onChange={handleLocationChange}
+          />
           <Button
             variant="contained"
             size="small"
             className="browse-button"
             onClick={SearchProductHandler}
             sx={{ backgroundColor: "#574AC0" }}
+            style={{ marginLeft: "5px" }}
           >
             Browse Godown
           </Button>
         </div>
+
         <div className="table-container">
           <Table striped bordered hover>
             <thead>
@@ -570,25 +303,28 @@ function Outward() {
             </thead>
             <tbody>
               {productList.map((product) => (
-                <tr key={product.id}>
+                <tr key={product.itemId}>
                   <td>
                     <input
                       type="checkbox"
-                      name={product.id}
+                      name={product.itemId}
                       onChange={handleProductSelection}
+                      disabled={submitting}
                     />
                   </td>
-                  <td>{product.ItemName}</td>
+                  <td>{product.itemName}</td>
                   <td>{product.quantity}</td>
                   <td>
                     <input
                       type="number"
                       min="1"
-                      name={`${product.id}-quantity`}
+                      name={`${product.itemId}-quantity`}
                       defaultValue={1}
                       onChange={handleQuantityChange}
                       disabled={
-                        !selectedProducts.some((p) => p.id === product.id)
+                        !selectedProducts.some(
+                          (p) => p.itemId === product.itemId
+                        )
                       }
                     />
                   </td>
@@ -597,33 +333,41 @@ function Outward() {
             </tbody>
           </Table>
         </div>
-        <div className="container">
-          <div className="row justify-content-between ">
-            <button
-              onClick={handleCalculate}
-              className="btn btn-primary mb-3 col-auto"
-            >
-              Calculate
-            </button>
-            <input
-              className="Amount col-auto mt-4 narrow-input"
-              type="text"
-              value={`Total Amount: ₹${amount}`}
-              readOnly
-            />
-            <input
-              className="Amount col-auto mt-4 narrow-input"
-              type="text"
-              value={`Total Weight: ${weight} (in qq)`}
-              readOnly
-            />
-            <button
-              onClick={handleOpen}
-              className="btn btn-primary mb-3 col-auto"
-            >
-              Submit
-            </button>
-          </div>
+        <div className="footer-container">
+          <button
+            onClick={handleCalculate}
+            className="btn btn-primary mb-3 col-auto"
+          >
+            Calculate
+          </button>
+          <input
+            className="Amount col-auto mt-4 narrow-input"
+            type="text"
+            value={`Total Amount: ₹${amount}`}
+            readOnly
+            style={{
+              margin: "0px 10px 0px 5px",
+              fontSize: "20px",
+              width: "auto",
+            }}
+          />
+          <input
+            className="Amount col-auto mt-4 narrow-input"
+            type="text"
+            value={`Total Weight: ${weight} (in qq)`}
+            readOnly
+            style={{
+              margin: "0px 10px 0px 5px",
+              fontSize: "20px",
+              width: "auto",
+            }}
+          />
+          <button
+            onClick={handleOpen}
+            className="btn btn-primary mb-3 col-auto"
+          >
+            Submit
+          </button>
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle>Confirmation</DialogTitle>
@@ -638,11 +382,12 @@ function Outward() {
               </thead>
               <tbody>
                 {selectedProducts.map((selectedProduct) => {
-                  const { id, quantity } = selectedProduct;
-                  const { ItemName } = products.find((p) => p.id === id) || {};
+                  const { itemId, quantity } = selectedProduct;
+                  const { itemName } =
+                    products.find((p) => p.itemId === itemId) || {};
                   return (
-                    <tr key={id}>
-                      <td> {ItemName}</td>
+                    <tr key={itemId}>
+                      <td> {itemName}</td>
                       <td>X {quantity}</td>
                     </tr>
                   );

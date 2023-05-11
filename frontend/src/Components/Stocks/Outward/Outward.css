@@ -15,6 +15,7 @@ td {
 }
 .browse-button {
   text-align: center;
+  height: 60px;
   align-items: center;
   width: 100%;
   max-width: 150px;
