@@ -22,17 +22,14 @@ const Product = () => {
   const [selectedData, setSelectedData] = useState();
   const [selectedId, setSelectedId] = useState();
 
-  const uniqueCategories = products.reduce((categories, product) => {
-    if (!categories.includes(product.Category)) {
-      return [...categories, product.Category];
-    }
-    return categories;
-  }, []);
-  const handleOptionChange = (event) => {
-    selectedcat(event.target.value);
-  };
+  const filteredProducts = products.filter((cat) => cat.category === category);
 
-  const filteredProducts = products.filter((cat) => cat.Category === category);
+  const handleSelectedCategory = (selectedCategory) => {
+    // Perform actions with the selectedCategory value
+    console.log("Selected category:", selectedCategory);
+    selectedcat(selectedCategory);
+    // You can add your custom logic here based on the selectedCategory value
+  };
 
   const query = new URLSearchParams(location.search);
   const isAdded = query.get("added");
@@ -44,7 +41,7 @@ const Product = () => {
 
   const fetchData = () => {
     axios
-      .get("http://localhost:3030/product")
+      .get("http://localhost:8080/items")
       .then((response) => {
         setProduct(response.data);
         console.log(response.data);
@@ -57,7 +54,7 @@ const Product = () => {
 
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:3030/product/${id}`)
+      .delete(`http://localhost:8080/items/${id}`)
       .then((response) => {
         console.log("Resource deleted successfully");
         // remove deleted resource from state
@@ -78,31 +75,7 @@ const Product = () => {
       <h1 style={{ paddingBottom: "30px" }}>Product List</h1>
       <div className="product-container">
         <div className="col-3">
-          <FormControl fullWidth>
-            <InputLabel id="category-select-label">
-              Select a category
-            </InputLabel>
-            <Select
-              labelId="category-select-label"
-              id="category-select"
-              value={category}
-              label="Select a category"
-              onChange={handleOptionChange}
-            >
-              {uniqueCategories.map((category) => (
-                <MenuItem
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                  key={category}
-                  value={category}
-                >
-                  {category}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <SearchProduct handleSelectedCategory={handleSelectedCategory} />
         </div>
         <div className="">
           <AddProduct />
@@ -115,7 +88,7 @@ const Product = () => {
       >
         {filteredProducts.map((product) => (
           <Card
-            key={product.id}
+            key={product.itemId}
             isHoverable
             variant="bordered"
             css={{
@@ -133,13 +106,7 @@ const Product = () => {
               <div>
                 <Text className="pro-id">
                   {" "}
-                  <b>Name:</b> {product.ItemName}
-                </Text>
-              </div>
-
-              <div>
-                <Text className="pro-id">
-                  <b>Supplier:</b> {product.Supplier}
+                  <b>Name:</b> {product.itemName}
                 </Text>
               </div>
 
@@ -149,7 +116,16 @@ const Product = () => {
               //   "flex-direction": "row",
               >
                 <Text className="pro-id mb-3">
-                  <b>Price:</b> {product.Amount}
+                  <b>Price:</b> {product.amount}
+                </Text>
+              </div>
+              <div
+              // style={{
+              //   display: "flex",
+              //   "flex-direction": "row",
+              >
+                <Text className="pro-id mb-3">
+                  <b>Price:</b> {product.category}
                 </Text>
               </div>
 
@@ -159,7 +135,7 @@ const Product = () => {
                   className="DeleteTwoToneIcon"
                   fontSize="medium"
                   color="action"
-                  onClick={() => handleDelete(product.id)}
+                  onClick={() => handleDelete(product.itemId)}
                   sx={{ color: "#ff1744" }}
                 />
                 {/* <DeleteTwoToneIcon
@@ -177,7 +153,7 @@ const Product = () => {
                   onClick={() => {
                     setEditOpen(true);
                     setSelectedData(product);
-                    setSelectedId(product?.id);
+                    setSelectedId(product?.itemId);
                   }}
                 />
               </div>

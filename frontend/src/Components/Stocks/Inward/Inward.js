@@ -71,11 +71,12 @@ function ProductList() {
 
   const selectGodown = (selGod) => {
     selectedGodown(selGod);
+    console.log(Godown);
   };
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/godown/${Godown}`)
+      .get(`http://localhost:8080/godown/${Godown}`)
       .then((response) => {
         setGodownData(response.data);
         console.log("Godwn in use effect -->", response.data);
@@ -86,18 +87,18 @@ function ProductList() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/product`)
+      .get(`http://localhost:8080/items`)
       .then((response) => setProducts(response.data))
       .catch((error) => console.log(error));
   }, []);
 
   const handleProductSelection = (event) => {
-    const productId = event.target.name;
+    const productId = parseInt(event.target.name);
     const isChecked = event.target.checked;
     if (isChecked) {
       setSelectedProducts((prevState) => [
         ...prevState,
-        { id: productId, quantity: 1 },
+        { itemId: productId, quantity: 1 },
       ]);
     } else {
       setSelectedProducts((prevState) =>
@@ -107,103 +108,101 @@ function ProductList() {
   };
 
   const handleQuantityChange = (event) => {
-    const productId = event.target.name.split("-")[0];
+    const productId = parseInt(event.target.name.split("-")[0]);
     const quantity = parseInt(event.target.value);
     setSelectedProducts((prevState) => {
       const productIndex = prevState.findIndex(
         (product) => product.id === productId
       );
       const newSelectedProducts = [...prevState];
-      newSelectedProducts[productIndex] = { id: productId, quantity };
+      newSelectedProducts[productIndex] = { itemId: productId, quantity };
       return newSelectedProducts;
     });
   };
 
   const handleCalculate = async (event) => {
     try {
-      event.preventDefault();
-      let totalAmount = 0;
-      let totalWeight = 0;
-      selectedProducts.forEach((product) => {
-        const { id, quantity } = product;
-        const { Amount, Weight } = products.find((price) => price.id === id);
-        totalAmount += Amount * quantity;
-        totalWeight += quantity * Weight;
-        setWeight(totalWeight / 100);
-        setAmount(totalAmount);
-      });
-      console.log("Total Amount:", totalAmount, totalWeight);
+      // event.preventDefault();
+      // let totalAmount = 0;
+      // let totalWeight = 0;
+      // selectedProducts.forEach((product) => {
+      //   const { id, quantity } = product;
+      //   const { Amount, Weight } = products.find((price) => price.id === id);
+      //   totalAmount += Amount * quantity;
+      //   totalWeight += quantity * Weight;
+      //   setWeight(totalWeight / 100);
+      //   setAmount(totalAmount);
+      // });
+      console.log("Total Amount:", selectedProducts);
     } catch (error) {
       console.error(error);
     }
   };
 
   const handleSubmit = async (event) => {
-    try {
-      event.preventDefault();
-      const response = await axios.get(
-        `http://localhost:3030/godown/${Godown}`
-      );
-      const godown = response.data;
+    // try {
+    //   event.preventDefault();
+    //   const response = await axios.get(
+    //     `http://localhost:8080/godown/${Godown}`
+    //   );
+    //   const godown = response.data;
 
-      const updatedProducts = [];
+    //reducing the capacity and adding
+    // godown.Capacity -= weight;
+    // // abc
+    // for (const selectedProduct of selectedProducts) {
+    //   const existingProductIndex = godown.products.findIndex(
+    //     (product) => product.id === selectedProduct.id
+    //   );
 
-      //reducing the capacity and adding
-      godown.Capacity -= weight;
-      // abc
-      for (const selectedProduct of selectedProducts) {
-        const existingProductIndex = godown.products.findIndex(
-          (product) => product.id === selectedProduct.id
-        );
+    //   if (existingProductIndex !== -1) {
+    //     // Update the quantity of the existing product
+    //     const existingProduct = godown.products[existingProductIndex];
+    //     const updatedProduct = {
+    //       id: existingProduct.id,
+    //       quantity: existingProduct.quantity + selectedProduct.quantity,
+    //     };
+    //     godown.products[existingProductIndex] = updatedProduct;
+    //     updatedProducts.push(updatedProduct);
+    //   } else {
+    //     // Add the new product to the array
+    //     godown.products.push(selectedProduct);
+    //     updatedProducts.push(selectedProduct);
+    //   }
+    // }
 
-        if (existingProductIndex !== -1) {
-          // Update the quantity of the existing product
-          const existingProduct = godown.products[existingProductIndex];
-          const updatedProduct = {
-            id: existingProduct.id,
-            quantity: existingProduct.quantity + selectedProduct.quantity,
-          };
-          godown.products[existingProductIndex] = updatedProduct;
-          updatedProducts.push(updatedProduct);
-        } else {
-          // Add the new product to the array
-          godown.products.push(selectedProduct);
-          updatedProducts.push(selectedProduct);
-        }
-      }
+    // const updateResponse = await axios.put(
+    //   `http://localhost:8080/godown/${Godown}`,
+    //   godown
+    // );
+    // handleClose();
 
-      const updateResponse = await axios.put(
-        `http://localhost:3030/godown/${Godown}`,
-        godown
-      );
-      handleClose();
-      console.log("Updated products:", updatedProducts);
-      // navigate("/inward?added=true");
-      let newInward = {
-        recieptNo: smallId,
-        SupplierName: supplier,
-        GodownId: godownData.location,
-        DateOfSupply: formattedDate,
-        RecievedBy: godownData.GodownSupervisor,
-        Amount: amount,
-        product: updatedProducts,
-      };
-      console.log(newInward);
-      axios
-        .post("http://localhost:3030/inward", newInward)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      setSubmitting(true);
-      setSelectedProducts([]); // Reset selectedProducts to an empty array
+    // navigate("/inward?added=true");
+    let newInward = {
+      godownId: Godown,
+      inwardItem: selectedProducts,
+      supplier: "Ronaldo",
+      billCheckedBy: "Aravindhan",
+      invoiceNo: 2634,
+      receiptNo: 1723,
+      receivedBy: "Aravindhan",
+    };
+    console.log("Inwrad", newInward);
+    axios
+      .post("http://localhost:8080/inward", newInward)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setSubmitting(true);
+    setSelectedProducts([]); // Reset selectedProducts to an empty array
 
-      return updateResponse.data;
-    } catch (error) {
-      console.error(error);
-    }
+    //   return updateResponse.data;
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   return (
@@ -277,27 +276,27 @@ function ProductList() {
               </tr>
             </thead>
             <tbody>
-              {filteredProducts.map((product) => (
-                <tr key={product.id}>
+              {products.map((product) => (
+                <tr key={product.itemId}>
                   <td>
                     <input
                       type="checkbox"
-                      name={product.id}
+                      name={product.itemId}
                       onChange={handleProductSelection}
                       disabled={submitting}
                     />
                   </td>
-                  <td>{product.ItemName}</td>
+                  <td>{product.itemName}</td>
                   <td>
                     <input
                       type="number"
                       min="1"
-                      name={`${product.id}-quantity`}
+                      name={`${product.itemId}-quantity`}
                       defaultValue={1}
                       onChange={handleQuantityChange}
                     />
                   </td>
-                  <td>₹{product.Amount}</td>
+                  <td>₹{product.amount}</td>
                 </tr>
               ))}
             </tbody>

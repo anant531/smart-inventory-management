@@ -10,17 +10,17 @@ const GodownProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3030/godown")
+      .get("http://localhost:8080/godown")
       .then((response) => setGodown(response.data))
       .catch((error) => console.log(error));
 
     axios
-      .get("http://localhost:3030/product")
+      .get("http://localhost:8080/items")
       .then((response) => setProduct(response.data))
       .catch((error) => console.log(error));
 
     axios
-      .get("http://localhost:3030/supplier")
+      .get("http://localhost:8080/supplier")
       .then((response) => setSupplier(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -49,7 +49,7 @@ const GodownProvider = ({ children }) => {
   const addProduct = async (newProduct) => {
     try {
       const response = await axios.post(
-        "http://localhost:3030/product",
+        "http://localhost:8080/items",
         newProduct
       );
       setProduct([...product, response.data]);
