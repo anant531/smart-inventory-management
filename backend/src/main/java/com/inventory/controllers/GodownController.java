@@ -29,11 +29,13 @@ public class GodownController {
 
 		@GetMapping("/godown/{id}")
 		public Optional<Godown> getGodownById(@PathVariable long id) {
-	        return godownRepository.findById(id);
+
+			return godownRepository.findById(id);
 		}
 
 		@PostMapping("/godown")
 		public void addGodown(@RequestBody Godown g) {
+
 			godownRepository.save(g);
 		}
 
@@ -45,8 +47,9 @@ public class GodownController {
 			}
 		}
 
-		@PutMapping(path = "/godown")
+		@PutMapping(path = "/godown/{id}")
 		public void updateGodown(@RequestBody Godown g){
+
 			godownRepository.save(g);
 		}
 
